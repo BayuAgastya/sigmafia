@@ -1,0 +1,425 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+class M_materi extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('admin_model');
+        $this->load->helper('url');
+        if ($this->admin_model->is_role() != "admin") {
+            redirect("login/");
+        }
+    }
+
+    public function index()
+    {
+        $data = array(
+            'title' => 'Materi SMA',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => 'active',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'isi' => 'admin/m_materi',
+            'error' => ''
+        );
+
+        $data['matik_sd'] = $this->admin_model->get_materi_matik('sd');
+        $data['matik_smp'] = $this->admin_model->get_materi_matik('smp');
+        $data['matik_sma'] = $this->admin_model->get_materi_matik('sma');
+
+        $data['fisika_sd'] = $this->admin_model->get_materi_fisika('sd');
+        $data['fisika_smp'] = $this->admin_model->get_materi_fisika('smp');
+        $data['fisika_sma'] = $this->admin_model->get_materi_fisika('sma');
+
+        $data['kimia_sd'] = $this->admin_model->get_materi_kimia('sd');
+        $data['kimia_smp'] = $this->admin_model->get_materi_kimia('smp');
+        $data['kimia_sma'] = $this->admin_model->get_materi_kimia('sma');
+
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+
+
+    function upload()
+    {
+        if ($this->input->post('tingkat') == 'sd') {
+            $config['upload_path']          = './uploads/materi/matik/';
+            $config['allowed_types']        = 'pdf';
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('file')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin_menu/m_materi', $error);
+            } else {
+                $upload_data = $this->upload->data();
+                $name = $upload_data['file_name'];
+                $tingkat = 'sd';
+
+                $insert = $this->admin_model->insertMateriMatik($name, $tingkat);
+                if ($insert) {
+                    $this->session->set_flashdata('materi', 'File Matematika Berhasil Ditambahkan');
+                    redirect(base_url('admin_menu/m_materi'));
+                } else {
+                    echo "Gagal";
+                }
+            }
+        } elseif ($this->input->post('tingkat') == 'smp') {
+            if ($this->input->post('materi') == 'matematika') {
+                $config['upload_path']          = './uploads/materi/matik/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'smp';
+
+                    $insert = $this->admin_model->insertMateriMatik($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Matematika Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            } elseif ($this->input->post('materi') == 'fisika') {
+                $config['upload_path']          = './uploads/materi/fisika/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'smp';
+
+                    $insert = $this->admin_model->insertMateriFisika($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Fisika Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            } else {
+                $config['upload_path']          = './uploads/materi/kimia/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'smp';
+
+                    $insert = $this->admin_model->insertMateriKimia($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Kimia Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            }
+        } else {
+            if ($this->input->post('materi') == 'matematika') {
+                $config['upload_path']          = './uploads/materi/matik/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'sma';
+
+                    $insert = $this->admin_model->insertMateriMatik($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Matematika Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            } elseif ($this->input->post('materi') == 'fisika') {
+                $config['upload_path']          = './uploads/materi/fisika/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'sma';
+
+                    $insert = $this->admin_model->insertMateriFisika($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Fisika Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            } else {
+                $config['upload_path']          = './uploads/materi/kimia/';
+                $config['allowed_types']        = 'pdf';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('admin/m_materi', $error);
+                } else {
+                    $upload_data = $this->upload->data();
+                    $name = $upload_data['file_name'];
+                    $tingkat = 'sma';
+
+                    $insert = $this->admin_model->insertMateriKimia($name, $tingkat);
+                    if ($insert) {
+                        $this->session->set_flashdata('materi', 'File Kimia Berhasil Ditambahkan');
+                        redirect(base_url('admin_menu/m_materi'));
+                    } else {
+                        echo "Gagal";
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*  DELETE FUNCTION ============================================================================= */
+
+    function hapusMateriMatik($id)
+    {
+        $data = $this->admin_model->getMateriMatik($id)->row();
+        $nama = './uploads/materi/matik/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $delete = $this->admin_model->hapusMatikFile($id);
+            $this->session->set_flashdata('materi', 'File Matematika Berhasil Dihapus');
+            redirect(base_url('admin_menu/m_materi'));
+        } else {
+            echo "Gagal Hapus";
+        }
+    }
+
+    function hapusMateriFisika($id)
+    {
+        $data = $this->admin_model->getMateriFisika($id)->row();
+        $nama = './uploads/materi/fisika/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $delete = $this->admin_model->hapusFisikaFile($id);
+            $this->session->set_flashdata('materi', 'File Fisika Berhasil Dihapus');
+            redirect(base_url('admin_menu/m_materi'));
+        } else {
+            echo "Gagal Hapus";
+        }
+    }
+
+    function hapusMateriKimia($id)
+    {
+        $data = $this->admin_model->getMateriKimia($id)->row();
+        $nama = './uploads/materi/kimia/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $delete = $this->admin_model->hapusKimiaFile($id);
+            $this->session->set_flashdata('materi', 'File Kimia Berhasil Dihapus');
+            redirect(base_url('admin_menu/m_materi'));
+        } else {
+            echo "Gagal Hapus";
+        }
+    }
+
+
+    /*  EDIT PAGE ============================================================================= */
+
+    function editMateriMatik($id)
+    {
+        $data = array(
+            'title' => 'edit materi',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => 'active',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'isi' => 'admin/edit_materi',
+            'materiUp' => 'updateMateriMatik'
+        );
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+    function editMateriFisika($id)
+    {
+        $data = array(
+            'title' => 'edit materi',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_materi' => 'active',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_soal' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'isi' => 'admin/edit_materi',
+            'materiUp' => 'updateMateriFisika'
+        );
+        $data['data'] = $this->admin_model->getMateriFisika($id)->row();
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+    function editMateriKimia($id)
+    {
+        $data = array(
+            'title' => 'edit materi',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_materi' => 'active',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_soal' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'isi' => 'admin/edit_materi',
+            'materiUp' => 'updateMateriKimia'
+        );
+        $data['data'] = $this->admin_model->getMateriKimia($id)->row();
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+
+
+    /*  EDIT FUNCTION ============================================================================= */
+
+    function updateMateriMatik()
+    {
+        $id = $this->input->post('id_materi');
+
+        $data = $this->admin_model->getMateriMatik($id)->row();
+        $nama = './uploads/materi/matik/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $config['upload_path']          = './uploads/materi/matik/';
+            $config['allowed_types']        = 'pdf';
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('file')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin/m_materi', $error);
+            } else {
+                $upload_data = $this->upload->data();
+                $name = $upload_data['file_name'];
+
+                $data = array(
+                    'judul' => $this->input->post('judul'),
+                    'deskripsi' => $this->input->post('deskripsi'),
+                    'materi' => $name
+                );
+                $update = $this->admin_model->updateMatikFile($id, $data, $name);
+                if ($update) {
+                    $this->session->set_flashdata('materi', 'File Matematika Berhasil Diedit');
+                    redirect(base_url('admin_menu/m_materi'));
+                } else {
+                    echo "Gagal Update";
+                }
+            }
+        } else {
+            echo "Gagal";
+        }
+    }
+
+    function updateMateriFisika()
+    {
+        $id = $this->input->post('id_materi');
+
+        $data = $this->admin_model->getMateriFisika($id)->row();
+        $nama = './uploads/materi/fisika/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $config['upload_path']          = './uploads/materi/fisika/';
+            $config['allowed_types']        = 'pdf';
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('file')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin/m_materi', $error);
+            } else {
+                $upload_data = $this->upload->data();
+                $name = $upload_data['file_name'];
+
+                $data = array(
+                    'judul' => $this->input->post('judul'),
+                    'deskripsi' => $this->input->post('deskripsi'),
+                    'materi' => $name
+                );
+                $update = $this->admin_model->updateFisikaFile($id, $data, $name);
+                if ($update) {
+                    $this->session->set_flashdata('materi', 'File Fisika Berhasil Diedit');
+                    redirect(base_url('admin_menu/m_materi'));
+                } else {
+                    echo "Gagal Update";
+                }
+            }
+        } else {
+            echo "Gagal";
+        }
+    }
+
+    function updateMateriKimia()
+    {
+        $id = $this->input->post('id_materi');
+
+        $data = $this->admin_model->getMateriKimia($id)->row();
+        $nama = './uploads/materi/kimia/' . $data->materi;
+
+        if (is_readable($nama) && unlink($nama)) {
+            $config['upload_path']          = './uploads/materi/kimia/';
+            $config['allowed_types']        = 'pdf';
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('file')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin/m_materi', $error);
+            } else {
+                $upload_data = $this->upload->data();
+                $name = $upload_data['file_name'];
+
+                $data = array(
+                    'judul' => $this->input->post('judul'),
+                    'deskripsi' => $this->input->post('deskripsi'),
+                    'materi' => $name
+                );
+                $update = $this->admin_model->updateKimiaFile($id, $data, $name);
+                if ($update) {
+                    $this->session->set_flashdata('materi', 'File Kimia Berhasil Diedit');
+                    redirect(base_url('admin_menu/m_materi'));
+                } else {
+                    echo "Gagal Update";
+                }
+            }
+        } else {
+            echo "Gagal";
+        }
+    }
+
+
+
+    /*  ============================================================================= */
+}
