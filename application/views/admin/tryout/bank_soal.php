@@ -90,7 +90,7 @@
 						<thead>
 							<tr>
 								<th>Kode</th>
-								<th>Nama Guru <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Add</a></th>
+								<th>Nama Guru <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Tambah</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -98,7 +98,7 @@
 								<tr>
 									<td>G<?= $i->id_guru; ?></td>
 									<td><?= $i->nama_guru; ?>
-										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Delete</a></td>
+										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Hapus</a></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
@@ -109,7 +109,7 @@
 						<thead>
 							<tr>
 								<th>Kode</th>
-								<th>Tingkat <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Add</a></th>
+								<th>Tingkat <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Tambah</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -117,7 +117,7 @@
 								<tr>
 									<td>T<?= $i->id_tingkat; ?></td>
 									<td><?= $i->nama_tingkat; ?>
-										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Delete</a></td>
+										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Hapus</a></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
@@ -128,7 +128,7 @@
 						<thead>
 							<tr>
 								<th>Kode</th>
-								<th>Matpel <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Add</a></th>
+								<th>Matpel <a href="#" type="button" class="ion-plus btn-xs btn-flat btn-primary float-right"> Tambah</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -136,7 +136,7 @@
 								<tr>
 									<td>M<?= $i->id_matpel; ?></td>
 									<td><?= $i->nama_matpel; ?>
-										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Delete</a></td>
+										<a href="#" type="button" class="ion-trash-b btn-xs btn-flat btn-danger float-right"> Hapus</a></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>

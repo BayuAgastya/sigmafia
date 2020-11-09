@@ -61,19 +61,41 @@
                                 <label for="waktu">Waktu</label>
                                 <input placeholder="menit" type="number" class="form-control" name="waktu">
                             </div>
-                            <div class="form-group">
-                                <label for="jenis">Acak Soal</label>
-                                <select name="jenis" class="form-control">
-                                    <option value="" disabled selected>--- Pilih ---</option>
-                                    <option value="acak">Acak Soal</option>
-                                    <option value="urut">Urut Soal</option>
-                                </select>
-                                <small class="help-block"></small>
-                            </div>
-                            <div class="form-group pull-right">
-                                <a href="<?= base_url('admin_menu/tryout/tryout') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>
-                                <button type="submit" id="submit" class="btn btn-primary bg-purple"><i class="fa fa-save"></i> Buat</button>
-                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Soal</label>
+                            <table class="table table-bordered table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        <th>Pilih</th>
+                                        <th>ID</th>
+                                        <th>Bobot</th>
+                                        <th>Soal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $nomer = 0; ?>
+                                    <?php foreach ($data_bank->result() as $i) : ?>
+                                        <tr>
+                                            <td style="width:01%">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" name="soal[<?= $nomer; ?>]" value="<?= $i->id_bank; ?>">
+                                                </div>
+                                            </td>
+                                            <td style="width:01%"><?= $i->id_bank; ?></td>
+                                            <td style="width:01%; text-align:center"><?= $i->bobot; ?></td>
+                                            <td style="width:30%"><?= $i->soal; ?></td>
+                                        </tr>
+                                        <?php $nomer++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-group pull-right">
+                            <a href="<?= base_url('admin_menu/tryout/tryout') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>
+                            <button type="submit" id="submit" class="btn btn-primary bg-purple"><i class="fa fa-save"></i> Buat</button>
                         </div>
                     </div>
                     <?= form_close(); ?>

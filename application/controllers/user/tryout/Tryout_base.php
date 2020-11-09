@@ -51,8 +51,9 @@ class tryout_base extends CI_Controller
             'isi' => 'home/tryout/work_sheet'
         );
 
+        $data['relation'] = $this->tryout_model->data_lembarKerja($id);
+
         $data['to'] = $this->tryout_model->getTryout($id)->row();
-        $data['data'] = $this->tryout_model->getSoal($id)->row();
         $this->load->view('admin_layout/component');
         $this->load->view('admin_layout/konten', $data);
     }

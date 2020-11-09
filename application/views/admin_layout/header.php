@@ -53,13 +53,13 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_soal'); ?>" class="nav-link <?= $nav_soal ?>">
-                        <i class="far fa fa-clone nav-icon"></i>
+                        <i class="fas fa-file-alt nav-icon"></i>
                         <p>Manage Soal</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_materi'); ?>" class="nav-link <?= $nav_materi ?>">
-                        <i class="far fa fa-book nav-icon"></i>
+                        <i class="fas fa-book-open nav-icon"></i>
                         <p>Manage Materi</p>
                     </a>
                 </li>
@@ -88,20 +88,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('admin_menu/m_user'); ?>" class="nav-link">
-                        <i class="far fa fa-mortar-board nav-icon"></i>
+                    <a href="<?= base_url('admin_menu/m_user'); ?>" class="nav-link disabled">
+                        <i class="fas fa-chalkboard-teacher nav-icon"></i>
                         <p>Manage Guru</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_siswa'); ?>" class="nav-link <?= $nav_siswa ?>">
-                        <i class="far fa fa-database nav-icon"></i>
+                        <i class="fas fa-users nav-icon"></i>
                         <p>Data Murid</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_alumni'); ?>" class="nav-link <?= $nav_alumni ?>">
-                        <i class="far fa fa-mortar-board nav-icon"></i>
+                        <i class="fas fa-user-graduate nav-icon"></i>
                         <p>Manage Alumni</p>
                     </a>
                 </li>

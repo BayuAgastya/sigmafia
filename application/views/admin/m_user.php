@@ -9,7 +9,7 @@
 
                         <div class="flash-data" data-flashdata="<?= $this->session->flashdata('user'); ?>"></div>
 
-                        <a style="margin-top: 5px; margin-bottom:5px;" class="ion-card btn btn-primary" href="<?php echo base_url('admin_menu/m_user/requestPage') ?>"> Membership Request</a>
+                        <a style="margin-top: 5px; margin-bottom:5px;" class="ion-card btn btn-primary" href="<?= base_url('admin_menu/m_user/requestPage') ?>"> Membership Request</a>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -67,12 +67,12 @@
                                         <tbody>
                                             <?php foreach ($data_user as $i) : ?>
                                                 <tr>
-                                                    <td style="width:05%"><?php echo $i->user_id; ?></td>
-                                                    <td style="width:10%"><?php echo $i->id_murid; ?></td>
-                                                    <td style="width:10%"><?php echo $i->username; ?></td>
-                                                    <td style="width:05%"><?php echo $i->role; ?></td>
-                                                    <td style="width:10%"><?php echo $i->akses_konten; ?></td>
-                                                    <td style="width:15%"><?php echo $i->endDate; ?></td>
+                                                    <td style="width:05%"><?= $i->user_id; ?></td>
+                                                    <td style="width:10%"><?= $i->id_murid; ?></td>
+                                                    <td style="width:10%"><?= $i->username; ?></td>
+                                                    <td style="width:05%"><?= $i->role; ?></td>
+                                                    <td style="width:10%"><?= $i->akses_konten; ?></td>
+                                                    <td style="width:15%"><?= $i->endDate; ?></td>
                                                     <td style="width:30%">
                                                         <a href="<?= base_url('detailUser/' . $i->id_murid) ?>" type="button" class="btn btn-warning btn-circle">
                                                             <i class="fas fa-low-vision"></i>
@@ -124,10 +124,10 @@
                                         <tbody>
                                             <?php foreach ($data_admin as $i) : ?>
                                                 <tr>
-                                                    <td style="width:05%"><?php echo $i->user_id; ?></td>
-                                                    <td style="width:25%"><?php echo $i->username; ?></td>
-                                                    <td style="width:20%"><?php echo $i->role; ?></td>
-                                                    <td style="width:10%"><?php echo $i->akses_konten; ?></td>
+                                                    <td style="width:05%"><?= $i->user_id; ?></td>
+                                                    <td style="width:25%"><?= $i->username; ?></td>
+                                                    <td style="width:20%"><?= $i->role; ?></td>
+                                                    <td style="width:10%"><?= $i->akses_konten; ?></td>
                                                     <td style="width:30%">
                                                         <a href="<?= base_url('hapusUser/' . $i->user_id) ?>" type="button" class="btn btn-danger btn-circle" onclick="return confirm('Yakin ingin menghapus data ?')">
                                                             <i class="fas fa-trash"></i>

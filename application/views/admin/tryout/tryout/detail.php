@@ -26,16 +26,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Jenis Soal :</th>
-                                        <td>
-                                            <select name="jenis" class="form-control">
-                                                <option value="" disabled selected><?= $data->jenis ?></option>
-                                                <option value="acak">Acak Soal</option>
-                                                <option value="urut">Urut Soal</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th>Waktu (menit) :</th>
                                         <td><input type="number" class="form-control" name="waktu" value="<?= $data->waktu ?>"></td>
                                     </tr>

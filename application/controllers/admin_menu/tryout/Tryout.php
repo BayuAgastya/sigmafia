@@ -46,6 +46,7 @@ class Tryout extends CI_Controller
             'isi' => 'admin/tryout/tryout/tambah'
         );
 
+        $data['data_bank'] = $this->db->get('bank_soal');
         $data['data_tingkat'] = $this->db->get('tingkat');
         $this->load->view('admin_layout/wrapper', $data);
     }
@@ -54,17 +55,29 @@ class Tryout extends CI_Controller
     {
         $matpel = $this->input->post('matpel');
         $checkbox = implode(",", $matpel);
+        // var_dump($this->input->post('soal'));
+
 
         $data = array(
             'id_tingkat' => $this->input->post('id_tingkat'),
             'matpel' => $checkbox,
             'nama_tryout' => $this->input->post('nama_tryout'),
             'jumlah_soal' => $this->input->post('jumlah_soal'),
-            'waktu' => $this->input->post('waktu'),
-            'jenis' => $this->input->post('jenis')
+            'waktu' => $this->input->post('waktu')
         );
 
         $this->admin_model->add_data($data, 'tryout');
+
+        $insert_id = $this->db->insert_id();
+        $soal = $this->input->post('soal');
+        $hitung = count($soal);
+        for ($i = 0; $i < $hitung; $i++) {
+            $relation = array(
+                'id_tryout' => $insert_id,
+                'id_bank' => $soal[$i]
+            );
+            $this->admin_model->add_data($relation, 'relation_tryout');
+        }
 
         $this->session->set_flashdata('tryout', 'Tryout baru berhasil ditambahkan');
         redirect(base_url('admin_menu/tryout/tryout'));
