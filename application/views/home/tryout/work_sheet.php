@@ -39,7 +39,7 @@
                             $file = 'file_' . $abj;
                         ?>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="opsi_<?= $abj ?>" value="opsi_<?= $abj ?>">
+                                <input class="form-check-input" type="radio" name="jawaban[]" value="opsi_<?= $abj ?>">
                                 <label class="form-check-label">
                                     <h5><?= $ABJ ?></h5>
                                 </label>.
@@ -69,9 +69,9 @@
                     <div class="card-body">
                         <h5 style="text-align: center;">Navigasi Soal</h5>
                         <ul class="pagination">
-                            <li class="page-item"><a class="btn btn-flat btn-outline-dark" href="#">1</a></li>
-                            <li class="page-item"><a class="btn btn-flat btn-outline-dark" href="#">2</a></li>
-                            <li class="page-item"><a class="btn btn-flat btn-outline-dark" href="#">3</a></li>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">1</a></li>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">2</a></li>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">3</a></li>
                         </ul>
                         <!-- <div class="m-1">
                             <?php

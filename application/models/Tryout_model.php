@@ -103,12 +103,13 @@ class Tryout_model extends CI_Model
         return $query->result();
     }
 
-    public function data_lembarKerja()
+    public function data_lembarKerja($id)
     {
         $this->db->select('*');
         $this->db->from('relation_tryout');
         $this->db->join('tryout', 'tryout.id_tryout=relation_tryout.id_tryout');
         $this->db->join('bank_soal', 'bank_soal.id_bank=relation_tryout.id_bank');
+        $this->db->where('relation_tryout.id_tryout', $id);
 
         return $this->db->get();
     }

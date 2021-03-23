@@ -63,7 +63,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group">
+                        <d iv class="form-group">
                             <label>Pilih Soal</label>
                             <table class="table table-bordered table-head-fixed">
                                 <thead>
@@ -91,7 +91,7 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                        </div>
+                        </d>
 
                         <div class="form-group pull-right">
                             <a href="<?= base_url('admin_menu/tryout/tryout') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>

@@ -165,7 +165,7 @@ class M_user extends CI_Controller
     function requestPage()
     {
         $data = array(
-            'title' => 'Manage Siswa',
+            'title' => 'Request',
             'nav_dashboard' => '',
             'nav_video' => '',
             'nav_soal' => '',

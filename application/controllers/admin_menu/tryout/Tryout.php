@@ -66,17 +66,17 @@ class Tryout extends CI_Controller
             'waktu' => $this->input->post('waktu')
         );
 
-        $this->admin_model->add_data($data, 'tryout');
+        $this->tryout_model->add_data($data, 'tryout');
 
         $insert_id = $this->db->insert_id();
         $soal = $this->input->post('soal');
         $hitung = count($soal);
-        for ($i = 0; $i < $hitung; $i++) {
+        for ($i = 1; $i < $hitung; $i++) {
             $relation = array(
                 'id_tryout' => $insert_id,
                 'id_bank' => $soal[$i]
             );
-            $this->admin_model->add_data($relation, 'relation_tryout');
+            $this->tryout_model->add_data($relation, 'relation_tryout');
         }
 
         $this->session->set_flashdata('tryout', 'Tryout baru berhasil ditambahkan');
@@ -102,5 +102,14 @@ class Tryout extends CI_Controller
         $data['data_tingkat'] = $this->db->get('tingkat');
         $data['data'] = $this->tryout_model->getTryout($id)->row();
         $this->load->view('admin_layout/wrapper', $data);
+    }
+
+    function hapus($id)
+    {
+        $this->db->where('id_tryout', $id);
+        $this->db->delete('tryout');
+
+        $this->session->set_flashdata('tryout', 'Tryout berhasil dihapus');
+        redirect(base_url('admin_menu/tryout/tryout'));
     }
 }
