@@ -16,11 +16,8 @@
     <div class="row m-2 pt-1">
         <div class="col-lg-8 container">
             <?php $no = 1; ?>
-            <?php 
-                // var_dump($relation->result());return;
-            ?>
             <?php foreach ($relation->result() as $rel) : ?>
-                <div class="card soal soal-<?= $no; ?>" style="display: none;">
+                <div class="card">
                     <div class="card-header">
                         <h4>Soal No.<?= $no; ?> </h4>
                     </div>
@@ -55,14 +52,13 @@
                             </div>
                         <?php endforeach; ?>
                         <hr>
-                        <a onclick="" class="btn btn-flat btn-block btn-outline-success">Submit </a>
+                        <a href="" class="btn btn-flat btn-block btn-outline-success">Submit </a>
                     </div>
-                    <div class="submit-overlay-<?= $no; ?>"></div>
                 </div>
                 <?php $no++; ?>
             <?php endforeach; ?>
-            <a class="btn btn-flat btn-outline-secondary prev-question"><span class="fa fa-arrow-left"></span> Soal Sebelumnya</a>
-            <a class="btn btn-flat btn-outline-secondary next-question" style="float:right;">Soal Selanjutnya <span class="fa fa-arrow-right"></span></a>
+            <a href="" class="btn btn-flat btn-outline-secondary"><span class="fa fa-arrow-left"></span> Soal Sebelumnya</a>
+            <a href="" class="btn btn-flat btn-outline-secondary" style="float:right;">Soal Selanjutnya <span class="fa fa-arrow-right"></span></a>
         </div>
         <div class="col-lg-4">
             <div class="sticky">
@@ -73,10 +69,9 @@
                     <div class="card-body">
                         <h5 style="text-align: center;">Navigasi Soal</h5>
                         <ul class="pagination">
-                            <?php $no_kedua = 1;
-                            for($no_kedua=1;$no_kedua<=$no;$no_kedua++){ ?>
-                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
-                            <?php } ?>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">1</a></li>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">2</a></li>
+                            <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" href="#">3</a></li>
                         </ul>
                         <!-- <div class="m-1">
                             <?php
@@ -96,36 +91,6 @@
         </div>
 
     </div>
-
-    <script>
-    function prevquestion(id){
-        var main = id-1;
-        $('.soal').hide();
-        $('.soal-'+main).show();
-        $('.prev-question').removeAttr('onclick');
-        $('.next-question').removeAttr('onclick');
-        $('.prev-question').attr('onclick','prevquestion('+main+');');
-        $('.next-question').attr('onclick','nextquestion('+main+');');
-    }
-    function nextquestion(id){
-        var main = id+1;
-        $('.soal').hide();
-        $('.soal-'+main).show();
-        $('.prev-question').removeAttr('onclick');
-        $('.next-question').removeAttr('onclick');
-        $('.prev-question').attr('onclick','prevquestion('+main+');');
-        $('.next-question').attr('onclick','nextquestion('+main+');');
-    }
-    function showquestion(id){
-        $('.soal').hide();
-        $('.soal-'+id).show();
-        $('.prev-question').removeAttr('onclick');
-        $('.next-question').removeAttr('onclick');
-        $('.prev-question').attr('onclick','prevquestion('+id+');');
-        $('.next-question').attr('onclick','nextquestion('+id+');');
-    }
-    showquestion(1);
-    </script>
 
 
     <script>
