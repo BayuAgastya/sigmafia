@@ -57,4 +57,10 @@ class tryout_base extends CI_Controller
         $this->load->view('admin_layout/component');
         $this->load->view('admin_layout/konten', $data);
     }
+
+    function finish()
+    {
+        var_dump($this->input->post('jawaban'));
+        return;
+    }
 }

@@ -14,6 +14,7 @@ $route['hapusTO/(:num)'] = 'admin_menu/tryout/tryout/hapus/$1';
 $route['hasilTODetail/(:num)'] = 'admin_menu/tryout/hasil_tryout/page_detail/$1';
 $route['prep/(:num)'] = 'user/tryout/tryout_base/prep/$1';
 $route['startTO/(:num)'] = 'user/tryout/tryout_base/start/$1';
+$route['finish'] = 'user/tryout/tryout_base/finish';
 
 
 
