@@ -140,7 +140,7 @@
 <!--================ End Feature Area =================-->
 
 <!--================ Start Testimonial Area =================-->
-<div class="testimonial_area">
+<section class="testimonial_area">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
@@ -248,12 +248,12 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 <!--================ End Testimonial Area =================-->
 
 <!--================ Start Registration Area =================-->
 
-<div class="section_gap registration_area">
+<section class="section_gap registration_area">
 	<div class="container">
 		<div class="row justify-content-center">
 			<?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
@@ -365,7 +365,7 @@
 			<?php } ?>
 		</div>
 	</div>
-</div>
+</section>
 <!--================ End Registration Area =================-->
 
 <!--================ Start Trainers Area =================-->
@@ -413,7 +413,94 @@
 <!--================ End Trainers Area =================-->
 
 <!--================ Start Soal- Materi Area =================-->
-<div class="soal_area">
+<section class="section_gap">
+	<div class="container" id="rcorners1">
+		<h1>Materi</h1>
+		<hr style="border: 1px solid orange; max-width: 120px;">
+
+		<div class="container">
+			<div class="tab mb-3" style="align-content: center;">
+				<div class="btn-group" style="width:100%">
+					<button class="tablinks" onclick="openLesson(event, 'KN')" style="width:50%">Kurikulum Nasional</button>
+					<button class="tablinks" onclick="openLesson(event, 'KI')" style="width:50%">Kurikulum Internasional</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="KN" class="tabcontent">
+			<div class="container mb-5">
+
+				<div class="row">
+					<div class="col-3">
+						<h3 style="color: white; border-bottom: 1px solid orange; text-align:center;">Tingkat</h3>
+						<!-- Tab navs -->
+						<div class="nav flex-column nav-pills text-center" id="v-pills-tab-materi" role="tablist" aria-orientation="vertical">
+							<a class="nav-link active" id="v-pills-sd-tab" data-toggle="pill" href="#v-pills-sd" role="tab" aria-controls="v-pills-sd" aria-selected="true">SD</a>
+							<a class="nav-link" id="v-pills-smp-tab" data-toggle="pill" href="#v-pills-smp" role="tab" aria-controls="v-pills-smp" aria-selected="false">SMP</a>
+							<a class="nav-link" id="v-pills-sma-tab" data-toggle="pill" href="#v-pills-sma" role="tab" aria-controls="v-pills-sma" aria-selected="false">SMA</a>
+						</div>
+						<!-- Tab navs -->
+					</div>
+
+					<div class="col-3" style="border-left: 1px solid orange;">
+						<h3 style="color: white; border-bottom: 1px solid orange; text-align:center;">Kelas</h3>
+						<ul>
+							<li class="dropdown dropright"><a href="#">4</a></li>
+							<li class="dropdown dropright"><a href="#">5</a></li>
+							<li class="dropdown dropright"><a href="#">6</a></li>
+						</ul>
+
+					</div>
+					<div class="col-6" style="border-left: 1px solid orange;">
+						<h3 style="color: white; border-bottom: 1px solid orange; text-align:center;">Materi</h3>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div id="KI" class="tabcontent">
+			<div class="container mb-5">
+
+				<div class="row">
+					<div class="col-3">
+						<!-- Tab navs -->
+						<div class="nav flex-column nav-pills text-center" id="inter-pills-tab-materi" role="tablist" aria-orientation="vertical">
+							<a class="nav-link active" id="inter-pills-sd-tab" data-toggle="pill" href="#inter-pills-sd" role="tab" aria-controls="inter-pills-sd" aria-selected="true">SD</a>
+							<a class="nav-link" id="inter-pills-smp-tab" data-toggle="pill" href="#inter-pills-smp" role="tab" aria-controls="inter-pills-smp" aria-selected="false">SMP</a>
+							<a class="nav-link" id="inter-pills-sma-tab" data-toggle="pill" href="#inter-pills-sma" role="tab" aria-controls="inter-pills-sma" aria-selected="false">SMA</a>
+						</div>
+						<!-- Tab navs -->
+					</div>
+
+					<div class="col-9" style="border-left: 1px solid orange;">
+						<!-- Tab content -->
+						<div class="tab-content" id="inter-pills-tab-materiContent">
+							<div class="tab-pane fade show active" id="inter-pills-sd" role="tabpanel" aria-labelledby="inter-pills-sd-tab">
+								<h3 style="color: white;">Grade</h3>
+							</div>
+							<div class="tab-pane fade" id="inter-pills-smp" role="tabpanel" aria-labelledby="inter-pills-smp-tab">
+								<h3 style="color: white;">Grade</h3>
+							</div>
+							<div class="tab-pane fade" id="inter-pills-sma" role="tabpanel" aria-labelledby="inter-pills-sma-tab">
+								<h3 style="color: white;">Grade</h3>
+							</div>
+						</div>
+						<!-- Tab content -->
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+	</div>
+
+</section>
+<section class="soal_area">
 	<div class="container">
 		<div class="row justify-content-center">
 
@@ -537,7 +624,7 @@
 
 		</div>
 	</div>
-</div>
+</section>
 <!--================ End Soal-soal Area =================-->
 
 <!--================ Start Alumnus Area =================-->

@@ -9,6 +9,7 @@
     <title><?= $title ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/main/'); ?>css/bootstrap.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/main/'); ?>css/myCss.css" />
     <link rel="stylesheet" href="<?= base_url('assets/main/'); ?>css/flaticon.css" />
     <link rel="stylesheet" href="<?= base_url('assets/main/'); ?>css/themify-icons.css" />
     <link rel="stylesheet" href="<?= base_url('assets/main/'); ?>vendors/owl-carousel/owl.carousel.min.css" />

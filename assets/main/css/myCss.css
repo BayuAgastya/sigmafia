@@ -1,0 +1,14 @@
+#rcorners1 {
+	border-radius: 25px;
+	background: #002347;
+	padding: 20px;
+}
+
+#rcorners1 h1 {
+	color: white;
+	text-align: center;
+}
+
+#rcorners1 p {
+	color: white;
+}

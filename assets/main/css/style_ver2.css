@@ -4604,7 +4604,7 @@ td {
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	border-bottom: 1px solid orange;
+	border: 1px solid orange;
 }
 
 /* Style the buttons inside the tab */
