@@ -43,7 +43,7 @@
                                 $file = 'file_' . $abj;
                             ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="jawaban[<?= $no; ?>]" value="opsi_<?= $abj ?>">
+                                    <input class="form-check-input" type="radio" name="jawaban[<?= $rel->id_bank; ?>]" value="opsi_<?= $abj ?>">
                                     <label class="form-check-label">
                                         <h5><?= $ABJ ?></h5>
                                     </label>.
@@ -90,6 +90,7 @@
 
                     <div class="card d-flex flex-row justify-content-center">
                         <div class="p-2 w-50">
+                            <input type="hidden" name="id" value="<?= $id; ?>">
                             <button type="submit" class="btn btn-flat btn-block btn-outline-success">Submit </button>
                         </div>
                         <div class="p-2 w-50">

@@ -48,7 +48,8 @@ class tryout_base extends CI_Controller
     {
         $data = array(
             'title' => 'Tryout Sigmafia',
-            'isi' => 'home/tryout/work_sheet'
+            'isi' => 'home/tryout/work_sheet',
+            'id' => $id
         );
 
         $data['relation'] = $this->tryout_model->data_lembarKerja($id);
@@ -60,7 +61,38 @@ class tryout_base extends CI_Controller
 
     function finish()
     {
-        var_dump($this->input->post('jawaban'));
-        return;
+        $relation = $this->tryout_model->data_lembarKerja($this->input->post('id'))->result_array();
+        $jawaban = $this->input->post('jawaban');
+
+        $value = 0;
+        $wrong = 0;
+        $total = 0;
+        $correct = 0;
+
+        foreach($relation as $r){
+            if(!empty($jawaban[$r['id_bank']])){
+                $total++;
+                $id = $r['id_bank'];
+                $temp = substr($jawaban[$id], -1);
+                if(strtoupper($temp) == $r['jawaban']){
+                    $value+=$r['bobot'];
+                    $correct++;
+                }else{
+                    $wrong++;
+                }
+            }
+        }
+
+        $data = array(
+            'title' => 'Tryout Sigmafia',
+            'isi' => 'home/tryout/results',
+            'nilai' => $value,
+            'salah' => $wrong,
+            'benar' => $correct,
+            'total' => $total
+        );
+
+        $this->load->view('admin_layout/component');
+        $this->load->view('admin_layout/konten', $data);
     }
 }
