@@ -445,14 +445,42 @@
 					<div class="col-3" style="border-left: 1px solid orange;">
 						<h3 style="color: white; border-bottom: 1px solid orange; text-align:center;">Kelas</h3>
 						<ul>
-							<li class="dropdown dropright"><a href="#">4</a></li>
-							<li class="dropdown dropright"><a href="#">5</a></li>
-							<li class="dropdown dropright"><a href="#">6</a></li>
+							<li class="dropdown dropright"><a data-bs-toggle="collapse" href="#kn-sd-4" role="button" aria-expanded="false" aria-controls="kn-sd-4">
+									4</a>
+							</li>
+							<li class="dropdown dropright"><a data-bs-toggle="collapse" href="#kn-sd-5" role="button" aria-expanded="false" aria-controls="kn-sd-5">
+									5</a>
+							</li>
+							<li class="dropdown dropright"><a data-bs-toggle="collapse" href="#kn-sd-6" role="button" aria-expanded="false" aria-controls="kn-sd-6">
+									6</a>
+							</li>
 						</ul>
 
 					</div>
 					<div class="col-6" style="border-left: 1px solid orange;">
 						<h3 style="color: white; border-bottom: 1px solid orange; text-align:center;">Materi</h3>
+
+						<div class="collapse" id="collapseExample">
+							<div class="card card-body">
+								<ul>
+									<li><a href="#">Matematika Kelas 4</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="collapse" id="kn-sd-5">
+							<div class="card card-body">
+								<ul>
+									<li><a href="#">Matematika Kelas 5</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="collapse" id="kn-sd-6">
+							<div class="card card-body">
+								<ul>
+									<li><a href="#">Matematika Kelas 6</a></li>
+								</ul>
+							</div>
+						</div>
 
 					</div>
 

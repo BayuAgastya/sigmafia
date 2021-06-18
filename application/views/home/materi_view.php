@@ -33,37 +33,47 @@
             <div class="content_wrapper">
 
                 <!-- ========================================== pembatas ========================================== -->
-
+                <div class="sidenav">
+                    <a class="disable" href="#">Tingkat</a>
+                    <button class="dropdown-btn">SD
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="#">Kelas 4</a>
+                        <a href="#">Kelas 5</a>
+                        <a href="#">Kelas 6</a>
+                    </div>
+                    <button class="dropdown-btn">SMP
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="#">Kelas 7</a>
+                        <a href="#">Kelas 8</a>
+                        <a href="#">Kelas 9</a>
+                    </div>
+                    <button class="dropdown-btn">SMA
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="#">Kelas 10</a>
+                        <a href="#">Kelas 11</a>
+                        <a href="#">Kelas 12</a>
+                    </div>
+                </div>
                 <div id="SD" class="tabcontent">
                     <h4 class="title">Materi Matematika</h4>
                     <div class="content">
-                        <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                            <table class="course_list">
-                                <?php foreach ($matik_sd as $i) : ?>
-                                    <tr>
-                                        <td><?= $i->judul; ?></td>
-                                        <td><?= $i->deskripsi; ?></td>
-                                        <td style="text-align: end">
-                                            <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </table>
-                        <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                            <div class="main_title">
-                                <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                            </div>
-                        <?php } else { ?>
-                            <div class="main_title">
-                                <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                    <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                </a>
-                            </div>
-                        <?php } ?>
+                        <table class="course_list">
+                            <?php foreach ($matik_sd as $i) : ?>
+                                <tr>
+                                    <td><?= $i->judul; ?></td>
+                                    <td><?= $i->deskripsi; ?></td>
+                                    <td style="text-align: end">
+                                        <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
                     </div>
                 </div>
 
@@ -86,99 +96,51 @@
 
                             <h4 class="title">Materi Matematika</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($matik_smp as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($matik_smp as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="pills-fisika-smp" role="tabpanel" aria-labelledby="pills-fisika-smp-tab">
                             <h4 class="title">Materi Fisika</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($fisika_smp as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/fisika/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($fisika_smp as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/fisika/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="pills-kimia-smp" role="tabpanel" aria-labelledby="pills-kimia-smp-tab">
                             <h4 class="title">Materi Kimia</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($kimia_smp as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/kimia/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($kimia_smp as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/kimia/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -200,99 +162,51 @@
                         <div class="tab-pane fade show active" id="pills-matematika-sma" role="tabpanel" aria-labelledby="pills-matematika-sma-tab">
                             <h4 class="title">Materi Matematika</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($matik_sma as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($matik_sma as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
 
                         <div class="tab-pane fade show" id="pills-fisika-sma" role="tabpanel" aria-labelledby="pills-fisika-sma-tab">
                             <h4 class="title">Materi Fisika</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($fisika_sma as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/fisika/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($fisika_sma as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/fisika/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
 
                         <div class="tab-pane fade show" id="pills-kimia-sma" role="tabpanel" aria-labelledby="pills-kimia-sma-tab">
                             <h4 class="title">Materi Kimia</h4>
                             <div class="content">
-                                <?php if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() == "yes") { ?>
-                                    <table class="course_list">
-                                        <?php foreach ($kimia_sma as $i) : ?>
-                                            <tr>
-                                                <td><?= $i->judul; ?></td>
-                                                <td><?= $i->deskripsi; ?></td>
-                                                <td style="text-align: end">
-                                                    <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/kimia/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                <?php } else if ($this->admin_model->is_role() == "user" & $this->admin_model->is_akses() != "yes") { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Anda tidak memiliki ijin untuk mengakses konten ini!</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/no_access.png" alt="Login first" style="height: auto; max-width:50%">
-                                        <button class="mt-3 btn btn-danger btn-block" data-toggle="modal" data-target="#modal-request">Request Akses</button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="main_title">
-                                        <h4 class="mb-3">Login terlebih dahulu dan request akses konten</h4>
-                                        <img src="<?= base_url('assets/main/'); ?>img/features/login_first.png" alt="Login" style="height: auto; max-width:50%">
-                                        <a class="mt-3 btn btn-warning btn-block" href="<?= base_url('login'); ?>">
-                                            <h4 class="mt-2 mb-2 text-white">LOGIN</h4>
-                                        </a>
-                                    </div>
-                                <?php } ?>
+                                <table class="course_list">
+                                    <?php foreach ($kimia_sma as $i) : ?>
+                                        <tr>
+                                            <td><?= $i->judul; ?></td>
+                                            <td><?= $i->deskripsi; ?></td>
+                                            <td style="text-align: end">
+                                                <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/kimia/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
                             </div>
                         </div>
                     </div>

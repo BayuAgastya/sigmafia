@@ -65,6 +65,22 @@
     </div>
 </div>
 <!-- Optional JavaScript -->
+<script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="<?= base_url('assets/main/'); ?>js/jquery-3.2.1.min.js"></script>
 <script src="<?= base_url('assets/main/'); ?>js/popper.js"></script>
