@@ -14,7 +14,7 @@ class Tryout extends CI_Controller
     public function index()
     {
         $data = array(
-            'title' => 'Bank Soal',
+            'title' => 'Tryout',
             'nav_dashboard' => '',
             'nav_video' => '',
             'nav_soal' => '',
@@ -64,6 +64,8 @@ class Tryout extends CI_Controller
             'nama_tryout' => $this->input->post('nama_tryout'),
             'jumlah_soal' => $this->input->post('jumlah_soal'),
             'waktu' => $this->input->post('waktu')
+            //'token' => 
+            //tambah fungsi random value Token
         );
 
         $this->tryout_model->add_data($data, 'tryout');

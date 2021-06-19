@@ -21,12 +21,17 @@
 <!--================ Start About Area =================-->
 <section class="section_gap">
     <div class="container">
-        <p>Deskripsi tryout Deskripsi tryout Deskripsi tryout Deskripsi tryout Deskripsi tryout Deskripsi tryout </p>
+        <form class="mb-3">
+            <label for="">Kode Tryout:</label>
+            <input type="text">
+            <button type="button" class="genric-btn primary-border text-uppercase">Tambah</button>
+        </form>
+
         <table class="table table-bordered table-head-fixed">
             <thead>
                 <tr>
                     <th style="width:3%">ID</th>
-                    <th style="width:6%">Tingkat</th>
+                    <th style="width:7%">Tingkat</th>
                     <th style="width:15%">Matpel</th>
                     <th style="width:25%">Nama TO</th>
                     <th style="width:10%">Jumlah</th>
@@ -38,8 +43,8 @@
             <tbody>
                 <?php foreach ($data_tryout->result() as $i) : ?>
                     <tr>
-                        <td><?= $i->id_tryout; ?></td>
-                        <td><?= $i->id_tingkat; ?></td>
+                        <td style="text-align: center;"><?= $i->id_tryout; ?></td>
+                        <td style="text-align: center;"><?= $i->id_tingkat; ?></td>
                         <td><?= $i->matpel; ?></td>
                         <td><?= $i->nama_tryout; ?></td>
                         <td><?= $i->jumlah_soal; ?></td>
