@@ -48,7 +48,7 @@
     										<th>Jumlah Soal</th>
     										<th>Waktu</th>
     										<th>Jenis</th>
-    										<th>Token</th>
+    										<th>Kode</th>
     										<th style="text-align: center;">Action</th>
     									</tr>
     								</thead>
@@ -62,7 +62,7 @@
     											<td style="width:10%"><?= $i->jumlah_soal; ?></td>
     											<td style="width:10%"><?= $i->waktu; ?></td>
     											<td style="width:10%"><?= $i->jenis; ?></td>
-    											<td style="width:10%"><?= $i->token; ?></td>
+    											<td style="width:10%"><?= $i->kode; ?></td>
     											<td style="width:30%; text-align:center">
     												<a href="<?= base_url('hasilTODetail/' . $i->id_tryout) ?>" type="button" class="btn btn-xs btn-flat bg-gradient-cyan">
     													<i class="fas fa-eye"> Lihat Hasil</i>

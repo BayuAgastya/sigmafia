@@ -18,7 +18,7 @@
                         <div class="col-sm-3">
                             <div class="p-3 bg-gray">
                                 <div class="form-group col-sm-12">
-                                    <label>Guru</label>
+                                    <label>Guru Pembuat Soal</label>
                                     <select name="id_guru" class="custom-select">
                                         <option selected>>> Pilih Guru</option>
                                         <?php foreach ($data_guru->result() as $g) : ?>

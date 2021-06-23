@@ -96,7 +96,7 @@
                 <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Alumnus" required>
               </div>
               <div class="form-group">
-                <label>Universiats</label>
+                <label>Universitas</label>
                 <input type="text" name="universitas" class="form-control" placeholder="Masukan Nama Universitas" required>
               </div>
               <div class="form-group">

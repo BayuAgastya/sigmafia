@@ -69,15 +69,15 @@ class tryout_base extends CI_Controller
         $total = 0;
         $correct = 0;
 
-        foreach($relation as $r){
-            if(!empty($jawaban[$r['id_bank']])){
+        foreach ($relation as $r) {
+            if (!empty($jawaban[$r['id_bank']])) {
                 $total++;
                 $id = $r['id_bank'];
                 $temp = substr($jawaban[$id], -1);
-                if(strtoupper($temp) == $r['jawaban']){
-                    $value+=$r['bobot'];
+                if (strtoupper($temp) == $r['jawaban']) {
+                    $value += $r['bobot'];
                     $correct++;
-                }else{
+                } else {
                     $wrong++;
                 }
             }
@@ -92,7 +92,7 @@ class tryout_base extends CI_Controller
             'total' => $total
         );
 
-        $this->load->view('admin_layout/component');
-        $this->load->view('admin_layout/konten', $data);
+        $this->load->view('konten_layout/konten', $data);
+        $this->load->view('konten_layout/head.php');
     }
 }
