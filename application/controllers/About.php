@@ -13,6 +13,6 @@ class About extends CI_Controller
             'nav_contact' => '',
             'isi' => 'home/about_view'
         );
-        $this->load->view('konten_layout/wrapper', $data);
+        $this->load->view('home_layout2/wrapper', $data);
     }
 }

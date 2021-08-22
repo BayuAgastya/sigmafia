@@ -13,6 +13,12 @@
 	color: white;
 }
 
+#item-category {
+	border-radius: 25px;
+	background: white;
+	padding: 20px;
+}
+
 .sidenav {
 	border-radius: 25px;
 	width: 130px;

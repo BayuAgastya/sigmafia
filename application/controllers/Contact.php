@@ -13,6 +13,6 @@ class Contact extends CI_Controller
             'nav_contact' => 'active',
             'isi' => 'home/contact_view'
         );
-        $this->load->view('konten_layout/wrapper', $data);
+        $this->load->view('home_layout2/wrapper', $data);
     }
 }

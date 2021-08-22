@@ -43,7 +43,7 @@ class Home extends CI_Controller
             'isi' => 'home/how_to_view'
         );
 
-        $this->load->view('konten_layout/wrapper', $data);
+        $this->load->view('home_layout2/wrapper', $data);
     }
 
     public function blog_detail()
