@@ -30,9 +30,9 @@
     <div class="row">
         <div class="tab" style="align-content: center;">
             <div class="btn-group" style="width:100%">
-                <button class="tablinks" onclick="openLesson(event, 'SD')">Kelas 4</button>
-                <button class="tablinks" onclick="openLesson(event, 'SMP')">Kelas 5</button>
-                <button class="tablinks" onclick="openLesson(event, 'SMA')">Kelas 6</button>
+                <button class="tablinks" onclick="openLesson(event, 'Kelas_4')">Kelas 4</button>
+                <button class="tablinks" onclick="openLesson(event, 'Kelas_5')">Kelas 5</button>
+                <button class="tablinks" onclick="openLesson(event, 'Kelas_6')">Kelas 6</button>
             </div>
         </div>
     </div>
@@ -44,56 +44,68 @@
 
                 <!-- ========================================== pembatas ========================================== -->
 
-                <div id="SD" class="tabcontent">
+                <div id="Kelas_4" class="tabcontent">
                     <h4 class="title">Materi Matematika</h4>
-                    <div class="content">
-                        <table class="course_list">
-                            <?php foreach ($matik_sd as $i) : ?>
-                                <tr>
-                                    <td><?= $i->judul; ?></td>
-                                    <td><?= $i->deskripsi; ?></td>
-                                    <td style="text-align: end">
-                                        <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+                    <div class="content row">
+
+                        <?php foreach ($sd_matik4 as $i) : ?>
+                            <div class="col-lg-4 col-sm-6 col-12 mb-3">
+                                <a href="#" style="text-align: center;">
+                                    <div id="item-category">
+                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                        <p>matpel: <?= $i->id_matpel; ?></p>
+                                        <p>kelas: <?= $i->kelas ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
 
                 <!-- ========================================== pembatas ========================================== -->
 
-                <div id="SMP" class="tabcontent">
+                <div id="Kelas_5" class="tabcontent">
                     <h4 class="title">Materi Matematika</h4>
-                    <div class="content">
-                        <table class="course_list">
-                            <?php foreach ($matik_smp as $i) : ?>
-                                <tr>
-                                    <td><?= $i->judul; ?></td>
-                                    <td><?= $i->deskripsi; ?></td>
-                                    <td style="text-align: end">
-                                        <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+                    <div class="content row">
+
+                        <?php foreach ($sd_matik5 as $i) : ?>
+                            <div class="col-lg-4 col-sm-6 col-12 mb-3">
+                                <a href="#" style="text-align: center;">
+                                    <div id="item-category">
+                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                        <p>matpel: <?= $i->id_matpel; ?></p>
+                                        <p>kelas: <?= $i->kelas ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
                 <!-- ========================================== pembatas ========================================== -->
-                <div id="SMA" class="tabcontent">
+                <div id="Kelas_6" class="tabcontent">
                     <h4 class="title">Materi Matematika</h4>
-                    <div class="content">
-                        <table class="course_list">
-                            <?php foreach ($matik_sma as $i) : ?>
-                                <tr>
-                                    <td><?= $i->judul; ?></td>
-                                    <td><?= $i->deskripsi; ?></td>
-                                    <td style="text-align: end">
-                                        <a class="genric-btn primary-border text-uppercase" href="<?= base_url('uploads/materi/matik/' . $i->materi) ?>"><span class="ti-download"></span> Download</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+                    <div class="content row">
+
+                        <?php foreach ($sd_matik6 as $i) : ?>
+                            <div class="col-lg-4 col-sm-6 col-12 mb-3">
+                                <a href="#" style="text-align: center;">
+                                    <div id="item-category">
+                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                        <p>matpel: <?= $i->id_matpel; ?></p>
+                                        <p>kelas: <?= $i->kelas ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>

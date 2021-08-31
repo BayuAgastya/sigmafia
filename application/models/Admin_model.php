@@ -463,19 +463,45 @@ class Admin_model extends CI_Model
     //     }
     // }
 
-    public function get_materi_smp($matpel, $kelas)
+    public function get_materi_sd($kelas, $matpel)
     {
-        $query = $this->db->get_where('materi', array(
-            'id_matpel' => $matpel,
-            'id_tingkat' => '2',
-            'kelas' => $kelas
-        ));
+        $query = $this->db->get_where(
+            'materi',
+            array(
+                'id_tingkat' => '1',
+                'kelas' => $kelas,
+                'id_matpel' => $matpel
+
+            )
+        );
         return $query->result();
     }
 
-    public function get_materi_sma($matpel, $tingkat)
+    public function get_materi_smp($kelas, $matpel)
     {
-        $query = $this->db->get_where('materi', array('id_matpel' => $matpel, 'id_tingkat' => $tingkat));
+        $query = $this->db->get_where(
+            'materi',
+            array(
+                'id_tingkat' => '2',
+                'kelas' => $kelas,
+                'id_matpel' => $matpel
+
+            )
+        );
+        return $query->result();
+    }
+
+    public function get_materi_sma($kelas, $matpel)
+    {
+        $query = $this->db->get_where(
+            'materi',
+            array(
+                'id_tingkat' => '3',
+                'kelas' => $kelas,
+                'id_matpel' => $matpel
+
+            )
+        );
         return $query->result();
     }
 }

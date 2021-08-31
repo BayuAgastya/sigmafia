@@ -48,7 +48,9 @@ class Materi extends CI_Controller
             'nav_contact' => '',
             'isi' => 'home/materi/sd'
         );
-        $data['sd_matik'] = $this->admin_model->get_materi_sd('1', '1');
+        $data['sd_matik4'] = $this->admin_model->get_materi_sd('4', '1');
+        $data['sd_matik5'] = $this->admin_model->get_materi_sd('5', '1');
+        $data['sd_matik6'] = $this->admin_model->get_materi_sd('6', '1');
 
         $this->load->view('konten_layout/wrapper', $data);
     }
@@ -66,9 +68,15 @@ class Materi extends CI_Controller
             'nav_contact' => '',
             'isi' => 'home/materi/smp'
         );
-        $data['smp_matik'] = $this->admin_model->get_materi_smp('1', '2');
-        $data['smp_fisika'] = $this->admin_model->get_materi_smp('2', '2');
-        $data['smp_kimia'] = $this->admin_model->get_materi_smp('3', '2');
+        $data['smp_matik7'] = $this->admin_model->get_materi_smp('7', '1');
+        $data['smp_matik8'] = $this->admin_model->get_materi_smp('8', '1');
+        $data['smp_matik9'] = $this->admin_model->get_materi_smp('9', '1');
+        $data['smp_fisika7'] = $this->admin_model->get_materi_smp('7', '2');
+        $data['smp_fisika8'] = $this->admin_model->get_materi_smp('8', '2');
+        $data['smp_fisika9'] = $this->admin_model->get_materi_smp('9', '2');
+        $data['smp_kimia7'] = $this->admin_model->get_materi_smp('7', '3');
+        $data['smp_kimia8'] = $this->admin_model->get_materi_smp('8', '3');
+        $data['smp_kimia9'] = $this->admin_model->get_materi_smp('9', '3');
 
         $this->load->view('konten_layout/wrapper', $data);
     }
@@ -86,9 +94,15 @@ class Materi extends CI_Controller
             'nav_contact' => '',
             'isi' => 'home/materi/sma'
         );
-        $data['sma_matik'] = $this->admin_model->get_materi_sma('1', '3');
-        $data['sma_fisika'] = $this->admin_model->get_materi_sma('2', '3');
-        $data['sma_kimia'] = $this->admin_model->get_materi_sma('3', '3');
+        $data['sma_matik10'] = $this->admin_model->get_materi_sma('10', '1');
+        $data['sma_matik11'] = $this->admin_model->get_materi_sma('11', '1');
+        $data['sma_matik12'] = $this->admin_model->get_materi_sma('12', '1');
+        $data['sma_fisika10'] = $this->admin_model->get_materi_sma('10', '2');
+        $data['sma_fisika11'] = $this->admin_model->get_materi_sma('11', '2');
+        $data['sma_fisika12'] = $this->admin_model->get_materi_sma('12', '2');
+        $data['sma_kimia10'] = $this->admin_model->get_materi_sma('10', '3');
+        $data['sma_kimia11'] = $this->admin_model->get_materi_sma('11', '3');
+        $data['sma_kimia12'] = $this->admin_model->get_materi_sma('12', '3');
 
         $this->load->view('konten_layout/wrapper', $data);
     }
