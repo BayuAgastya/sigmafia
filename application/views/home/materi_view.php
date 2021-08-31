@@ -24,7 +24,7 @@
         <div class="row mt-5 content_wrapper">
 
             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                <a href="#" style="text-align: center;">
+                <a href="<?= base_url('materi/sd'); ?>" style="text-align: center;">
                     <div id="item-category">
                         <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
                         <h4 class="mt-3">SD</h4>
@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                <a href="#" style="text-align: center;">
+                <a href="<?= base_url('materi/smp'); ?>" style="text-align: center;">
                     <div id="item-category">
                         <img class="img-fluid" src="<?= base_url('assets/main/img/konten/smp.png'); ?>" alt="" style="width: auto;">
                         <h4 class="mt-3">SMP</h4>
@@ -40,7 +40,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                <a href="#" style="text-align: center;">
+                <a href="<?= base_url('materi/sma'); ?>" style="text-align: center;">
                     <div id="item-category">
                         <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sma.png'); ?>" alt="" style="width: auto;">
                         <h4 class="mt-3">SMA</h4>

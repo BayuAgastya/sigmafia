@@ -52,3 +52,28 @@
 		font-size: 18px;
 	}
 }
+
+.btn-custom {
+	background-color: orange;
+	color: white;
+}
+
+.btn-custom a {
+	background-color: inherit;
+	color: white;
+	padding: 10px;
+	float: left;
+	border: none;
+	outline: none;
+}
+
+.btn-custom a:hover {
+	background-color: #002347;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}

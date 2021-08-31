@@ -462,4 +462,20 @@ class Admin_model extends CI_Model
     //         if($user[])
     //     }
     // }
+
+    public function get_materi_smp($matpel, $kelas)
+    {
+        $query = $this->db->get_where('materi', array(
+            'id_matpel' => $matpel,
+            'id_tingkat' => '2',
+            'kelas' => $kelas
+        ));
+        return $query->result();
+    }
+
+    public function get_materi_sma($matpel, $tingkat)
+    {
+        $query = $this->db->get_where('materi', array('id_matpel' => $matpel, 'id_tingkat' => $tingkat));
+        return $query->result();
+    }
 }

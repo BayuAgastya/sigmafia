@@ -47,9 +47,6 @@
                     <div class="row">
                         <div class="col-lg-12 form_group" style="text-align: left">
                             <p>untuk dapat mengakses konten secara gratis selama 1 bulan, harap menghubungi tutor melalui line/wa untuk tata caranya.</p>
-                            <!-- <p>Untuk Request akses, diperlukan pembayaran sebesar 20rb yang di transfer melalui bank bca dengan nomer rekening 9071029741</p>
-                            <hr>
-                            <p>Setelah melakukan pembayaran, dimohon untuk mengirim bukti transfer pada form di bawah berupa Screenshoot atau foto</p> -->
                             <div class="custom-file">
                                 <input name="file" type="file" id="customFile" required>
                                 <div class="image-preview"></div>

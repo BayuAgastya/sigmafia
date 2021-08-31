@@ -34,4 +34,62 @@ class Materi extends CI_Controller
 
         $this->load->view('konten_layout/wrapper', $data);
     }
+
+    public function sd()
+    {
+        $data = array(
+            'title' => 'Materi',
+            'nav_home' => '',
+            'nav_howto' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => 'active',
+            'nav_contact' => '',
+            'isi' => 'home/materi/sd'
+        );
+        $data['sd_matik'] = $this->admin_model->get_materi_sd('1', '1');
+
+        $this->load->view('konten_layout/wrapper', $data);
+    }
+
+    public function smp()
+    {
+        $data = array(
+            'title' => 'Materi',
+            'nav_home' => '',
+            'nav_howto' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => 'active',
+            'nav_contact' => '',
+            'isi' => 'home/materi/smp'
+        );
+        $data['smp_matik'] = $this->admin_model->get_materi_smp('1', '2');
+        $data['smp_fisika'] = $this->admin_model->get_materi_smp('2', '2');
+        $data['smp_kimia'] = $this->admin_model->get_materi_smp('3', '2');
+
+        $this->load->view('konten_layout/wrapper', $data);
+    }
+
+    public function sma()
+    {
+        $data = array(
+            'title' => 'Materi',
+            'nav_home' => '',
+            'nav_howto' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => 'active',
+            'nav_contact' => '',
+            'isi' => 'home/materi/sma'
+        );
+        $data['sma_matik'] = $this->admin_model->get_materi_sma('1', '3');
+        $data['sma_fisika'] = $this->admin_model->get_materi_sma('2', '3');
+        $data['sma_kimia'] = $this->admin_model->get_materi_sma('3', '3');
+
+        $this->load->view('konten_layout/wrapper', $data);
+    }
 }
