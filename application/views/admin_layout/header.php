@@ -57,11 +57,34 @@
                         <p>Manage Soal</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_materi'); ?>" class="nav-link <?= $nav_materi ?>">
                         <i class="fas fa-book-open nav-icon"></i>
                         <p>Manage Materi</p>
                     </a>
+                </li> -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link  <?= $nav_materi ?>">
+                        <i class="fas fa-book-open nav-icon"></i>
+                        <p>Materi <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin_menu/m_materi/materi_sd'); ?>" class="nav-link">
+                                <p>SD</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin_menu/m_materi/materi_smp'); ?>" class="nav-link">
+                                <p>SMP</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin_menu/m_materi/materi_sma'); ?>" class="nav-link">
+                                <p>SMA</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <hr style="border: 0.5px solid white; min-width: 200px;">

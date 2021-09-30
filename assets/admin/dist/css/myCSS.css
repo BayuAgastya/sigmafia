@@ -42,4 +42,11 @@ div.sticky {
 	top: 0;
 }
 
+#item-category {
+	border-radius: 25px;
+	color: black;
+	background: white;
+	padding: 20px;
+}
+
 /*---------------------------------------------------- */
