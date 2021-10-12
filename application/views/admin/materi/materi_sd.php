@@ -103,29 +103,53 @@
                 <div class="modal-body">
                     <?php if ($error !== null) : echo $error;
                     endif; ?>
-                    <?= form_open_multipart(base_url('admin_menu/m_materi/upload')) ?>
-                    <div class="form-group">
-                        <label>Tingkat</label>
-                        <input name="id_tingkat" value="sd" readonly>
+                    <?= form_open_multipart(base_url('admin_menu/m_materi/upload2')) ?>
+                    <input type="hidden" name="id_tingkat" class="form-control" required value="sd">
+                    <input type="hidden" name="id_matpel" class="form-control" required value="1">
+                    <div class="row">
+                        <div class="col-lg-6 border-right">
+                            <div class="form-group">
+                                <label>Kelas</label>
+                                <select name="kelas" class="form-control" required>
+                                    <option value="4">Kelas 4</option>
+                                    <option value="5">Kelas 5</option>
+                                    <option value="6">Kelas 6</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Judul Materi</label>
+                                <input name="judul_materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Deskripsi</label>
+                                <input name="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 ">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <label>Thumnail Materi</label><br>
+                                    <input name="thumbnail_materi" type="file" id="customFile">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Judul Video</label>
+                                <input name="judul_video" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Link Video</label>
+                                <input name="link_video" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label>Materi</label>
-                        <select name="materi" class="form-control" required>
-                            <option value="matematika">Matematika</option>
-                            <option value="fisika">Fisika</option>
-                            <option value="kimia">Kimia</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Judul Materi</label>
-                        <input name="judul" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <input name="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
-                    </div>
-                    <div class="custom-file">
-                        <input name="file" type="file" id="customFile" required>
+                        <div class="custom-file">
+                            <label>File materi (optional)</label> <br>
+                            <input name="file" type="file" id="customFile">
+                        </div>
                     </div>
                     <hr>
                     <button type="submit" class="btn btn-primary btn-block" value="upload">Simpan</button>
