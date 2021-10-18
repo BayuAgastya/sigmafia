@@ -66,8 +66,9 @@ class tryout_base extends CI_Controller
     {
         $relation = $this->tryout_model->data_lembarKerja($this->input->post('id'))->result_array();
         $jawaban = $this->input->post('jawaban');
-        $now => $this->input->post('now');
+        $now = $this->input->post('now');
         $detail_tryout = $this->db->get_where('tryout',array('id_tryout'=>$this->input->post('id')))->row();
+        $user_id = $this->session->userdata('user_id');
 
         $value = 0;
         $wrong = 0;
@@ -90,7 +91,7 @@ class tryout_base extends CI_Controller
             }
         }
 
-        $this->tryout_model->simpan_hasil($this->input->post('id'),$this->session->userdata('user_id'),$total,$correct,$value,$total_bobot,$now);
+        $this->tryout_model->simpan_hasil($this->input->post('id'),$user_id,$total,$correct,$value,$total_bobot,$now);
 
         $data = array(
             'title' => 'Tryout Sigmafia',
@@ -101,6 +102,7 @@ class tryout_base extends CI_Controller
             'total' => $total,
             'detail' => $detail_tryout
         );
+
 
         $this->load->view('konten_layout/konten', $data);
         $this->load->view('konten_layout/head.php');

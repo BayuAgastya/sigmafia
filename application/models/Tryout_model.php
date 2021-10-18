@@ -99,11 +99,11 @@ class Tryout_model extends CI_Model
         $tryout = $this->db->get_where('tryout',array('id_tryout'=>$id))->row();
         $data = array(
             'id_tryout' => $id,
-            'id_user' => $id_user,
+            'id_user' => $user_id,
             'urut_soal' => $tryout->jumlah_soal,
             'urut_jawaban' => $total,
             'jml_benar' => $correct,
-            'bobot' => $value,
+            'nilai' => $value,
             'nilai_bobot' => $bobot,
             'tgl_mulai' => $now,
             'tgl_selesai' => date('Y-m-d H:i:s'),
