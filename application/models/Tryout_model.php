@@ -95,7 +95,22 @@ class Tryout_model extends CI_Model
     }
 
 
-
+    public function simpan_hasil($id,$user_id,$total,$correct,$value,$bobot,$now){
+        $tryout = $this->db->get_where('tryout',array('id_tryout'=>$id))->row();
+        $data = array(
+            'id_tryout' => $id,
+            'id_user' => $id_user,
+            'urut_soal' => $tryout->jumlah_soal,
+            'urut_jawaban' => $total,
+            'jml_benar' => $correct,
+            'bobot' => $value,
+            'nilai_bobot' => $bobot,
+            'tgl_mulai' => $now,
+            'tgl_selesai' => date('Y-m-d H:i:s'),
+            'status' => 'Lolos'
+        );
+        $this->db->insert('hasil_tryout',$data);
+    }
 
     public function getRelation($id)
     {

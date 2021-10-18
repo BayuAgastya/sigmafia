@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card ">
             <div class="card-header">
-                <h2 class="card-title mt-2" style="text-align: center;">Hasil Tryout (Isi Nama Tryoutnya)</h2>
+                <h2 class="card-title mt-2" style="text-align: center;">Hasil Tryout (<?= $detail->nama_tryout; ?>)</h2>
             </div>
             <div class="card-body">
                 <div class="row container">

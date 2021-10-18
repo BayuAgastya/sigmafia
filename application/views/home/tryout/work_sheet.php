@@ -14,6 +14,7 @@
     </nav>
 
     <form action="<?= base_url('finish'); ?>" method="POST">
+        <input type="hidden" name="now" value="<?= $now; ?>">
         <div class="row m-2 pt-1">
             <div class="col-lg-8 container">
                 <?php $no = 1; ?>
