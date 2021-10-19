@@ -62,6 +62,40 @@ class Home extends CI_Controller
         $this->load->view('konten_layout/wrapper', $data);
     }
 
+    function profile()
+    {
+        $data = array(
+            'title' => 'Profile',
+            'nav_home' => '',
+            'nav_howto' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_contact' => '',
+            'isi' => 'home/profile_view',
+            'data_murid' => $this->admin_model->get_murid($this->session->userdata('user_id'))->row_array()
+        );
+        $this->load->view('konten_layout/wrapper', $data);
+    }
+
+    function profile_edit()
+    {
+        $data = array(
+            'title' => 'Profile',
+            'nav_home' => '',
+            'nav_howto' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_contact' => '',
+            'isi' => 'home/profile_edit',
+            'data_murid' => $this->admin_model->get_murid($this->session->userdata('user_id'))->row_array()
+        );
+        $this->load->view('konten_layout/wrapper', $data);
+    }
+
     public function logout()
     {
         $this->session->sess_destroy();
@@ -107,39 +141,6 @@ class Home extends CI_Controller
 
         $this->session->set_flashdata('main', 'Daftar Akun Berhasil');
         redirect('home');
-    }
-
-
-    function profile()
-    {
-        $data = array(
-            'title' => 'Profile',
-            'nav_home' => '',
-            'nav_about' => '',
-            'nav_video' => '',
-            'nav_soal' => '',
-            'nav_materi' => '',
-            'nav_contact' => '',
-            'isi' => 'home/profile_view',
-            'data_murid' => $this->admin_model->get_murid($this->session->userdata('user_id'))->row_array()
-        );
-        $this->load->view('konten_layout/wrapper', $data);
-    }
-
-    function profile_edit()
-    {
-        $data = array(
-            'title' => 'Profile',
-            'nav_home' => '',
-            'nav_about' => '',
-            'nav_video' => '',
-            'nav_soal' => '',
-            'nav_materi' => '',
-            'nav_contact' => '',
-            'isi' => 'home/profile_edit',
-            'data_murid' => $this->admin_model->get_murid($this->session->userdata('user_id'))->row_array()
-        );
-        $this->load->view('konten_layout/wrapper', $data);
     }
 
     function editSiswaProfile()

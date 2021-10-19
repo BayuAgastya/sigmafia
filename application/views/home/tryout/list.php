@@ -27,6 +27,9 @@
             <button type="button" class="genric-btn primary-border text-uppercase">Tambah</button>
         </form>
 
+        <a href="<?= base_url('user/tryout/tryout_base/riwayat'); ?>" type="button" class="genric-btn primary text-uppercase mb-3">Riwayat Nilai</a>
+
+
         <table class="table table-bordered table-head-fixed">
             <thead>
                 <tr>
