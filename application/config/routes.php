@@ -22,8 +22,13 @@ $route['finish'] = 'user/tryout/tryout_base/finish';
 
 
 
-/* MATERI ================================================================================================= */
+/* MATERI NEW================================================================================================= */
 
+$route['viewmateriSD/(:num)'] = 'materi/materiViewSD/$1';
+$route['viewmateriSMP/(:num)'] = 'materi/materiViewSMP/$1';
+$route['viewmateriSMA/(:num)'] = 'materi/materiViewSMA/$1';
+
+/* MATERI ================================================================================================= */
 $route['hapusMateriMatik/(:num)'] = 'admin_menu/m_materi/hapusMateriMatik/$1';
 $route['hapusMateriFisika/(:num)'] = 'admin_menu/m_materi/hapusMateriFisika/$1';
 $route['hapusMateriKimia/(:num)'] = 'admin_menu/m_materi/hapusMateriKimia/$1';

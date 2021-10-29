@@ -50,9 +50,9 @@
 
                         <?php foreach ($sd_matik4 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
+                                <a href="<?= base_url('viewmateriSD/' . $i->id_materi) ?>" style="text-align: center;">
                                     <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->file); ?>" alt="" style="width: auto; height: 150px;">
                                         <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                                         <p>tingkat: <?= $i->id_tingkat; ?></p>
                                         <p>matpel: <?= $i->id_matpel; ?></p>
@@ -75,7 +75,7 @@
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
                                 <a href="#" style="text-align: center;">
                                     <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->file); ?>" alt="" style="width: auto; height: 150px;">
                                         <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                                         <p>tingkat: <?= $i->id_tingkat; ?></p>
                                         <p>matpel: <?= $i->id_matpel; ?></p>
@@ -96,7 +96,7 @@
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
                                 <a href="#" style="text-align: center;">
                                     <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                        <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->file); ?>" alt="" style="width: auto; height: 150px;">
                                         <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                                         <p>tingkat: <?= $i->id_tingkat; ?></p>
                                         <p>matpel: <?= $i->id_matpel; ?></p>

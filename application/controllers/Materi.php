@@ -106,4 +106,14 @@ class Materi extends CI_Controller
 
         $this->load->view('konten_layout/wrapper', $data);
     }
+
+    public function materiViewSD($id)
+    {
+        $data = array(
+            'title' => 'Materi View',
+        );
+        $data['data'] = $this->admin_model->viewMateri($id)->row();
+
+        $this->load->view('home/materi/view', $data);
+    }
 }

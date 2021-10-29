@@ -504,4 +504,10 @@ class Admin_model extends CI_Model
         );
         return $query->result();
     }
+
+    function viewMateri($id_materi)
+    {
+        $this->db->where('id_materi', $id_materi);
+        return $this->db->get('materi');
+    }
 }
