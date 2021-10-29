@@ -284,6 +284,63 @@ class M_materi extends CI_Controller
         }
     }
 
+    function upload2(){
+		$config['upload_path']          = './uploads/materi/gambar/';
+		$config['allowed_types']        = 'gif|jpg|jpeg|png';
+		$config['overwrite']            = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('thumbnail_materi')) {
+			echo $this->upload->display_errors();
+            return;
+		} else {
+			$uploaded_data = $this->upload->data();
+
+            $config['upload_path']          = './uploads/materi/file/';
+            $config["allowed_types"] ="pdf";
+            $config['overwrite']            = true;
+
+            $this->load->library('upload', $config);
+
+            if($this->upload->do_upload('file')){
+                $uploaded_file = $this->upload->data();
+                $insert = array(
+                    'id_tingkat' => $this->input->post('id_tingkat'),
+                    'id_matpel' => $this->input->post('id_matpel'),
+                    'kelas' => $this->input->post('kelas'),
+                    'judul_materi' => $this->input->post('judul_materi'),
+                    'deskripsi' => $this->input->post('deskripsi'),
+                    'thumbnail_materi' => $uploaded_data['file_name'],
+                    'file' => $uploaded_file['file_name']
+                );
+
+                if($this->admin_model->add_data($insert,'materi')){
+                    $id = $this->db->insert_id();
+                    $link = $this->input->post('link');
+                    $hitung = count($link);
+                    for ($i = 0; $i < $hitung; $i++) {
+                        if(!empty($link[$i])){
+                            $insert2 = array(
+                                'id_materi' => $id,
+                                'judul_video' => 'null',
+                                'link_video' => $link[$i]
+                            );
+                            $this->admin_model->add_data($insert2, 'video_materi');
+                        }
+                    }
+                    redirect(base_url('admin_menu/m_materi'));
+                }else{
+                    echo $this->upload->display_errors();
+                    return;
+                }
+            }else{
+                echo $this->upload->display_errors();
+                return;
+            }
+		}
+    }
+
 
     /*  DELETE FUNCTION ============================================================================= */
 

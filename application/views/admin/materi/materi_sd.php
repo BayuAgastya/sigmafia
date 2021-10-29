@@ -33,7 +33,7 @@
                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
                         <a href="#" style="text-align: center;">
                             <div id="item-category">
-                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/'.$i->file); ?>" alt="" style="width: auto; height: 100px;">
                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                                 <p>tingkat: <?= $i->id_tingkat; ?></p>
                                 <p>matpel: <?= $i->id_matpel; ?></p>
@@ -104,7 +104,7 @@
                     <?php if ($error !== null) : echo $error;
                     endif; ?>
                     <?= form_open_multipart(base_url('admin_menu/m_materi/upload2')) ?>
-                    <input type="hidden" name="id_tingkat" class="form-control" required value="sd">
+                    <input type="hidden" name="id_tingkat" class="form-control" required value="1">
                     <input type="hidden" name="id_matpel" class="form-control" required value="1">
                     <div class="row">
                         <div class="col-lg-6 border-right">
@@ -121,30 +121,39 @@
                                 <label>Judul Materi</label>
                                 <input name="judul_materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
                             </div>
-                            <div class="form-group">
-                                <label>Deskripsi</label>
-                                <input name="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
-                            </div>
                         </div>
 
                         <div class="col-lg-6 ">
                             <div class="form-group">
                                 <div class="custom-file">
                                     <label>Thumnail Materi</label><br>
-                                    <input name="thumbnail_materi" type="file" id="customFile">
+                                    <input name="thumbnail_materi" class="form-control" type="file" id="customFile" accept="image/png, image/jpeg, image/jpg, image/gif" required>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Judul Video</label>
-                                <input name="judul_video" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Link Video</label>
-                                <input name="link_video" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
+                            <div class="form-group" style="padding-top: 4px;">
+                                <label>Deskripsi</label>
+                                <input name="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
                             </div>
                         </div>
                     </div>
 
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                <label for="link-youtube">URL Video</label>
+                                <input type="text" name="link[]" class="form-control">
+                            </div>
+                            <div id="add-new-1"></div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="submit-link-youtube">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                <a id="add-new-link" class="btn btn-primary btn-primary">Add</a>
+                            </div>
+                            <div id="add-new-2"></div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="custom-file">
                             <label>File materi (optional)</label> <br>

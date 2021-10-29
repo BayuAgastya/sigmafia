@@ -40,6 +40,28 @@
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 
+<script>
+    var i = 1;
+    $("#add-new-link").click(function(){
+        $("#add-new-1").append(`<div class="form-group able-delete-`+i+`">
+                                    <label"></label>
+                                    <input type="text" name="link[]" class="form-control">
+                                </div>`);
+
+        $("#add-new-2").append(`<div class="form-group able-delete-`+i+`">
+                                    <label></label>
+                                    <button type="button" class="btn btn-danger" onclick="deleteForm(`+i+`)" aria-label="Close">x</button>
+                                </div>`);
+        i++;
+    });
+</script>
+
+<script>
+    function deleteForm(number){
+        $(".able-delete-"+number+"").remove();
+    }
+</script>
+
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/admin/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
