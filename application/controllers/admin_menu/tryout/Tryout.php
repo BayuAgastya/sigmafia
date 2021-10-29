@@ -73,7 +73,7 @@ class Tryout extends CI_Controller
         $insert_id = $this->db->insert_id();
         $soal = $this->input->post('soal');
         $hitung = count($soal);
-        for ($i = 1; $i < $hitung; $i++) {
+        for ($i = 0; $i < $hitung; $i++) {
             $relation = array(
                 'id_tryout' => $insert_id,
                 'id_bank' => $soal[$i]
