@@ -284,26 +284,27 @@ class M_materi extends CI_Controller
         }
     }
 
-    function upload2(){
-		$config['upload_path']          = './uploads/materi/gambar/';
-		$config['allowed_types']        = 'gif|jpg|jpeg|png';
-		$config['overwrite']            = true;
+    function upload2()
+    {
+        $config['upload_path']          = './uploads/materi/gambar/';
+        $config['allowed_types']        = 'gif|jpg|jpeg|png';
+        $config['overwrite']            = true;
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('thumbnail_materi')) {
-			echo $this->upload->display_errors();
+            echo $this->upload->display_errors();
             return;
-		} else {
-			$uploaded_data = $this->upload->data();
+        } else {
+            $uploaded_data = $this->upload->data();
 
             $config['upload_path']          = './uploads/materi/file/';
-            $config["allowed_types"] ="pdf";
+            $config["allowed_types"] = "pdf";
             $config['overwrite']            = true;
 
             $this->load->library('upload', $config);
 
-            if($this->upload->do_upload('file')){
+            if ($this->upload->do_upload('file')) {
                 $uploaded_file = $this->upload->data();
                 $insert = array(
                     'id_tingkat' => $this->input->post('id_tingkat'),
@@ -315,12 +316,12 @@ class M_materi extends CI_Controller
                     'file' => $uploaded_file['file_name']
                 );
 
-                if($this->admin_model->add_data($insert,'materi')){
+                if ($this->admin_model->add_data($insert, 'materi')) {
                     $id = $this->db->insert_id();
                     $link = $this->input->post('link');
                     $hitung = count($link);
                     for ($i = 0; $i < $hitung; $i++) {
-                        if(!empty($link[$i])){
+                        if (!empty($link[$i])) {
                             $insert2 = array(
                                 'id_materi' => $id,
                                 'judul_video' => 'null',
@@ -329,16 +330,16 @@ class M_materi extends CI_Controller
                             $this->admin_model->add_data($insert2, 'video_materi');
                         }
                     }
-                    redirect(base_url('admin_menu/m_materi'));
-                }else{
+                    redirect(base_url('admin_menu/dashboard'));
+                } else {
                     echo $this->upload->display_errors();
                     return;
                 }
-            }else{
+            } else {
                 echo $this->upload->display_errors();
                 return;
             }
-		}
+        }
     }
 
 

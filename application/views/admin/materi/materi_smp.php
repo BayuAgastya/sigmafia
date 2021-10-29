@@ -49,15 +49,19 @@
 
                         <?php foreach ($smp_matik7 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -70,15 +74,19 @@
 
                         <?php foreach ($smp_fisika7 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -91,15 +99,19 @@
 
                         <?php foreach ($smp_kimia7 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -130,15 +142,19 @@
 
                         <?php foreach ($smp_matik8 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -151,15 +167,19 @@
 
                         <?php foreach ($smp_fisika8 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -172,15 +192,19 @@
 
                         <?php foreach ($smp_kimia8 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -212,15 +236,19 @@
 
                         <?php foreach ($smp_matik9 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -233,15 +261,19 @@
 
                         <?php foreach ($smp_fisika9 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
@@ -254,15 +286,19 @@
 
                         <?php foreach ($smp_kimia9 as $i) : ?>
                             <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                <a href="#" style="text-align: center;">
-                                    <div id="item-category">
-                                        <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
-                                        <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                        <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                        <p>matpel: <?= $i->id_matpel; ?></p>
-                                        <p>kelas: <?= $i->kelas ?></p>
-                                    </div>
-                                </a>
+                                <div id="item-category" style="text-align: center;">
+                                    <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                    <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
+                                    <p>tingkat: <?= $i->id_tingkat; ?></p>
+                                    <p>matpel: <?= $i->id_matpel; ?></p>
+                                    <p>kelas: <?= $i->kelas ?></p>
+                                    <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                    <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 
