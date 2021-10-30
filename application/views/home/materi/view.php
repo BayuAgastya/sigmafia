@@ -130,7 +130,7 @@
         <!-- MAIN -->
         <div class="container mt-4">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-11">
 
                     <h1><?= $data->judul_materi; ?></h1>
                     <p><?= $data->judul_video; ?></p>
