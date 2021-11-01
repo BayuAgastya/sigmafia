@@ -43,15 +43,24 @@
 <script>
     var i = 1;
     $("#add-new-link").click(function(){
-        $("#add-new-1").append(`<div class="form-group able-delete-`+i+`">
-                                    <label"></label>
-                                    <input type="text" name="link[]" class="form-control">
-                                </div>`);
-
-        $("#add-new-2").append(`<div class="form-group able-delete-`+i+`">
-                                    <label></label>
-                                    <button type="button" class="btn btn-danger" onclick="deleteForm(`+i+`)" aria-label="Close">x</button>
-                                </div>`);
+        $("#add-new").append(`
+                            <div class="row able-delete-`+i+`">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" name="judul[]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="form-group">
+                                        <input type="text" name="link[]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-danger" onclick="deleteForm(`+i+`)" aria-label="Close">x</button>
+                                    </div>
+                                </div>
+                            </div>`);
         i++;
     });
 </script>

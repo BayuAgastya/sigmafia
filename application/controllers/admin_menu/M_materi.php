@@ -319,12 +319,13 @@ class M_materi extends CI_Controller
                 if ($this->admin_model->add_data($insert, 'materi')) {
                     $id = $this->db->insert_id();
                     $link = $this->input->post('link');
+                    $judul = $this->input->post('judul_video');
                     $hitung = count($link);
                     for ($i = 0; $i < $hitung; $i++) {
                         if (!empty($link[$i])) {
                             $insert2 = array(
                                 'id_materi' => $id,
-                                'judul_video' => 'null',
+                                'judul_video' => $judul[$i],
                                 'link_video' => $link[$i]
                             );
                             $this->admin_model->add_data($insert2, 'video_materi');

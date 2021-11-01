@@ -508,6 +508,6 @@ class Admin_model extends CI_Model
     function viewMateri($id_materi)
     {
         $this->db->where('id_materi', $id_materi);
-        return $this->db->get('materi');
+        return $this->db->get('video_materi');
     }
 }

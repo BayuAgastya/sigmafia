@@ -24,30 +24,23 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
-            <li>
-                <i class='bx bx-play'></i>
-            </li>
-
-            <!-- yang di bawah ni di jadiin foreach dari tabel db "video_materi"  -->
-            <!-- ====================================================================================== -->
-            <li>
-                <a href="#">
-                    <i class='bx bx-circle'></i>
-                    <span class="links_name">Link 1 pake Judul Video</span>
-                </a>
-                <span class="tooltip"><?= $data->judul_video; ?></span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-circle'></i>
-                    <span class="links_name">Link 1 pake Judul Video</span>
-                </a>
-                <span class="tooltip"><?= $data->judul_video; ?></span>
-            </li>
-            <!-- ====================================================================================== -->
-
+            <?php 
+                $i = 1;
+                foreach($data->result() as $materi){
+            ?>
+                <li>
+                    <a class="click-materi" href="#" data-id="<?= $materi->id_video; ?>" data-judul="<?= $materi->judul_video; ?>" data-link="<?= $materi->link_video; ?>">
+                        <i class='<?php if($i < 2){echo 'bx bx-play';}else{echo 'bx bx-circle';} ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
+                        <span class="links_name"><?= $materi->judul_video; ?></span>
+                    </a>
+                    <span class="tooltip"><?= $materi->judul_video; ?></span>
+                </li>
+            <?php
+                    $i++;
+                }
+            ?>
             <li class="profile">
-                <a href="#">
+                <a href="<?= base_url($back); ?>">
                     <i class='bx bx-chevron-left'></i>
                     <span class="links_name">Kembali ke Home</span>
                 </a>
@@ -58,21 +51,31 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-11">
-
-                    <h1><?= $data->judul_materi; ?></h1>
-                    <p><?= $data->judul_video; ?></p>
+                    <?php $materi = $data->row(); ?>
+                    <h1 class="judul-materi"><?= $materi->judul_video; ?></h1>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $data->link_video; ?>" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item video-materi" src="https://www.youtube.com/embed/<?= $materi->link_video; ?>" allowfullscreen></iframe>
                     </div>
-                    <p>Link video(<?= $data->link_video; ?>)</p>
-
-
                 </div>
             </div>
         </div>
     </section>
 
     <script src="<?= base_url('assets/main/') ?>view_script.js"></script>
+    <script src="<?= base_url('assets/main/'); ?>js/jquery-3.2.1.min.js"></script>
+    <script>
+        $(".click-materi").on('click',function(){
+            try{
+                $(".judul-materi").html($(this).data('judul'));
+                $(".video-materi").attr('src','https://www.youtube.com/embed/'+$(this).data('link'));
+                $(".icon-materi").attr('class','bx bx-circle icon-materi');
+            }catch(e){
+                console.log(e);
+            }finally{
+                $("#id-materi-"+$(this).data('id')).attr('class','bx bx-play icon-materi');
+            }
+        });
+    </script>
 
 </body>
 

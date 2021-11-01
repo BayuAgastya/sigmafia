@@ -106,7 +106,7 @@
 
 
     <div class="modal fade" id="modal-tambah-materi">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Tambah Materi SD</h4>
@@ -153,21 +153,26 @@
 
                     <hr>
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="link-youtube">URL Video</label>
+                                <label for="title-youtube">Judul Video</label>
+                                <input type="text" name="judul_video[]" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <label for="link-youtube">Link Youtube</label>
                                 <input type="text" name="link[]" class="form-control">
                             </div>
-                            <div id="add-new-1"></div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
-                                <label for="submit-link-youtube">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                <label for="submit-link-youtube">&nbsp; &nbsp;</label>
                                 <a id="add-new-link" class="btn btn-primary btn-primary">Add</a>
                             </div>
-                            <div id="add-new-2"></div>
                         </div>
                     </div>
+                    <div id="add-new"></div>
                     <div class="form-group">
                         <div class="custom-file">
                             <label>File materi (optional)</label> <br>

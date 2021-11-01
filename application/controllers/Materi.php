@@ -111,8 +111,9 @@ class Materi extends CI_Controller
     {
         $data = array(
             'title' => 'Materi View',
+            'back' => 'materi/sd'
         );
-        $data['data'] = $this->admin_model->viewMateri($id)->row();
+        $data['data'] = $this->admin_model->viewMateri($id);
 
         $this->load->view('home/materi/view2', $data);
     }
