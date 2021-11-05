@@ -94,6 +94,22 @@ class Tryout_model extends CI_Model
         return $query->result();
     }
 
+    public function riwayat_tryout($id){
+        $this->db->select('tryout.*,hasil_tryout.*');
+        $this->db->from('tryout','hasil_tryout');
+        $this->db->join('hasil_tryout','hasil_tryout.id_tryout=tryout.id_tryout');
+        $this->db->where('hasil_tryout.id_user='.$id);
+        return $this->db->get();
+    }
+
+    public function detail_jawaban($id_tryout,$id_hasil){
+        $this->db->select('*');
+        $this->db->from('bank_jawaban');
+        $this->db->where('id_tryout',$id_tryout);
+        $this->db->where('id_hasil',$id_hasil);
+
+        return $this->db->get();
+    }
 
     public function simpan_hasil($id,$user_id,$total,$correct,$value,$bobot,$now){
         $tryout = $this->db->get_where('tryout',array('id_tryout'=>$id))->row();
@@ -128,10 +144,6 @@ class Tryout_model extends CI_Model
 
         return $this->db->get();
     }
-
-
-
-
 
     // public function data_request()
     // {

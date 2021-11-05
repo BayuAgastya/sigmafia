@@ -16,6 +16,8 @@ $route['prep/(:num)'] = 'user/tryout/tryout_base/prep/$1';
 $route['startTO/(:num)'] = 'user/tryout/tryout_base/start/$1';
 $route['finish'] = 'user/tryout/tryout_base/finish';
 
+$route['detail_riwayat/(:num)'] = 'user/tryout/tryout_base/detail_riwayat/$1';
+
 
 
 

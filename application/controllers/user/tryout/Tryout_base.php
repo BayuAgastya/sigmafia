@@ -39,7 +39,7 @@ class tryout_base extends CI_Controller
             'isi' => 'home/tryout/riwayat'
         );
 
-        $data['data_hasil'] = $this->db->get('hasil_tryout');
+        $data['data_hasil'] = $this->tryout_model->riwayat_tryout($this->session->userdata('user_id'));
         $this->load->view('konten_layout/wrapper', $data);
     }
 
@@ -79,6 +79,30 @@ class tryout_base extends CI_Controller
         $this->load->view('admin_layout/konten', $data);
     }
 
+    function detail_riwayat($id){
+        $data_hasil = $this->db->get_where('hasil_tryout',array('id_hasil'=>$id))->row_array();
+        $jawaban = $this->tryout_model->detail_jawaban($data_hasil['id_tryout'],$id)->result();
+        $p = array();
+
+        $data = array(
+            'title' => 'Tryout Sigmafia',
+            'isi' => 'home/tryout/detail_sheet',
+            'id' => $id
+        );
+
+        foreach($jawaban as $j){
+            $p[$j->id_bank] = $j->jawaban_user;
+        }
+        // var_dump($p);
+
+        $data['data'] = $p;
+        $data['relation'] = $this->tryout_model->data_lembarKerja($data_hasil['id_tryout']);
+        $data['to'] = $this->tryout_model->getTryout($data_hasil['id_tryout'])->row();
+
+        $this->load->view('admin_layout/component');
+        $this->load->view('admin_layout/konten', $data);
+    }
+
     function finish()
     {
         $relation = $this->tryout_model->data_lembarKerja($this->input->post('id'))->result_array();
@@ -92,6 +116,7 @@ class tryout_base extends CI_Controller
         $total = 0;
         $total_bobot = 0;
         $correct = 0;
+        $i = 0;
 
         foreach ($relation as $r) {
             if (!empty($jawaban[$r['id_bank']])) {
@@ -105,11 +130,28 @@ class tryout_base extends CI_Controller
                 } else {
                     $wrong++;
                 }
+                $detail_jawaban[$i] = array(
+                    'id_bank' => $r['id_bank'],
+                    'jawaban_user' => $temp,
+                    'id_tryout' => $r['id_tryout'],
+                    'id_user' => $user_id
+                );
+                // var_dump($jawaban[$i]);
+                $i++;
             }
         }
 
         $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $total, $correct, $value, $total_bobot, $now);
+        $id_hasil = array(
+            'id_hasil' => $this->db->insert_id()
+        );  
 
+        for($i=0;$i<count($detail_jawaban);$i++){
+            $conclusion = null;
+            $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
+            $this->db->insert('bank_jawaban',$conclusion);
+        }
+        
         $data = array(
             'title' => 'Tryout Sigmafia',
             'isi' => 'home/tryout/results',

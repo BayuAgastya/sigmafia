@@ -44,20 +44,28 @@
                 </tr>
             </thead>
             <tbody>
+                <?php
+                    $i=1;
+                    foreach($data_hasil->result() as $tryout){
+                ?>
                 <tr>
-                    <td style="width: 1%;">1</td>
-                    <td>Try out Dummy</td>
-                    <td>23-09-2021 (13:00)</td>
-                    <td>23-09-2021 (13:30)</td>
-                    <td>20</td>
-                    <td>10</td>
-                    <td>100</td>
-                    <td>100/200</td>
+                    <td style="width: 1%;"><?= $i; ?></td>
+                    <td><?= $tryout->nama_tryout; ?></td>
+                    <td><?= $tryout->tgl_mulai; ?></td>
+                    <td><?= $tryout->tgl_selesai; ?></td>
+                    <td><?= $tryout->jumlah_soal; ?></td>
+                    <td><?= $tryout->jml_benar; ?></td>
+                    <td><?= $tryout->nilai; ?></td>
+                    <td><?= $tryout->nilai; ?>/<?= $tryout->nilai_bobot; ?></td>
 
-                    <td>Pass </td>
-                    <td><a href="#" type="button" class="genric-btn primary text-uppercase mb-3">Lihat</a></td>
+                    <td><?= $tryout->status; ?></td>
+                    <td><a href="<?= base_url('detail_riwayat/'.$tryout->id_hasil); ?>" type="button" class="genric-btn primary text-uppercase mb-3">Lihat</a></td>
 
                 </tr>
+                <?php 
+                    $i++;
+                }
+                ?>
             </tbody>
         </table>
     </div>
