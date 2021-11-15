@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <button type="button" class="ion-plus btn btn-block btn-primary"  data-toggle="modal" data-target="#modal-tambah-materi"> Tambah materi SD</button>
+                            <button type="button" class="ion-plus btn btn-block btn-primary" data-toggle="modal" data-target="#modal-tambah-materi"> Tambah materi SD</button>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,7 +33,7 @@
                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
 
                         <div id="item-category" style="text-align: center;">
-                            <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->file); ?>" alt="" style="width: auto; height: 150px;">
+                            <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                             <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                             <p>tingkat: <?= $i->id_tingkat; ?></p>
                             <p>matpel: <?= $i->id_matpel; ?></p>
@@ -58,19 +58,21 @@
 
                 <?php foreach ($sd_matik5 as $i) : ?>
                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
+
                         <div id="item-category" style="text-align: center;">
-                            <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                            <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                             <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                             <p>tingkat: <?= $i->id_tingkat; ?></p>
                             <p>matpel: <?= $i->id_matpel; ?></p>
                             <p>kelas: <?= $i->kelas ?></p>
-                            <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                            <a href="#" type="button" class="btn btn-danger" onclick="deleteMateri(<?= $i->id_materi; ?>);">
                                 <i class="fas fa-trash"></i> Delete
                             </a>
-                            <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                            <a href="#" type="button" class="btn btn-info" onclick="getMateri(<?= $i->id_materi; ?>);" data-toggle="modal" data-target="#modal-update-materi">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                         </div>
+
                     </div>
                 <?php endforeach; ?>
 
@@ -83,19 +85,21 @@
 
                 <?php foreach ($sd_matik6 as $i) : ?>
                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
+
                         <div id="item-category" style="text-align: center;">
-                            <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                            <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                             <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
                             <p>tingkat: <?= $i->id_tingkat; ?></p>
                             <p>matpel: <?= $i->id_matpel; ?></p>
                             <p>kelas: <?= $i->kelas ?></p>
-                            <a href="#" type="button" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ?')">
+                            <a href="#" type="button" class="btn btn-danger" onclick="deleteMateri(<?= $i->id_materi; ?>);">
                                 <i class="fas fa-trash"></i> Delete
                             </a>
-                            <a href="#" type="button" class="btn btn-info" onclick="return confirm('Yakin ingin menghapus data ?')">
+                            <a href="#" type="button" class="btn btn-info" onclick="getMateri(<?= $i->id_materi; ?>);" data-toggle="modal" data-target="#modal-update-materi">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                         </div>
+
                     </div>
                 <?php endforeach; ?>
 
@@ -130,20 +134,20 @@
                                     <option value="6">Kelas 6</option>
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label>Judul Materi</label>
-                                <input name="judul_materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 ">
                             <div class="form-group">
                                 <div class="custom-file">
                                     <label>Thumnail Materi</label><br>
                                     <input name="thumbnail_materi" class="form-control" type="file" id="customFile" accept="image/png, image/jpeg, image/jpg, image/gif" required>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-lg-6 ">
+                            <div class="form-group">
+                                <label>Judul Materi</label>
+                                <input name="judul_materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
+                            </div>
+
                             <div class="form-group" style="padding-top: 4px;">
                                 <label>Deskripsi</label>
                                 <input name="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>
@@ -215,20 +219,20 @@
                                     <option value="6" id="kelas-6">Kelas 6</option>
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label>Judul Materi</label>
-                                <input name="judul_materi" id="judul-materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 ">
                             <div class="form-group">
                                 <div class="custom-file">
                                     <label>Thumnail Materi</label><br>
                                     <input name="thumbnail_materi" class="form-control" type="file" id="customFile" accept="image/png, image/jpeg, image/jpg, image/gif">
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-lg-6 ">
+                            <div class="form-group">
+                                <label>Judul Materi</label>
+                                <input name="judul_materi" id="judul-materi" type="text" class="form-control" placeholder="Masukan Nama Materi" required>
+                            </div>
+
                             <div class="form-group" style="padding-top: 4px;">
                                 <label>Deskripsi</label>
                                 <input name="deskripsi" id="deskripsi" type="text" class="form-control" placeholder="Masukan Deskripsi materi" required>

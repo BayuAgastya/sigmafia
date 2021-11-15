@@ -117,4 +117,26 @@ class Materi extends CI_Controller
 
         $this->load->view('home/materi/view2', $data);
     }
+
+    public function materiViewSMP($id)
+    {
+        $data = array(
+            'title' => 'Materi View',
+            'back' => 'materi/smp'
+        );
+        $data['data'] = $this->admin_model->viewMateri($id);
+
+        $this->load->view('home/materi/view2', $data);
+    }
+
+    public function materiViewSMA($id)
+    {
+        $data = array(
+            'title' => 'Materi View',
+            'back' => 'materi/sma'
+        );
+        $data['data'] = $this->admin_model->viewMateri($id);
+
+        $this->load->view('home/materi/view2', $data);
+    }
 }

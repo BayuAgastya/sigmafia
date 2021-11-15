@@ -18,34 +18,40 @@
 
 <body id="grad1">
     <div class="sidebar">
-        <div class="logo-details">
-            <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">Sigmafia</div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
-            <?php 
+        <div class="container">
+            <div class="logo-details">
+                <i class='bx bxl-c-plus-plus icon'></i>
+                <div class="logo_name">Sigmafia</div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <?php
                 $i = 1;
-                foreach($data->result() as $materi){
-            ?>
-                <li>
-                    <a class="click-materi" href="#" data-id="<?= $materi->id_video; ?>" data-judul="<?= $materi->judul_video; ?>" data-link="<?= $materi->link_video; ?>">
-                        <i class='<?php if($i < 2){echo 'bx bx-play';}else{echo 'bx bx-circle';} ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
-                        <span class="links_name"><?= $materi->judul_video; ?></span>
-                    </a>
-                    <span class="tooltip"><?= $materi->judul_video; ?></span>
-                </li>
-            <?php
+                foreach ($data->result() as $materi) {
+                ?>
+                    <li>
+                        <a class="click-materi" href="#" data-id="<?= $materi->id_video; ?>" data-judul="<?= $materi->judul_video; ?>" data-link="<?= $materi->link_video; ?>">
+                            <i class='<?php if ($i < 2) {
+                                            echo 'bx bx-play';
+                                        } else {
+                                            echo 'bx bx-circle';
+                                        } ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
+                            <span class="links_name"><?= $materi->judul_video; ?></span>
+                        </a>
+                        <span class="tooltip"><?= $materi->judul_video; ?></span>
+                    </li>
+                <?php
                     $i++;
                 }
-            ?>
-            <li class="profile">
-                <a href="<?= base_url($back); ?>">
-                    <i class='bx bx-chevron-left'></i>
-                    <span class="links_name">Kembali ke Home</span>
-                </a>
-            </li>
-        </ul>
+                ?>
+                <li class="profile">
+                    <a href="<?= base_url($back); ?>">
+                        <i class='bx bx-chevron-left'></i>
+                        <span class="links_name">Kembali ke Home</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <section class="home-section" id>
         <div class="container mt-4">
@@ -56,6 +62,11 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item video-materi" src="https://www.youtube.com/embed/<?= $materi->link_video; ?>" allowfullscreen></iframe>
                     </div>
+                    <h5 class="mt-3">File Materi:</h5>
+                    <a href="<?= base_url('uploads/materi/file/' . $materi->file) ?>">
+                        <box-icon type='solid' name='download'></box-icon> Download
+                    </a>
+                    <a href="<?= base_url('uploads/materi/file/' . $materi->file); ?>"></a>
                 </div>
             </div>
         </div>
@@ -64,15 +75,15 @@
     <script src="<?= base_url('assets/main/') ?>view_script.js"></script>
     <script src="<?= base_url('assets/main/'); ?>js/jquery-3.2.1.min.js"></script>
     <script>
-        $(".click-materi").on('click',function(){
-            try{
+        $(".click-materi").on('click', function() {
+            try {
                 $(".judul-materi").html($(this).data('judul'));
-                $(".video-materi").attr('src','https://www.youtube.com/embed/'+$(this).data('link'));
-                $(".icon-materi").attr('class','bx bx-circle icon-materi');
-            }catch(e){
+                $(".video-materi").attr('src', 'https://www.youtube.com/embed/' + $(this).data('link'));
+                $(".icon-materi").attr('class', 'bx bx-circle icon-materi');
+            } catch (e) {
                 console.log(e);
-            }finally{
-                $("#id-materi-"+$(this).data('id')).attr('class','bx bx-play icon-materi');
+            } finally {
+                $("#id-materi-" + $(this).data('id')).attr('class', 'bx bx-play icon-materi');
             }
         });
     </script>

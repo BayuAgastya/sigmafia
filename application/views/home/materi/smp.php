@@ -68,13 +68,11 @@
 
                                 <?php foreach ($smp_matik7 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -89,13 +87,11 @@
 
                                 <?php foreach ($smp_fisika7 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -110,13 +106,11 @@
 
                                 <?php foreach ($smp_kimia7 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -147,15 +141,13 @@
                             <h4 class="title">Materi Matematika</h4>
                             <div class="content row">
 
-                                <?php foreach ($smp_kimia8 as $i) : ?>
+                                <?php foreach ($smp_matik8 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -168,15 +160,13 @@
                             <h4 class="title">Materi Fisika</h4>
                             <div class="content row">
 
-                                <?php foreach ($smp_kimia8 as $i) : ?>
+                                <?php foreach ($smp_fisika8 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -191,13 +181,11 @@
 
                                 <?php foreach ($smp_kimia8 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -226,15 +214,13 @@
                             <h4 class="title">Materi Matematika</h4>
                             <div class="content row">
 
-                                <?php foreach ($smp_kimia9 as $i) : ?>
+                                <?php foreach ($smp_matik9 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -247,15 +233,13 @@
                             <h4 class="title">Materi Fisika</h4>
                             <div class="content row">
 
-                                <?php foreach ($smp_kimia9 as $i) : ?>
+                                <?php foreach ($smp_fisika9 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
@@ -270,13 +254,11 @@
 
                                 <?php foreach ($smp_kimia9 as $i) : ?>
                                     <div class="col-lg-4 col-sm-6 col-12 mb-3">
-                                        <a href="#" style="text-align: center;">
+                                        <a href="<?= base_url('viewmateriSMP/' . $i->id_materi) ?>" style="text-align: center;">
                                             <div id="item-category">
-                                                <img class="img-fluid" src="<?= base_url('assets/main/img/konten/sd.png'); ?>" alt="" style="width: auto;">
+                                                <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/' . $i->thumbnail_materi); ?>" alt="" style="width: auto; height: 150px;">
                                                 <h4 class="mt-3"><?= $i->judul_materi; ?></h4>
-                                                <p>tingkat: <?= $i->id_tingkat; ?></p>
-                                                <p>matpel: <?= $i->id_matpel; ?></p>
-                                                <p>kelas: <?= $i->kelas ?></p>
+                                                <p><?= $i->deskripsi ?></p>
                                             </div>
                                         </a>
                                     </div>
