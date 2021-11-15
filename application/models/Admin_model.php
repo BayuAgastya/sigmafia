@@ -63,6 +63,11 @@ class Admin_model extends CI_Model
         return $this->db->get($table);
     }
 
+    function get_specific_data($table,$where)
+    {
+        return $this->db->get_where($table,$where);
+    }
+
     function add_data($data, $table)
     {
         return $this->db->insert($table, $data);
@@ -82,7 +87,7 @@ class Admin_model extends CI_Model
     function update_data($where, $data, $table)
     {
         $this->db->where($where);
-        $this->db->update($table, $data);
+        return $this->db->update($table, $data);
     }
 
     /*  UPDATE ALUMNUS============================================================================= */

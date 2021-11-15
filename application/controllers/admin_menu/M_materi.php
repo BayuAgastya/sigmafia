@@ -127,6 +127,94 @@ class M_materi extends CI_Controller
         $this->load->view('admin_layout/wrapper', $data);
     }
 
+    function delete_materi(){
+        $id = $this->input->post('id_materi');
+
+        $this->admin_model->delete_data('materi',array('id_materi'=>$id));
+        $this->admin_model->delete_data('video_materi',array('id_materi'=>$id));
+    }
+
+    function get_materi(){
+        $id = $this->input->post('id_materi');
+
+        $data['materi'] = $this->admin_model->get_specific_data('materi',array('id_materi'=>$id))->row_array();
+        // var_dump($data['materi']);
+        $data['video_materi'] = $this->admin_model->get_specific_data('video_materi',array('id_materi'=>$id))->result_array();
+        echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
+    function update_materi(){
+        $materi = $this->db->get_where('materi',array('id_materi'=>$this->input->post('id_materi')))->row_array();
+        if(!empty($_FILES['thumbnail_materi']['name'])){
+            $config['upload_path']          = './uploads/materi/gambar/';
+            $config['allowed_types']        = 'gif|jpg|jpeg|png';
+            $config['overwrite']            = true;
+
+            $this->load->library('upload', $config,'thumbnail');
+
+            if (!$this->thumbnail->do_upload('thumbnail_materi')) {
+                echo $this->thumbnail->display_errors();
+                return;
+            }else{
+                $uploaded_data = $this->thumbnail->data();
+                $img_name = $uploaded_file['file_name'];
+            }
+        }else{
+            $img_name = $materi['thumbnail_materi'];
+        }
+
+        if(!empty($_FILES['file']['name'])){
+            $config['upload_path']          = './uploads/materi/file/';
+            $config['allowed_types']        = 'doc|docx|pdf';
+            $config['overwrite']            = true;
+
+            $this->load->library('upload', $config,'file');
+
+            if (!$this->file->do_upload('file')) {
+                echo $this->file->display_errors();
+                return;
+            }else{
+                $uploaded_data = $this->file->data();
+                $file_name = $uploaded_file['file_name'];
+            }
+        }else{
+            $file_name = $materi['file'];
+        }
+
+        $update = array(
+            'id_tingkat' => $this->input->post('id_tingkat'),
+            'id_matpel' => $this->input->post('id_matpel'),
+            'kelas' => $this->input->post('kelas'),
+            'judul_materi' => $this->input->post('judul_materi'),
+            'deskripsi' => $this->input->post('deskripsi'),
+            'thumbnail_materi' => $img_name,
+            'file' => $file_name
+        );
+
+        if ($this->admin_model->update_data(array('id_materi'=>$this->input->post('id_materi')),$update, 'materi')) {
+            $this->admin_model->delete_data('video_materi',array('id_materi'=>$this->input->post('id_materi')));
+            $id = $this->input->post('id_materi');
+            $link = $this->input->post('link');
+            $judul = $this->input->post('judul');
+            $hitung = count($link);
+            for ($i = 0; $i < $hitung; $i++) {
+                if (!empty($link[$i])) {
+                    $insert2 = array(
+                        'id_materi' => $id,
+                        'judul_video' => $judul[$i],
+                        'link_video' => $link[$i]
+                    );
+                    $this->admin_model->add_data($insert2, 'video_materi');
+                }
+            }
+            redirect(base_url('admin_menu/dashboard'));
+        } else {
+            var_dump($this->input->post('id_materi'));
+            var_dump($update);
+            echo "what is error?";
+            return;
+        }
+    }
 
     function upload()
     {
@@ -290,54 +378,58 @@ class M_materi extends CI_Controller
         $config['allowed_types']        = 'gif|jpg|jpeg|png';
         $config['overwrite']            = true;
 
-        $this->load->library('upload', $config);
+        $this->load->library('upload', $config,'thumbnail');
 
-        if (!$this->upload->do_upload('thumbnail_materi')) {
-            echo $this->upload->display_errors();
+        if (!$this->thumbnail->do_upload('thumbnail_materi')) {
+            echo $this->thumbnail->display_errors();
             return;
         } else {
-            $uploaded_data = $this->upload->data();
-
-            $config['upload_path']          = './uploads/materi/file/';
-            $config["allowed_types"] = "pdf";
-            $config['overwrite']            = true;
-
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('file')) {
-                $uploaded_file = $this->upload->data();
-                $insert = array(
-                    'id_tingkat' => $this->input->post('id_tingkat'),
-                    'id_matpel' => $this->input->post('id_matpel'),
-                    'kelas' => $this->input->post('kelas'),
-                    'judul_materi' => $this->input->post('judul_materi'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'thumbnail_materi' => $uploaded_data['file_name'],
-                    'file' => $uploaded_file['file_name']
-                );
-
-                if ($this->admin_model->add_data($insert, 'materi')) {
-                    $id = $this->db->insert_id();
-                    $link = $this->input->post('link');
-                    $judul = $this->input->post('judul_video');
-                    $hitung = count($link);
-                    for ($i = 0; $i < $hitung; $i++) {
-                        if (!empty($link[$i])) {
-                            $insert2 = array(
-                                'id_materi' => $id,
-                                'judul_video' => $judul[$i],
-                                'link_video' => $link[$i]
-                            );
-                            $this->admin_model->add_data($insert2, 'video_materi');
-                        }
-                    }
-                    redirect(base_url('admin_menu/dashboard'));
-                } else {
-                    echo $this->upload->display_errors();
+            $uploaded_data = $this->thumbnail->data();
+            if(!empty($_FILES['file']['name'])){
+                $config['upload_path']          = './uploads/materi/file/';
+                $config['allowed_types']        = 'doc|docx|pdf';
+                $config['overwrite']            = true;
+    
+                $this->load->library('upload', $config,'file');
+    
+                if ($this->file->do_upload('file')) {
+                    $uploaded_file_pdf = $this->file->data();
+                    $namefile = $uploaded_file_pdf['file_name'];
+                }else{
+                    echo $this->file->display_errors();
                     return;
                 }
+            }else{
+                $namefile = '';
+            }
+            $insert = array(
+                'id_tingkat' => $this->input->post('id_tingkat'),
+                'id_matpel' => $this->input->post('id_matpel'),
+                'kelas' => $this->input->post('kelas'),
+                'judul_materi' => $this->input->post('judul_materi'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'thumbnail_materi' => $uploaded_data['file_name'],
+                'file' => $namefile
+            );
+
+            if ($this->admin_model->add_data($insert, 'materi')) {
+                $id = $this->db->insert_id();
+                $link = $this->input->post('link');
+                $judul = $this->input->post('judul');
+                $hitung = count($link);
+                for ($i = 0; $i < $hitung; $i++) {
+                    if (!empty($link[$i])) {
+                        $insert2 = array(
+                            'id_materi' => $id,
+                            'judul_video' => $judul[$i],
+                            'link_video' => $link[$i]
+                        );
+                        $this->admin_model->add_data($insert2, 'video_materi');
+                    }
+                }
+                redirect(base_url('admin_menu/dashboard'));
             } else {
-                echo $this->upload->display_errors();
+                echo "gagal insert file";
                 return;
             }
         }
