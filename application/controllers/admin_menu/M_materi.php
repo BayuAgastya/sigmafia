@@ -157,7 +157,7 @@ class M_materi extends CI_Controller
                 return;
             }else{
                 $uploaded_data = $this->thumbnail->data();
-                $img_name = $uploaded_file['file_name'];
+                $img_name = $uploaded_data['file_name'];
             }
         }else{
             $img_name = $materi['thumbnail_materi'];
@@ -174,7 +174,7 @@ class M_materi extends CI_Controller
                 echo $this->file->display_errors();
                 return;
             }else{
-                $uploaded_data = $this->file->data();
+                $uploaded_file = $this->file->data();
                 $file_name = $uploaded_file['file_name'];
             }
         }else{
