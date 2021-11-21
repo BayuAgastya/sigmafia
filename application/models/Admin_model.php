@@ -63,9 +63,9 @@ class Admin_model extends CI_Model
         return $this->db->get($table);
     }
 
-    function get_specific_data($table,$where)
+    function get_specific_data($table, $where)
     {
-        return $this->db->get_where($table,$where);
+        return $this->db->get_where($table, $where);
     }
 
     function add_data($data, $table)
@@ -514,5 +514,11 @@ class Admin_model extends CI_Model
     {
         $this->db->where('id_materi', $id_materi);
         return $this->db->get('video_materi');
+    }
+
+    function berkas($id_materi)
+    {
+        $this->db->where('id_materi', $id_materi);
+        return $this->db->get('materi');
     }
 }

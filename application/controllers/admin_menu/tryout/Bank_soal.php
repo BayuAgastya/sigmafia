@@ -104,31 +104,31 @@ class Bank_soal extends CI_Controller
         redirect(base_url('admin_menu/tryout/bank_soal'));
 
 
-        // $config['upload_path']   = './uploads/bank_soal/';
-        // $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
-        // $config['encrypt_name']         = true;
-        // $this->load->library('upload', $config);
+        $config['upload_path']   = './uploads/bank_soal/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+        $config['encrypt_name']         = true;
+        $this->load->library('upload', $config);
 
-        // if (!$this->upload->do_upload('file')) {
-        //     $error = array('error' => $this->upload->display_errors());
-        //     $this->load->view('admin/tryout/bank_soal', $error);
-        // } else {
-        //     $upload_data = $this->upload->data();
-        //     $fl_soal = $upload_data['file_name'];
-        //     $fl_a = $upload_data['file_name'];
-        //     $fl_b = $upload_data['file_name'];
-        //     $fl_c = $upload_data['file_name'];
-        //     $fl_d = $upload_data['file_name'];
-        //     $fl_e = $upload_data['file_name'];
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('admin/tryout/bank_soal', $error);
+        } else {
+            $upload_data = $this->upload->data();
+            $fl_soal = $upload_data['file_name'];
+            $fl_a = $upload_data['file_name'];
+            $fl_b = $upload_data['file_name'];
+            $fl_c = $upload_data['file_name'];
+            $fl_d = $upload_data['file_name'];
+            $fl_e = $upload_data['file_name'];
 
-        //     $insert = $this->admin_model->dataSoalTryout($fl_soal, $fl_a, $fl_b, $fl_c, $fl_d, $fl_e);
-        //     if ($insert) {
-        //         $this->session->set_flashdata('soal', 'Soal Ditambahkan');
-        //         redirect(base_url('admin_menu/tryout/bank_soal'));
-        //     } else {
-        //         echo "Gagal Upload Soal";
-        //     }
-        // }
+            $insert = $this->admin_model->dataSoalTryout($fl_soal, $fl_a, $fl_b, $fl_c, $fl_d, $fl_e);
+            if ($insert) {
+                $this->session->set_flashdata('soal', 'Soal Ditambahkan');
+                redirect(base_url('admin_menu/tryout/bank_soal'));
+            } else {
+                echo "Gagal Upload Soal";
+            }
+        }
     }
 
     function page_edit($id)

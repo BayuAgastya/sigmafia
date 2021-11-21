@@ -15,45 +15,46 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<style>
+
+</style>
 
 <body id="grad1">
     <div class="sidebar">
-        <div class="container">
-            <div class="logo-details">
-                <i class='bx bxl-c-plus-plus icon'></i>
-                <div class="logo_name">Sigmafia</div>
-                <i class='bx bx-menu' id="btn"></i>
-            </div>
-            <ul class="nav-list">
-                <?php
-                $i = 1;
-                foreach ($data->result() as $materi) {
-                ?>
-                    <li>
-                        <a class="click-materi" href="#" data-id="<?= $materi->id_video; ?>" data-judul="<?= $materi->judul_video; ?>" data-link="<?= $materi->link_video; ?>">
-                            <i class='<?php if ($i < 2) {
-                                            echo 'bx bx-play';
-                                        } else {
-                                            echo 'bx bx-circle';
-                                        } ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
-                            <span class="links_name"><?= $materi->judul_video; ?></span>
-                        </a>
-                        <span class="tooltip"><?= $materi->judul_video; ?></span>
-                    </li>
-                <?php
-                    $i++;
-                }
-                ?>
-                <li class="profile">
-                    <a href="<?= base_url($back); ?>">
-                        <i class='bx bx-chevron-left'></i>
-                        <span class="links_name">Kembali ke Home</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="logo-details">
+            <i class='bx bxl-c-plus-plus icon'></i>
+            <div class="logo_name">Sigmafia</div>
+            <i class='bx bx-menu' id="btn"></i>
         </div>
+        <ul class="nav-list">
+            <?php
+            $i = 1;
+            foreach ($data->result() as $materi) {
+            ?>
+                <li>
+                    <a class="click-materi" href="#" data-id="<?= $materi->id_video; ?>" data-judul="<?= $materi->judul_video; ?>" data-link="<?= $materi->link_video; ?>">
+                        <i class='<?php if ($i < 2) {
+                                        echo 'bx bx-play';
+                                    } else {
+                                        echo 'bx bx-circle';
+                                    } ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
+                        <span class="links_name"><?= $materi->judul_video; ?></span>
+                    </a>
+                    <span class="tooltip"><?= $materi->judul_video; ?></span>
+                </li>
+            <?php
+                $i++;
+            }
+            ?>
+            <li class="profile">
+                <a href="<?= base_url($back); ?>">
+                    <i class='bx bx-chevron-left'></i>
+                    <span class="links_name">Kembali ke Home</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <section class="home-section" id>
+    <section class="home-section">
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-11">
@@ -62,11 +63,13 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item video-materi" src="https://www.youtube.com/embed/<?= $materi->link_video; ?>" allowfullscreen></iframe>
                     </div>
-                    <h5 class="mt-3">File Materi:</h5>
-                    <a href="<?= base_url('uploads/materi/file/' . $materi->file) ?>">
-                        <box-icon type='solid' name='download'></box-icon> Download
-                    </a>
-                    <a href="<?= base_url('uploads/materi/file/' . $materi->file); ?>"></a>
+                    <h5 class="mt-5">File Materi:</h5>
+                    <div class="container">
+                        <a href="<?= base_url('uploads/materi/file/' . $data2->file) ?>">
+                            <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/pdf.png'); ?>" alt="" style="width: auto; height: 80px;">
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>

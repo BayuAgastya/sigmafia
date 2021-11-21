@@ -114,6 +114,7 @@ class Materi extends CI_Controller
             'back' => 'materi/sd'
         );
         $data['data'] = $this->admin_model->viewMateri($id);
+        $data['data2'] = $this->admin_model->berkas($id);
 
         $this->load->view('home/materi/view2', $data);
     }
