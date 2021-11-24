@@ -13,7 +13,7 @@
         </a>
     </nav>
 
-    <form action="<?= base_url('finish'); ?>" method="POST">
+    <form id="this-form-tryout" action="<?= base_url('finish'); ?>" method="POST">
         <input type="hidden" name="now" value="<?= $now; ?>">
         <div class="row m-2 pt-1">
             <div class="col-lg-8 container">
@@ -145,7 +145,7 @@
                 display.textContent = minutes + " Menit " + seconds + " Detik";
 
                 if (--timer < 0) {
-                    timer = duration;
+                    document.getElementById('this-form-tryout').submit();
                 }
             }, 1000);
         }
