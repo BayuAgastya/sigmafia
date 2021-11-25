@@ -215,4 +215,16 @@ class Bank_soal extends CI_Controller
         $this->session->set_flashdata('bank_soal', 'Data alumni berhasil dihapus');
         redirect(base_url('admin_menu/tryout/bank_soal'));
     }
+
+    function bank_soal_check(){
+        $sd = $this->input->post('sd');
+        $smp = $this->input->post('smp');
+        $sma = $this->input->post('sma');
+        $matematika = $this->input->post('matematika');
+        $kimia = $this->input->post('kimia');
+        $fisika = $this->input->post('fisika');
+
+        $result = $this->admin_model->bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika);
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
 }

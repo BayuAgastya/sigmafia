@@ -42,6 +42,20 @@
 								</div>
 							</div>
 						</div>
+						<div class="d-flex flex-row">
+							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-sd"></div>
+							<div class="px-1 pr-2">SD</div>
+							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-smp"></div>
+							<div class="px-1 pr-2">SMP</div>
+							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-sma"></div>
+							<div class="px-1 pr-2">SMA</div>
+							<div class="px-1 ml-auto"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-matematika"></div>
+							<div class="px-1 pr-2">Matematika</div>
+							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-fisika"></div>
+							<div class="px-1 pr-2">Fisika</div>
+							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-kimia"></div>
+							<div class="px-1 pr-2">Kimia</div>
+						</div>
 						<!-- /.card-header -->
 						<div class="card-body table-responsive p-0" style="height: 400px;">
 							<table class="table table-bordered table-head-fixed">
@@ -56,7 +70,7 @@
 										<th style="text-align: center;">Action</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="table-body-modify">
 									<?php foreach ($data_bank->result() as $i) : ?>
 										<tr>
 											<td style="width:01%"><?= $i->id_bank; ?></td>
@@ -145,3 +159,88 @@
 			</div>
 	</section>
 </div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(".checkbox-d-flex").on('click',function(){
+		if($("#checkbox-sd").prop("checked")){
+			sd = 1;
+		}else{
+			sd = 0;
+		}
+		if($("#checkbox-smp").prop("checked")){
+			smp = 1;
+		}else{
+			smp = 0;
+		}
+		if($("#checkbox-sma").prop("checked")){
+			sma = 1;
+		}else{
+			sma = 0;
+		}
+		if($("#checkbox-matematika").prop("checked")){
+			matematika = 1;
+		}else{
+			matematika = 0;
+		}
+		if($("#checkbox-kimia").prop("checked")){
+			kimia = 1;
+		}else{
+			kimia = 0;
+		}
+		if($("#checkbox-fisika").prop("checked")){
+			fisika = 1;
+		}else{
+			fisika = 0;
+		}
+		$.ajax({
+                url: "<?php echo base_url("admin_menu/tryout/Bank_soal/bank_soal_check");?>",
+                type: "POST",
+                cache: false,
+                data :{
+                    sd : sd,
+					smp : smp,
+					sma : sma,
+					matematika : matematika,
+					kimia : kimia,
+					fisika : fisika
+                },
+                success: function(data) {
+                    var data = $.parseJSON(data);  
+
+					console.log(data);
+
+                    const count = Object.keys(data).length;
+
+					$("#table-body-modify").html("");
+					for(var i = 0; i<count; i++){
+						if(data[i].updated_on === undefined){
+							updated_on = data[i].update_on;
+						}else{
+							updated_on = '';
+						}
+						$("#table-body-modify").append(`
+							<tr>
+								<td style="width:01%">`+data[i].id_bank+`</td>
+								<td style="width:01%; text-align:center">`+data[i].bobot+`</td>
+								<td style="width:02%; text-align:center">G`+data[i].id_guru+`T`+data[i].id_tingkat+`M`+data[i].id_matpel+`</td>
+								<td style="width:30%">`+data[i].soal+`</td>
+								<td style="width:05%">`+data[i].created_on+`</td>
+								<td style="width:05%">`+updated_on+`</td>
+								<td style="width:10%; text-align:center">
+									<a href="`+'<?= base_url('bankSoalDetail/') ?>'+data[i].id_bank+`" type="button" class="btn btn-xs btn-flat bg-gradient-cyan">
+										<i class="fas fa-eye"> Lihat</i>
+									</a>
+									<a href="`+'<?= base_url('bankSoalEdit/') ?>'+data[i].id_bank+`" type="button" class="btn btn-xs btn-flat bg-gradient-purple">
+										<i class="fas fa-edit"> edit</i>
+									</a>
+									<a href="`+'<?= base_url('hapusBankSoal/') ?>'+data[i].id_bank+`" type="button" class="btn btn-xs btn-flat bg-red" onclick="return confirm('Yakin ingin menghapus data ?')">
+										<i class="fas fa-trash"> Hapus</i>
+									</a>
+								</td>
+							</tr>
+							`);
+					}
+                }
+        });
+	});
+</script>

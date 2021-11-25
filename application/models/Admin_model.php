@@ -521,4 +521,40 @@ class Admin_model extends CI_Model
         $this->db->where('id_materi', $id_materi);
         return $this->db->get('materi');
     }
+
+    function bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika){
+        $matpel = array();
+        if($sd==1){
+            array_push($matpel,1);
+        }
+        if($smp==1){
+            array_push($matpel,2);
+        }
+        if($sma==1){
+            array_push($matpel,3);
+        }
+
+        $tingkat = array();
+        if($matematika==1){
+            array_push($tingkat,1);
+        }
+        if($kimia==1){
+            array_push($tingkat,3);
+        }
+        if($fisika==1){
+            array_push($tingkat,2);
+        }
+
+        $this->db->select("*");
+        $this->db->from('bank_soal');
+        if(count($matpel)>0){
+            $this->db->where_in('id_matpel',$matpel);
+        }
+
+        if(count($tingkat)>0){
+            $this->db->where_in('id_tingkat',$tingkat);
+        }
+        
+        return $this->db->get()->result_array();
+    }
 }
