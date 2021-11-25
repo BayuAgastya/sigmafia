@@ -72,6 +72,7 @@ class Tryout extends CI_Controller
 
         $insert_id = $this->db->insert_id();
         $soal = $this->input->post('soal');
+        // var_dump($soal);
         $hitung = count($soal);
         for ($i = 0; $i < $hitung; $i++) {
             $relation = array(

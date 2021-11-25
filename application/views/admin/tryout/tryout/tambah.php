@@ -75,19 +75,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $nomer = 0; ?>
                                     <?php foreach ($data_bank->result() as $i) : ?>
                                         <tr>
                                             <td style="width:01%">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" name="soal[<?= $nomer; ?>]" value="<?= $i->id_bank; ?>">
+                                                    <input type="checkbox" class="form-check-input" name="soal[]" value="<?= $i->id_bank; ?>">
                                                 </div>
                                             </td>
                                             <td style="width:01%"><?= $i->id_bank; ?></td>
                                             <td style="width:01%; text-align:center"><?= $i->bobot; ?></td>
                                             <td style="width:30%"><?= $i->soal; ?></td>
                                         </tr>
-                                        <?php $nomer++; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
