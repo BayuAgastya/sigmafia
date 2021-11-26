@@ -63,8 +63,22 @@
                             </div>
 
                         </div>
-                        <d iv class="form-group">
+                        <div class="form-group">
                             <label>Pilih Soal</label>
+                            <div class="d-flex flex-row">
+                                <div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-sd"></div>
+                                <div class="px-1 pr-2">SD</div>
+                                <div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-smp"></div>
+                                <div class="px-1 pr-2">SMP</div>
+                                <div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-sma"></div>
+                                <div class="px-1 pr-2">SMA</div>
+                                <div class="px-1 ml-auto"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-matematika"></div>
+                                <div class="px-1 pr-2">Matematika</div>
+                                <div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-fisika"></div>
+                                <div class="px-1 pr-2">Fisika</div>
+                                <div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-kimia"></div>
+                                <div class="px-1 pr-2">Kimia</div>
+                            </div>
                             <table class="table table-bordered table-head-fixed">
                                 <thead>
                                     <tr>
@@ -74,7 +88,7 @@
                                         <th>Soal</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-body-modify">
                                     <?php foreach ($data_bank->result() as $i) : ?>
                                         <tr>
                                             <td style="width:01%">
@@ -89,7 +103,7 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                        </d>
+                        </div>
 
                         <div class="form-group pull-right">
                             <a href="<?= base_url('admin_menu/tryout/tryout') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>
@@ -102,3 +116,79 @@
         </div>
     </section>
 </div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(".checkbox-d-flex").on('click',function(){
+		if($("#checkbox-sd").prop("checked")){
+			sd = 1;
+		}else{
+			sd = 0;
+		}
+		if($("#checkbox-smp").prop("checked")){
+			smp = 1;
+		}else{
+			smp = 0;
+		}
+		if($("#checkbox-sma").prop("checked")){
+			sma = 1;
+		}else{
+			sma = 0;
+		}
+		if($("#checkbox-matematika").prop("checked")){
+			matematika = 1;
+		}else{
+			matematika = 0;
+		}
+		if($("#checkbox-kimia").prop("checked")){
+			kimia = 1;
+		}else{
+			kimia = 0;
+		}
+		if($("#checkbox-fisika").prop("checked")){
+			fisika = 1;
+		}else{
+			fisika = 0;
+		}
+		$.ajax({
+                url: "<?php echo base_url("admin_menu/tryout/Bank_soal/bank_soal_check");?>",
+                type: "POST",
+                cache: false,
+                data :{
+                    sd : sd,
+					smp : smp,
+					sma : sma,
+					matematika : matematika,
+					kimia : kimia,
+					fisika : fisika
+                },
+                success: function(data) {
+                    var data = $.parseJSON(data);  
+
+					console.log(data);
+
+                    const count = Object.keys(data).length;
+
+					$("#table-body-modify").html("");
+					for(var i = 0; i<count; i++){
+						if(data[i].updated_on === undefined){
+							updated_on = data[i].update_on;
+						}else{
+							updated_on = '';
+						}
+						$("#table-body-modify").append(`
+							<tr>
+                                <td style="width:01%">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="soal[]" value="`+data[i].id_bank+`">
+                                    </div>
+                                </td>
+								<td style="width:01%">`+data[i].id_bank+`</td>
+								<td style="width:01%; text-align:center">`+data[i].bobot+`</td>
+								<td style="width:30%">`+data[i].soal+`</td>
+							</tr>
+							`);
+					}
+                }
+        });
+	});
+</script>

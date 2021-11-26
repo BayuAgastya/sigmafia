@@ -523,26 +523,26 @@ class Admin_model extends CI_Model
     }
 
     function bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika){
-        $matpel = array();
-        if($sd==1){
-            array_push($matpel,1);
-        }
-        if($smp==1){
-            array_push($matpel,2);
-        }
-        if($sma==1){
-            array_push($matpel,3);
-        }
-
         $tingkat = array();
-        if($matematika==1){
+        if($sd==1){
             array_push($tingkat,1);
         }
-        if($kimia==1){
+        if($smp==1){
+            array_push($tingkat,2);
+        }
+        if($sma==1){
             array_push($tingkat,3);
         }
+        
+        $matpel = array();
+        if($matematika==1){
+            array_push($matpel,1);
+        }
+        if($kimia==1){
+            array_push($matpel,3);
+        }
         if($fisika==1){
-            array_push($tingkat,2);
+            array_push($matpel,2);
         }
 
         $this->db->select("*");
