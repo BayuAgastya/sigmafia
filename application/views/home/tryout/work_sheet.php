@@ -74,7 +74,7 @@
                             <h5 style="text-align: center;">Navigasi Soal</h5>
                             <ul class="pagination" data-number="<?= $no; ?>">
                                 <?php $no_kedua = 1;
-                                for($no_kedua=1;$no_kedua<=$no;$no_kedua++){ ?>
+                                for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
                                 <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
                                 <?php } ?>
                             </ul>
