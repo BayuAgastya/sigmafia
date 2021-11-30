@@ -55,6 +55,7 @@
 							<div class="px-1 pr-2">Fisika</div>
 							<div class="px-1"><input type="checkbox" value="true" class="checkbox-d-flex" id="checkbox-kimia"></div>
 							<div class="px-1 pr-2">Kimia</div>
+							<div class="px-1 ml-auto"><input type="text" class="form-control form-control-sm" id="input-d-flex"></div>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body table-responsive p-0" style="height: 400px;">
@@ -162,7 +163,15 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(".checkbox-d-flex").on('click',function(){
-		if($("#checkbox-sd").prop("checked")){
+        callBankSoal();
+	});
+
+    $("#input-d-flex").on('keyup',function(){
+        callBankSoal();
+    });
+	
+	function callBankSoal(){
+        if($("#checkbox-sd").prop("checked")){
 			sd = 1;
 		}else{
 			sd = 0;
@@ -192,6 +201,10 @@
 		}else{
 			fisika = 0;
 		}
+
+        var search = $("#input-d-flex").val();
+        console.log(search);
+        
 		$.ajax({
                 url: "<?php echo base_url("admin_menu/tryout/Bank_soal/bank_soal_check");?>",
                 type: "POST",
@@ -202,7 +215,8 @@
 					sma : sma,
 					matematika : matematika,
 					kimia : kimia,
-					fisika : fisika
+					fisika : fisika,
+                    search : search
                 },
                 success: function(data) {
                     var data = $.parseJSON(data);  
@@ -242,5 +256,5 @@
 					}
                 }
         });
-	});
+    }
 </script>

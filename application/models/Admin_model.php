@@ -522,7 +522,7 @@ class Admin_model extends CI_Model
         return $this->db->get('materi');
     }
 
-    function bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika){
+    function bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika,$search){
         $tingkat = array();
         if($sd==1){
             array_push($tingkat,1);
@@ -547,13 +547,29 @@ class Admin_model extends CI_Model
 
         $this->db->select("*");
         $this->db->from('bank_soal');
-        if(count($matpel)>0){
-            $this->db->where_in('id_matpel',$matpel);
+        if(!empty($search)){
+            $this->db->group_start();
+            if(count($matpel)>0){
+                $this->db->where_in('id_matpel',$matpel);
+            }
+    
+            if(count($tingkat)>0){
+                $this->db->where_in('id_tingkat',$tingkat);
+            }
+            $this->db->where('id_bank',$search);
+            $this->db->or_like('soal',$search);
+            $this->db->or_like('sumber',$search);
+            $this->db->group_end();
+        }else{
+            if(count($matpel)>0){
+                $this->db->where_in('id_matpel',$matpel);
+            }
+    
+            if(count($tingkat)>0){
+                $this->db->where_in('id_tingkat',$tingkat);
+            }
         }
 
-        if(count($tingkat)>0){
-            $this->db->where_in('id_tingkat',$tingkat);
-        }
         
         return $this->db->get()->result_array();
     }

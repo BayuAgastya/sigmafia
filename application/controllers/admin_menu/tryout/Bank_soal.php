@@ -223,8 +223,9 @@ class Bank_soal extends CI_Controller
         $matematika = $this->input->post('matematika');
         $kimia = $this->input->post('kimia');
         $fisika = $this->input->post('fisika');
+        $search = $this->input->post('search');
 
-        $result = $this->admin_model->bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika);
+        $result = $this->admin_model->bank_soal_check($sd,$smp,$sma,$matematika,$kimia,$fisika,$search);
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
 }
