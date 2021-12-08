@@ -32,7 +32,7 @@
                         <a href="<?= base_url('user/tryout/tryout_base'); ?>" type="button" class="genric-btn btn-block primary-border text-uppercase mt-4">Kembali</a>
                     </div>
                     <div class="col-lg-6">
-                        <a href="<?= base_url('user/tryout/tryout_base'); ?>" type="button" class="genric-btn btn-block primary-border text-uppercase mt-4">Periksa Jawaban</a>
+                        <a href="<?= base_url('detail_riwayat/'.$id_riwayat['id_hasil']); ?>" type="button" class="genric-btn btn-block primary-border text-uppercase mt-4">Periksa Jawaban</a>
                     </div>
                 </div>
             </div>

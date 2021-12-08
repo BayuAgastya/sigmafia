@@ -102,6 +102,10 @@ class Tryout_model extends CI_Model
         return $this->db->get();
     }
 
+    public function get_riwayat_tryout($id){
+        return $this->db->get_where('hasil_tryout',array('id_tryout'=>$id));
+    }
+
     public function detail_jawaban($id_tryout,$id_hasil){
         $this->db->select('*');
         $this->db->from('bank_jawaban');
@@ -111,19 +115,25 @@ class Tryout_model extends CI_Model
         return $this->db->get();
     }
 
-    public function simpan_hasil($id,$user_id,$total,$correct,$value,$bobot,$now){
+    public function simpan_hasil($id,$user_id,$total,$correct,$value,$bobot,$now,$nilai){
         $tryout = $this->db->get_where('tryout',array('id_tryout'=>$id))->row();
+        if($nilai >= 70){
+            $status = 'Lolos';
+        }else{
+            $status = 'Tidak Lolos';
+        }
         $data = array(
             'id_tryout' => $id,
             'id_user' => $user_id,
             'urut_soal' => $tryout->jumlah_soal,
             'urut_jawaban' => $total,
             'jml_benar' => $correct,
-            'nilai' => $value,
-            'nilai_bobot' => $bobot,
+            'nilai' => $nilai,
+            'nilai_bobot' => $value,
+            'total_bobot' => $bobot,
             'tgl_mulai' => $now,
             'tgl_selesai' => date('Y-m-d H:i:s'),
-            'status' => 'Lolos'
+            'status' => $status
         );
         $this->db->insert('hasil_tryout',$data);
     }

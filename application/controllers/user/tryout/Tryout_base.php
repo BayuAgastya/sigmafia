@@ -116,6 +116,7 @@ class tryout_base extends CI_Controller
         $total = 0;
         $total_bobot = 0;
         $correct = 0;
+        $nilai = 0;
         $i = 0;
 
         foreach ($relation as $r) {
@@ -141,7 +142,9 @@ class tryout_base extends CI_Controller
             }
         }
 
-        $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $total, $correct, $value, $total_bobot, $now);
+        $nilai = ($value / $total_bobot) * 100;
+
+        $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $total, $correct, $value, $total_bobot, $now, $nilai);
         $id_hasil = array(
             'id_hasil' => $this->db->insert_id()
         );  
@@ -159,7 +162,8 @@ class tryout_base extends CI_Controller
             'salah' => $wrong,
             'benar' => $correct,
             'total' => $total,
-            'detail' => $detail_tryout
+            'detail' => $detail_tryout,
+            'id_riwayat' => $id_hasil
         );
 
 

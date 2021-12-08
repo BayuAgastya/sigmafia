@@ -75,7 +75,7 @@
                             <ul class="pagination" data-number="<?= $no; ?>">
                                 <?php $no_kedua = 1;
                                 for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
-                                <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
+                                <li class="page-item m-1"><a id="btn-soal-<?= $no_kedua; ?>" class="btn btn-flat btn-outline-dark btn-soal" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
                                 <?php } ?>
                             </ul>
                             <!-- <div class="m-1">
@@ -83,7 +83,7 @@
                                 $number = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '120'];
                                 foreach ($number as $num) :
                                 ?>
-                                    <a href="" class="btn btn-flat btn-outline-dark m-1" style="width: 50px;"><?= $num ?></a>
+                                    <a href="" class="btn btn-flat btn-dark m-1" style="width: 50px;"><?= $num ?></a>
                                 <?php endforeach; ?>
                             </div> -->
                         </div>
@@ -114,18 +114,31 @@
     }
     function nextquestion(id){
         var main = id+1;
-        if(main >= $('.pagination').data('number')){
-            main = $('.pagination').data('number');
+        var end = $('.pagination').data('number')-1;
+        if(main > end){
+            main = end;
         }
+        console.log(main);
         showquestion(main);
     }
     function showquestion(id){
+        var end = $('.pagination').data('number')-1;
         $('.soal').hide();
         $('.soal-'+id).show();
+        $('.btn-soal').attr('class','btn btn-flat btn-outline-dark btn-soal');
+        $('#btn-soal-'+id).attr('class','btn btn-flat btn-outline-dark active btn-soal');
         $('.prev-question').removeAttr('onclick');
         $('.next-question').removeAttr('onclick');
         $('.prev-question').attr('onclick','prevquestion('+id+');');
         $('.next-question').attr('onclick','nextquestion('+id+');');
+        if(id >= end){
+            $('.next-question').hide();
+        }else if(id == 1){
+            $('.prev-question').hide();
+        }else{
+            $('.next-question').show();
+            $('.prev-question').show();
+        }
     }
     showquestion(1);
     </script>

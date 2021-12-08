@@ -56,7 +56,7 @@
                     <td><?= $tryout->jumlah_soal; ?></td>
                     <td><?= $tryout->jml_benar; ?></td>
                     <td><?= $tryout->nilai; ?></td>
-                    <td><?= $tryout->nilai; ?>/<?= $tryout->nilai_bobot; ?></td>
+                    <td><?= $tryout->nilai_bobot; ?>/<?= $tryout->total_bobot; ?></td>
 
                     <td><?= $tryout->status; ?></td>
                     <td><a href="<?= base_url('detail_riwayat/'.$tryout->id_hasil); ?>" type="button" class="genric-btn primary text-uppercase mb-3">Lihat</a></td>

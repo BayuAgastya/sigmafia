@@ -79,8 +79,8 @@
                             <h5 style="text-align: center;">Navigasi Soal</h5>
                             <ul class="pagination" data-number="<?= $no; ?>">
                                 <?php $no_kedua = 1;
-                                for($no_kedua=1;$no_kedua<=$no;$no_kedua++){ ?>
-                                <li class="page-item m-1"><a class="btn btn-flat btn-outline-dark" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
+                                for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
+                                <li class="page-item m-1"><a id="btn-soal-<?= $no_kedua; ?>" class="btn btn-flat btn-outline-dark" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
                                 <?php } ?>
                             </ul>
                             <!-- <div class="m-1">
@@ -125,12 +125,23 @@
         showquestion(main);
     }
     function showquestion(id){
+        var end = $('.pagination').data('number')-1;
         $('.soal').hide();
         $('.soal-'+id).show();
+        $('.btn-soal').attr('class','btn btn-flat btn-outline-dark btn-soal');
+        $('#btn-soal-'+id).attr('class','btn btn-flat btn-outline-dark active btn-soal');
         $('.prev-question').removeAttr('onclick');
         $('.next-question').removeAttr('onclick');
         $('.prev-question').attr('onclick','prevquestion('+id+');');
         $('.next-question').attr('onclick','nextquestion('+id+');');
+        if(id >= end){
+            $('.next-question').hide();
+        }else if(id == 1){
+            $('.prev-question').hide();
+        }else{
+            $('.next-question').show();
+            $('.prev-question').show();
+        }
     }
     showquestion(1);
     </script>

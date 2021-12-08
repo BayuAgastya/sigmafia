@@ -32,7 +32,7 @@
                                     </tr>
                                     <tr>
                                         <th>Bobot Total :</th>
-                                        <td></td>
+                                        <td><?= $bobot_total; ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -46,15 +46,15 @@
                                     </tr>
                                     <tr>
                                         <th>Nilai Terendah :</th>
-                                        <td> </td>
+                                        <td><?= number_format($min, 2, '.', ''); ?></td>
                                     </tr>
                                     <tr>
                                         <th>Niliai tertinggi :</th>
-                                        <td> </td>
+                                        <td><?= number_format($max, 2, '.', ''); ?></td>
                                     </tr>
                                     <tr>
                                         <th>Rata-rata :</th>
-                                        <td> </td>
+                                        <td><?= number_format($average, 2, '.', ''); ?></td>
                                     </tr>
                                 </tbody>
                             </table>
