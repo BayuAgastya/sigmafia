@@ -387,7 +387,7 @@
 							<img class="img-fluid" src="<?= base_url('assets/main/'); ?>img/trainer/" alt="">
 						</div>
 						<div class="col-lg-6" style="margin-top: 10px;">
-							<h4>Putu Diah Prema Vahini, S.Pd</h4>
+							<h4>Putu Diah Prema Vahini, S.Pd., M.Pd.</h4>
 							<p class="designation">Main Teacher</p>
 							<div class="mb-4">
 								<p>
@@ -787,7 +787,7 @@
 								</div>
 								<div class="row" style="margin-top:10px; margin-bottom:10px" required>
 									<div class="col-sm-6">
-										<input type="text" name="whatsaap" class="form-control" placeholder="Nomer Whatsaap" required>
+										<input type="tel" name="whatsaap" class="form-control" placeholder="Nomer Whatsaap" required>
 									</div>
 									<div class="col-sm-6">
 										<input type="text" name="email" class="form-control" placeholder="Alamat Email" required>

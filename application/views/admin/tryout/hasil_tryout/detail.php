@@ -92,8 +92,8 @@
                                         <th>ID User</th>
                                         <th>Urut Soal</th>
                                         <th>Urut Jawaban</th>
-                                        <th>Jml Benar</th>
-                                        <th>Benar</th>
+                                        <th>Jumlah Benar</th>
+                                        <th>Nilai</th>
                                         <th>Total Bobot</th>
                                         <th>Tgl Mulai</th>
                                         <th>Tgl Selesai</th>

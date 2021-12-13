@@ -4,7 +4,7 @@
         </script> Sigmafia.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
+        <b>Code Iginiter Version</b> <?php echo CI_VERSION ?>
     </div>
 </footer>
 </div>
@@ -41,17 +41,16 @@
 </script>
 
 <script>
-    function deleteMateri(id){
-        if (window.confirm('Yakin ingin menghapus data ??'))
-        {
+    function deleteMateri(id) {
+        if (window.confirm('Yakin ingin menghapus data ??')) {
             $.ajax({
-                url: "<?php echo base_url("admin_menu/m_materi/delete_materi");?>",
+                url: "<?php echo base_url("admin_menu/m_materi/delete_materi"); ?>",
                 type: "POST",
                 cache: false,
-                data :{
+                data: {
                     id_materi: id
                 }
-            }).done(function(){
+            }).done(function() {
                 location.reload();
             });
         }
@@ -60,9 +59,9 @@
 
 <script>
     var i = 1;
-    $(".add-new-link").click(function(){
+    $(".add-new-link").click(function() {
         $(".add-new").append(`
-                            <div class="row able-delete-`+i+`">
+                            <div class="row able-delete-` + i + `">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <input type="text" name="judul[]" class="form-control">
@@ -75,7 +74,7 @@
                                 </div>
                                 <div class="col-lg-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-danger" onclick="deleteForm(`+i+`)" aria-label="Close">x</button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteForm(` + i + `)" aria-label="Close">x</button>
                                     </div>
                                 </div>
                             </div>`);
@@ -84,8 +83,8 @@
 </script>
 
 <script>
-    function deleteForm(number){
-        $(".able-delete-"+number+"").remove();
+    function deleteForm(number) {
+        $(".able-delete-" + number + "").remove();
     }
 </script>
 
@@ -149,54 +148,54 @@
 </script>
 
 <script>
-    function getMateri(id){
+    function getMateri(id) {
         $.ajax({
-                url: "<?php echo base_url("admin_menu/m_materi/get_materi");?>",
-                type: "POST",
-                cache: false,
-                data :{
-                    id_materi: id
-                },
-                success: function(data) {
-                    var data = $.parseJSON(data);  
+            url: "<?php echo base_url("admin_menu/m_materi/get_materi"); ?>",
+            type: "POST",
+            cache: false,
+            data: {
+                id_materi: id
+            },
+            success: function(data) {
+                var data = $.parseJSON(data);
 
-                    console.log(data);
+                console.log(data);
 
-                    $("#kelas-"+data.materi.kelas).attr("selected","selected");    
-                    $("#id-materi").val(data.materi.id_materi);
-                    $("#judul-materi").val(data.materi.judul_materi);
-                    $("#deskripsi").val(data.materi.deskripsi);
-                    $("#judul-video").val(data.video_materi[0].judul_video);
-                    $("#link-video").val(data.video_materi[0].link_video);
+                $("#kelas-" + data.materi.kelas).attr("selected", "selected");
+                $("#id-materi").val(data.materi.id_materi);
+                $("#judul-materi").val(data.materi.judul_materi);
+                $("#deskripsi").val(data.materi.deskripsi);
+                $("#judul-video").val(data.video_materi[0].judul_video);
+                $("#link-video").val(data.video_materi[0].link_video);
 
-                    $(".add-new").html('');
+                $(".add-new").html('');
 
-                    const count = Object.keys(data.video_materi).length;
+                const count = Object.keys(data.video_materi).length;
 
-                    console.log(count);
-                    if(count > 1){
-                        for(var i = 1; i<=count; i++){
-                            $(".add-new").append(`
-                                <div class="row able-delete-`+i+`">
+                console.log(count);
+                if (count > 1) {
+                    for (var i = 1; i <= count; i++) {
+                        $(".add-new").append(`
+                                <div class="row able-delete-` + i + `">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <input type="text" value="`+data.video_materi[i].judul_video+`" name="judul[]" class="form-control">
+                                            <input type="text" value="` + data.video_materi[i].judul_video + `" name="judul[]" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="form-group">
-                                            <input type="text" value="`+data.video_materi[i].link_video+`" name="link[]" class="form-control">
+                                            <input type="text" value="` + data.video_materi[i].link_video + `" name="link[]" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-1">
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-danger" onclick="deleteForm(`+i+`)" aria-label="Close">x</button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteForm(` + i + `)" aria-label="Close">x</button>
                                         </div>
                                     </div>
                                 </div>`);
-                        }
                     }
                 }
+            }
         });
     }
 </script>
