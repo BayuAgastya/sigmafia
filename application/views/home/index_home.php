@@ -21,7 +21,7 @@
 									<tr>
 										<th class="text-uppercase" style="text-align: center;">
 											<h3>
-												Once you stop learning, you starts dying
+												Once you stop learning, you start dying
 											</h3>
 										</th>
 									</tr>

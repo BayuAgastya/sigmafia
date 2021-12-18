@@ -46,7 +46,8 @@
                     <?php echo form_open_multipart(base_url('home/upload')) ?>
                     <div class="row">
                         <div class="col-lg-12 form_group" style="text-align: left">
-                            <p>untuk dapat mengakses konten secara gratis selama 1 bulan, harap menghubungi tutor melalui line/wa untuk tata caranya.</p>
+                            <p>untuk dapat mengakses konten,</p>
+                            <p>Hubungi kami pada kontak yang tersedia di web</p>
                             <div class="custom-file">
                                 <input name="file" type="file" id="customFile" required>
                                 <div class="image-preview"></div>
