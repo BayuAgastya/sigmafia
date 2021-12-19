@@ -16,7 +16,7 @@
                         <p>Mata Pelajaran : <?= $to->matpel ?></p>
                         <p>Jumlah Soal : <?= $to->jumlah_soal ?></p>
                         <p>Waktu : <?= $to->waktu ?> Menit</p>
-                        <p>Total Bobot : 200</p>
+                        <p>Total Bobot : <?= $bobot; ?></p>
                     </div>
 
                 </div>

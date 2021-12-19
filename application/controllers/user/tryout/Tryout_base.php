@@ -55,7 +55,12 @@ class tryout_base extends CI_Controller
             'nav_contact' => '',
             'isi' => 'home/tryout/prep_page'
         );
-        $data['data_bank'] = $this->db->get('bank_soal');
+        $bobot = 0;
+        $data_bank = $this->tryout_model->data_lembarKerja($id)->result();
+        foreach($data_bank as $databank){
+            $bobot += $databank->bobot;
+        }
+        $data['bobot'] = $bobot;
         $data['to'] = $this->tryout_model->getTryout($id)->row();
         $this->load->view('konten_layout/konten', $data);
         $this->load->view('konten_layout/head.php');
