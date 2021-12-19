@@ -72,7 +72,7 @@
                         </div>
                         <div class="card-body">
                             <h5 style="text-align: center;">Navigasi Soal</h5>
-                                <div class="d-flex flex-wrap" data-number="<?= $no; ?>">
+                                <div id="pagination" class="d-flex flex-wrap" data-number="<?= $no; ?>">
                                     <?php $no_kedua = 1;
                                     for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
                                         <div class="m-1">
@@ -117,15 +117,14 @@
     }
     function nextquestion(id){
         var main = id+1;
-        var end = $('.pagination').data('number')-1;
+        var end = $('#pagination').data('number')-1;
         if(main > end){
             main = end;
         }
         console.log(main);
-        showquestion(main);
     }
     function showquestion(id){
-        var end = $('.pagination').data('number')-1;
+        var end = $('#pagination').data('number')-1;
         $('.soal').hide();
         $('.soal-'+id).show();
         $('.btn-soal').attr('class','btn btn-flat btn-outline-dark btn-sm btn-soal');
