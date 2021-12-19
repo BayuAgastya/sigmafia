@@ -38,7 +38,13 @@
                                     } else {
                                         echo 'bx bx-circle';
                                     } ?> icon-materi' id="id-materi-<?= $materi->id_video; ?>"></i>
-                        <span class="links_name"><?= $materi->judul_video; ?></span>
+                        <span class="links_name">
+                            <?php if(strlen($materi->judul_video) > 16){
+                                echo substr($materi->judul_video, 0, 16)."...";
+                            }else{
+                                echo $materi->judul_video;
+                            }; ?>
+                        </span>
                     </a>
                     <span class="tooltip"><?= $materi->judul_video; ?></span>
                 </li>
@@ -63,13 +69,18 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item video-materi" src="https://www.youtube.com/embed/<?= $materi->link_video; ?>" allowfullscreen></iframe>
                     </div>
+                    <?php 
+                        if($data2->file == null){
+                    ?>
                     <h5 class="mt-5">File Materi:</h5>
                     <div class="container">
                         <a href="<?= base_url('uploads/materi/file/' . $data2->file) ?>">
                             <img class="img-fluid" src="<?= base_url('uploads/materi/gambar/pdf.png'); ?>" alt="" style="width: auto; height: 80px;">
                         </a>
                     </div>
-
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
