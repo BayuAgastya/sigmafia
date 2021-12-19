@@ -124,6 +124,8 @@ class tryout_base extends CI_Controller
         $nilai = 0;
         $i = 0;
 
+        $check_jawaban = 0;
+
         foreach ($relation as $r) {
             if (!empty($jawaban[$r['id_bank']])) {
                 $total++;
@@ -144,20 +146,28 @@ class tryout_base extends CI_Controller
                 );
                 // var_dump($jawaban[$i]);
                 $i++;
+            }else{
+                $check_jawaban++; 
             }
         }
 
-        $nilai = ($value / $total_bobot) * 100;
+        if($value < 1){
+            $nilai = 0;
+        }else{
+            $nilai = ($value / $total_bobot) * 100;
+        }
 
         $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $total, $correct, $value, $total_bobot, $now, $nilai);
         $id_hasil = array(
             'id_hasil' => $this->db->insert_id()
         );  
 
-        for($i=0;$i<count($detail_jawaban);$i++){
-            $conclusion = null;
-            $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
-            $this->db->insert('bank_jawaban',$conclusion);
+        if($check_jawaban != count($relation)){   
+            for($i=0;$i<count($detail_jawaban);$i++){
+                $conclusion = null;
+                $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
+                $this->db->insert('bank_jawaban',$conclusion);
+            }
         }
         
         $data = array(
