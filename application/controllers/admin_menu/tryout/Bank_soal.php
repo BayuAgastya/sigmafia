@@ -98,89 +98,88 @@ class Bank_soal extends CI_Controller
             'created_on' => date('y-m-d')
         );
 
-        $config['upload_path']   = './uploads/bank_soal/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
-        $config['encrypt_name']         = true;
-        $this->load->library('upload', $config);
+        if(!empty($_FILES['file_soal']['name'])){
+            $config['upload_path']   = './uploads/bank_soal/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+            $config['encrypt_name']         = true;
+            $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('file_soal')) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('admin/tryout/bank_soal', $error);
-        } else {
-            $file_soal = $this->upload->data();
-            $file_soal_nama = $file_soal['file_name'];
-            $data['file_soal'] = $file_soal_nama;
-            
-            if(!empty($_FILES['file_a']['name'])){
-                if (!$this->upload->do_upload('file_a')) {
-                    $file_a_nama = null;
-                }else{
-                    $file_a = $this->upload->data();
-                    $file_a_nama = $file_a['file_name'];
-                }
+            if (!$this->upload->do_upload('file_soal')) {
+                $error = array('error' => $this->upload->display_errors());
             }else{
-                $file_a_nama = null;
+                $file_soal = $this->upload->data();
+                $file_soal_nama = $file_soal['file_name'];
+                $data['file_soal'] = $file_soal_nama;
             }
-            $data['file_a'] = $file_a_nama;
-
-            if(!empty($_FILES['file_b']['name'])){
-                if (!$this->upload->do_upload('file_b')) {
-                    $file_b_nama = null;
-                }else{
-                    $file_b = $this->upload->data();
-                    $file_b_nama = $file_b['file_name'];
-                }
-            }else{
-                $file_b_nama = null;
-            }
-            $data['file_b'] = $file_b_nama;
-
-            if(!empty($_FILES['file_c']['name'])){
-                if (!$this->upload->do_upload('file_c')) {
-                    $file_c_nama = null;
-                }else{
-                    $file_c = $this->upload->data();
-                    $file_c_nama = $file_c['file_name'];
-                }
-            }else{
-                $file_c_nama = null;
-            }
-            $data['file_c'] = $file_c_nama;
-
-            if(!empty($_FILES['file_d']['name'])){
-                if (!$this->upload->do_upload('file_d')) {
-                    $file_d_nama = null;
-                }else{
-                    $file_d = $this->upload->data();
-                    $file_d_nama = $file_d['file_name'];
-                }
-            }else{
-                $file_d_nama = null;
-            }
-            $data['file_d'] = $file_d_nama;
-
-            if(!empty($_FILES['file_e']['name'])){
-                if (!$this->upload->do_upload('file_e')) {
-                    $file_e_nama = null;
-                }else{
-                    $file_e = $this->upload->data();
-                    $file_e_nama = $file_e['file_name'];
-                }
-            }else{
-                $file_e_nama = null;
-            }
-            $data['file_e'] = $file_e_nama;
-            
-            if ($this->tryout_model->add_data($data, 'bank_soal')) {
-                $this->session->set_flashdata('soal', 'Soal Ditambahkan');
-                redirect(base_url('admin_menu/tryout/bank_soal'));
-            } else {
-                echo "Gagal Upload Soal";
-            }
+        }else{
+            $data['file_soal'] = null;
         }
+        
+        if(!empty($_FILES['file_a']['name'])){
+            if (!$this->upload->do_upload('file_a')) {
+                $file_a_nama = null;
+            }else{
+                $file_a = $this->upload->data();
+                $file_a_nama = $file_a['file_name'];
+            }
+        }else{
+            $file_a_nama = null;
+        }
+        $data['file_a'] = $file_a_nama;
 
-        $this->session->set_flashdata('bank_soal', 'Soal baru berhasil ditambahkan');
-        redirect(base_url('admin_menu/tryout/bank_soal'));
+        if(!empty($_FILES['file_b']['name'])){
+            if (!$this->upload->do_upload('file_b')) {
+                $file_b_nama = null;
+            }else{
+                $file_b = $this->upload->data();
+                $file_b_nama = $file_b['file_name'];
+            }
+        }else{
+            $file_b_nama = null;
+        }
+        $data['file_b'] = $file_b_nama;
+
+        if(!empty($_FILES['file_c']['name'])){
+            if (!$this->upload->do_upload('file_c')) {
+                $file_c_nama = null;
+            }else{
+                $file_c = $this->upload->data();
+                $file_c_nama = $file_c['file_name'];
+            }
+        }else{
+            $file_c_nama = null;
+        }
+        $data['file_c'] = $file_c_nama;
+
+        if(!empty($_FILES['file_d']['name'])){
+            if (!$this->upload->do_upload('file_d')) {
+                $file_d_nama = null;
+            }else{
+                $file_d = $this->upload->data();
+                $file_d_nama = $file_d['file_name'];
+            }
+        }else{
+            $file_d_nama = null;
+        }
+        $data['file_d'] = $file_d_nama;
+
+        if(!empty($_FILES['file_e']['name'])){
+            if (!$this->upload->do_upload('file_e')) {
+                $file_e_nama = null;
+            }else{
+                $file_e = $this->upload->data();
+                $file_e_nama = $file_e['file_name'];
+            }
+        }else{
+            $file_e_nama = null;
+        }
+        $data['file_e'] = $file_e_nama;
+        
+        if ($this->tryout_model->add_data($data, 'bank_soal')) {
+            redirect(base_url('admin_menu/tryout/bank_soal'));
+        } else {
+            redirect(base_url('admin_menu/tryout/bank_soal'));
+        }
     }
 
     function page_edit($id)
