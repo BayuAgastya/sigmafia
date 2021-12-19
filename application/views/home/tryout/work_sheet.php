@@ -72,12 +72,15 @@
                         </div>
                         <div class="card-body">
                             <h5 style="text-align: center;">Navigasi Soal</h5>
-                            <ul class="pagination" data-number="<?= $no; ?>">
-                                <?php $no_kedua = 1;
-                                for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
-                                <li class="page-item m-1"><a id="btn-soal-<?= $no_kedua; ?>" class="btn btn-flat btn-outline-dark btn-soal" onclick="showquestion(<?= $no_kedua; ?>);" style="cursor: pointer;"><?= $no_kedua; ?></a></li>
-                                <?php } ?>
-                            </ul>
+                                <div class="d-flex flex-wrap" data-number="<?= $no; ?>">
+                                    <?php $no_kedua = 1;
+                                    for($no_kedua=1;$no_kedua<$no;$no_kedua++){ ?>
+                                        <div class="m-1">
+                                            <a style="cursor: pointer;" id="btn-soal-<?= $no_kedua; ?>" class="btn btn-flat btn-outline-dark btn-soal btn-sm mx-auto" onclick="showquestion(<?= $no_kedua; ?>);"><?php if($no_kedua<10){ echo "0"; } ?><?= $no_kedua; ?></a>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>                            
                             <!-- <div class="m-1">
                                 <?php
                                 $number = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '120'];
@@ -125,8 +128,8 @@
         var end = $('.pagination').data('number')-1;
         $('.soal').hide();
         $('.soal-'+id).show();
-        $('.btn-soal').attr('class','btn btn-flat btn-outline-dark btn-soal');
-        $('#btn-soal-'+id).attr('class','btn btn-flat btn-outline-dark active btn-soal');
+        $('.btn-soal').attr('class','btn btn-flat btn-outline-dark btn-sm btn-soal');
+        $('#btn-soal-'+id).attr('class','btn btn-flat btn-outline-dark active btn-sm btn-soal');
         $('.prev-question').removeAttr('onclick');
         $('.next-question').removeAttr('onclick');
         $('.prev-question').attr('onclick','prevquestion('+id+');');
