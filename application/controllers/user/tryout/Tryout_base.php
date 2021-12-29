@@ -124,13 +124,12 @@ class tryout_base extends CI_Controller
         $nilai = 0;
         $i = 0;
 
-        $check_jawaban = 0;
-
         foreach ($relation as $r) {
+            $total++;
+            $id = $r['id_bank'];
+            $total_bobot += $r['bobot'];
+            $temp = null;
             if (!empty($jawaban[$r['id_bank']])) {
-                $total++;
-                $id = $r['id_bank'];
-                $total_bobot += $r['bobot'];
                 $temp = substr($jawaban[$id], -1);
                 if (strtoupper($temp) == $r['jawaban']) {
                     $value += $r['bobot'];
@@ -138,17 +137,16 @@ class tryout_base extends CI_Controller
                 } else {
                     $wrong++;
                 }
-                $detail_jawaban[$i] = array(
-                    'id_bank' => $r['id_bank'],
-                    'jawaban_user' => $temp,
-                    'id_tryout' => $r['id_tryout'],
-                    'id_user' => $user_id
-                );
-                // var_dump($jawaban[$i]);
-                $i++;
             }else{
-                $check_jawaban++; 
+                $wrong++;
             }
+            $detail_jawaban[$i] = array(
+                'id_bank' => $r['id_bank'],
+                'jawaban_user' => $temp,
+                'id_tryout' => $r['id_tryout'],
+                'id_user' => $user_id
+            );
+            $i++;
         }
 
         if($value < 1){
@@ -162,12 +160,10 @@ class tryout_base extends CI_Controller
             'id_hasil' => $this->db->insert_id()
         );  
 
-        if($check_jawaban != count($relation)){   
-            for($i=0;$i<count($detail_jawaban);$i++){
-                $conclusion = null;
-                $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
-                $this->db->insert('bank_jawaban',$conclusion);
-            }
+        for($i=0;$i<count($detail_jawaban);$i++){
+            $conclusion = null;
+            $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
+            $this->db->insert('bank_jawaban',$conclusion);
         }
         
         $data = array(

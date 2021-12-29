@@ -121,7 +121,7 @@
         if(main > end){
             main = end;
         }
-        console.log(main);
+        showquestion(main);
     }
     function showquestion(id){
         var end = $('#pagination').data('number')-1;
