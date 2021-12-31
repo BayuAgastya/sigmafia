@@ -26,6 +26,21 @@ class tryout_base extends CI_Controller
         $this->load->view('konten_layout/wrapper', $data);
     }
 
+    function check_code(){
+        $data = $this->db->get_where('tryout',array('id_tryout'=>$this->input->post('id_tryout')))->row_array();
+        if($data['kode'] == $this->input->post('code')){
+            $result = array(
+                'parameter' => 202
+            );
+        }else{
+            $result = array(
+                'parameter' => 404
+            );
+        }
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
     public function riwayat()
     {
         $data = array(

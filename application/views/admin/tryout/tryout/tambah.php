@@ -62,6 +62,11 @@
                                 <input placeholder="menit" type="number" class="form-control" name="waktu">
                             </div>
 
+                            <div class="form-group">
+                                <label for="waktu">Kode</label>
+                                <input placeholder="kode" type="text" class="form-control" name="kode" maxlength="5" value="<?= $kode; ?>">
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label>Pilih Soal</label>
@@ -177,8 +182,6 @@
                 },
                 success: function(data) {
                     var data = $.parseJSON(data);  
-
-					console.log(data);
 
                     const count = Object.keys(data).length;
 

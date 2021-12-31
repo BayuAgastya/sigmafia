@@ -54,7 +54,10 @@
                         <td><?= $i->waktu; ?> Menit</td>
                         <td><?= $i->jenis; ?></td>
                         <td style=" text-align:center">
-                            <a href="<?= base_url('prep/' . $i->id_tryout) ?>" type="button" class="genric-btn primary-border text-uppercase">
+                            <!-- <a href="<?= base_url('prep/' . $i->id_tryout) ?>" type="button" class="genric-btn primary-border text-uppercase">
+                                Ikuti Tryout
+                            </a> -->
+                            <a href="#" type="button" data-id="<?= $i->id_tryout; ?>" class="genric-btn primary-border text-uppercase ikuti-tryout" data-toggle="modal" data-target="#insertCode">
                                 Ikuti Tryout
                             </a>
                         </td>
@@ -64,3 +67,65 @@
         </table>
     </div>
 </section>
+
+<div class="modal fade" id="insertCode" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Masukan Kode Tryout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" id="code-salah" role="alert">
+            Kode salah!
+        </div>
+        <form action="" id="insertCodeValue">
+            <input type="text" id="codeValue" maxlength="5" style="text-align: center; width: 100%;">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="genric-btn primary-border text-uppercase" data-dismiss="modal">Tutup</button>
+        <button type="button" id="submit-insert-code" class="genric-btn primary text-uppercase">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    function scriptInsertCode(id) {
+        $.ajax({
+            url: "<?php echo base_url("user/tryout/tryout_base/check_code"); ?>",
+            type: "POST",
+            cache: false,
+            data: {
+                id_tryout: id,
+                code: $('#codeValue').val()
+            },
+            success: function(param){
+                var data = $.parseJSON(param);  
+
+                console.log(data.parameter);
+                
+                if(data.parameter == 404){
+                    $("#code-salah").show();
+                }else{
+                    $(location).attr('href',"<?= base_url('prep/'); ?>"+id);
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $('.ikuti-tryout').on('click',function(){
+        // alert("test");
+        $("#code-salah").hide();
+        var id = $(this).data('id');
+        console.log(id);
+        $('#submit-insert-code').attr('onclick','scriptInsertCode('+id+')');
+        $('#insertCode').modal('show');
+    });
+</script>

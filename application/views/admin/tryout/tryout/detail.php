@@ -29,6 +29,10 @@
                                         <th>Waktu (menit) :</th>
                                         <td><input type="number" class="form-control" name="waktu" value="<?= $data->waktu ?>"></td>
                                     </tr>
+                                    <tr>
+                                        <th>Kode :</th>
+                                        <td><input type="text" class="form-control" name="kode" value="<?= $data->kode ?>"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

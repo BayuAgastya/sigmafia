@@ -46,6 +46,16 @@ class Tryout extends CI_Controller
             'isi' => 'admin/tryout/tryout/tambah'
         );
 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+    
+        for ($i = 0; $i < 5; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+
+        $data['kode'] = $randomString;
+
         $data['data_bank'] = $this->db->get('bank_soal');
         $data['data_tingkat'] = $this->db->get('tingkat');
         $this->load->view('admin_layout/wrapper', $data);
@@ -63,7 +73,8 @@ class Tryout extends CI_Controller
             'matpel' => $checkbox,
             'nama_tryout' => $this->input->post('nama_tryout'),
             'jumlah_soal' => $this->input->post('jumlah_soal'),
-            'waktu' => $this->input->post('waktu')
+            'waktu' => $this->input->post('waktu'),
+            'kode' => $this->input->post('kode')
             //'token' => 
             //tambah fungsi random value Token
         );
