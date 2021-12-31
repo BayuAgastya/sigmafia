@@ -93,8 +93,16 @@ class M_user extends CI_Controller
         $username = $this->input->post('username');
         /* $password = md5($this->input->post('password')); */
         $id_murid = $this->input->post('id_murid');
-        $akses_konten = $this->input->post('akses_konten');
-        $endDate = $this->input->post('endDate');
+        if(!empty($this->input->post('membership'))){
+            $date = date_create(date('Y-m-d'));
+            date_add($date,date_interval_create_from_date_string($this->input->post('membership')));
+            $akses_konten = 'yes';
+            $endDate = $date;
+        }else{
+            $temp = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
+            $akses_konten = $temp['akses_konten'];
+            $endDate = $temp['endDate'];
+        }
 
         $data = array(
             'user_id' => $user_id,
@@ -102,7 +110,7 @@ class M_user extends CI_Controller
             /* 'password' => $password, */
             'id_murid' => $id_murid,
             'akses_konten' => $akses_konten,
-            'endDate' => date('Y-m-d', strtotime($endDate))
+            'endDate' => $endDate
         );
 
         $where = array(
@@ -182,11 +190,12 @@ class M_user extends CI_Controller
         $this->load->view('admin_layout/wrapper', $data);
     }
 
-    function requestAccept($id)
+    function requestAccept()
     {
+        $id = $this->input->post('id');
         $helper = $this->db->get_where('request_akses', array('id_request' => $id))->row_array();
 
-        $this->admin_model->changeAkses($helper['user_id']);
+        $this->admin_model->changeAkses($helper['user_id'],$this->input->post('membership'));
         $nama = './uploads/bukti_trf/' . $helper['bukti_trf'];
 
         if (is_readable($nama) && unlink($nama)) {

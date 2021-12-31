@@ -350,12 +350,14 @@ class Admin_model extends CI_Model
         return $this->db->delete('request_akses');
     }
 
-    function changeAkses($user)
+    function changeAkses($user,$membership)
     {
-
+        $date = date_create(date('Y-m-d'));
+        date_add($date,date_interval_create_from_date_string($membership));
+        $endDate = $date;
         $change = array(
             'akses_konten' => 'yes',
-            'endDate' => date('Y-m-d', strtotime('next month')) /*  INSERT WAKTU 1 BULAN DARI SEKARANG (endDate) */
+            'endDate' => $endDate
         );
 
         $this->db->where('user_id', $user);
