@@ -441,9 +441,9 @@
                             <div class="form-group">
                                 <label>Kelas</label>
                                 <select name="kelas" class="form-control" required>
-                                    <option value="7" id="kelas-4">Kelas 7</option>
-                                    <option value="8" id="kelas-5">Kelas 8</option>
-                                    <option value="9" id="kelas-6">Kelas 9</option>
+                                    <option value="7" id="kelas-7">Kelas 7</option>
+                                    <option value="8" id="kelas-8">Kelas 8</option>
+                                    <option value="9" id="kelas-9">Kelas 9</option>
                                 </select>
                             </div>
                             <div class="form-group">

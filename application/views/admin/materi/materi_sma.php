@@ -426,7 +426,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Update Materi SMP</h4>
+                    <h4 class="modal-title">Update Materi SMA</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -434,16 +434,16 @@
                 <div class="modal-body">
                     <!-- <div id="test"></div> -->
                     <?= form_open_multipart(base_url('admin_menu/m_materi/update_materi')) ?>
-                    <input type="hidden" name="id_tingkat" class="form-control" required value="2">
+                    <input type="hidden" name="id_tingkat" class="form-control" required value="3">
                     <input type="hidden" id="id-materi" name="id_materi" class="form-control" required>
                     <div class="row">
                         <div class="col-lg-6 border-right">
                             <div class="form-group">
                                 <label>Kelas</label>
                                 <select name="kelas" class="form-control" required>
-                                    <option value="7" id="kelas-4">Kelas 7</option>
-                                    <option value="8" id="kelas-5">Kelas 8</option>
-                                    <option value="9" id="kelas-6">Kelas 9</option>
+                                    <option value="10" id="kelas-10">Kelas 10</option>
+                                    <option value="11" id="kelas-11">Kelas 11</option>
+                                    <option value="12" id="kelas-12">Kelas 12</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -456,7 +456,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <label>Thumnail Materi</label><br>
+                                    <label>Thumbnail Materi</label><br>
                                     <input name="thumbnail_materi" class="form-control" type="file" id="customFile" accept="image/png, image/jpeg, image/jpg, image/gif">
                                 </div>
                             </div>
