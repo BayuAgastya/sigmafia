@@ -30,44 +30,11 @@ class Home extends CI_Controller
         $this->load->view('home_layout/wrapper', $data);
     }
 
-    public function how_to()
-    {
-        $data = array(
-            'title' => 'How To',
-            'nav_home' => '',
-            'nav_howto' => 'active',
-            'nav_about' => '',
-            'nav_video' => '',
-            'nav_soal' => '',
-            'nav_contact' => '',
-            'isi' => 'home/how_to_view'
-        );
-
-        $this->load->view('home_layout2/wrapper', $data);
-    }
-
-    public function blog_detail()
-    {
-        $data = array(
-            'title' => 'How To',
-            'nav_home' => '',
-            'nav_howto' => 'active',
-            'nav_about' => '',
-            'nav_video' => '',
-            'nav_soal' => '',
-            'nav_contact' => '',
-            'isi' => 'home/blog/skype'
-        );
-
-        $this->load->view('konten_layout/wrapper', $data);
-    }
-
     function profile()
     {
         $data = array(
             'title' => 'Profile',
             'nav_home' => '',
-            'nav_howto' => '',
             'nav_about' => '',
             'nav_video' => '',
             'nav_soal' => '',
@@ -84,7 +51,6 @@ class Home extends CI_Controller
         $data = array(
             'title' => 'Profile',
             'nav_home' => '',
-            'nav_howto' => '',
             'nav_about' => '',
             'nav_video' => '',
             'nav_soal' => '',

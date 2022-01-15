@@ -25,7 +25,7 @@
                             <a class="nav-link" href="<?= base_url('home'); ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('home/how_to'); ?>">How To</a>
+                            <a class="nav-link" href="https://blog.sigmafia.com/">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('about'); ?>">About</a>
