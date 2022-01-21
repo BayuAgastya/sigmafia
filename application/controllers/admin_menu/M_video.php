@@ -24,6 +24,7 @@ class M_video extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_video'
         );
         $data['matik_sd'] = $this->admin_model->get_video_matik('sd');
@@ -134,6 +135,7 @@ class M_video extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_video',
             'pilihanUp' => 'updateMatik'
         );
@@ -154,6 +156,7 @@ class M_video extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_video',
             'pilihanUp' => 'updateFisika'
         );
@@ -174,6 +177,7 @@ class M_video extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_video',
             'pilihanUp' => 'updateKimia'
         );

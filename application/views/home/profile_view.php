@@ -22,7 +22,8 @@
 <section class="about_area section_gap">
     <div class="container">
         <div class="card-body">
-            <a class="btn btn-warning" style="color: white; padding:20px; float: right;" href="<?= base_url('home/profile_edit'); ?>">EDIT PROFILE</a>
+            <a class="btn btn-warning ml-3" style="color: white; padding:20px; float: right;" href="<?= base_url('home/profile_edit'); ?>">EDIT PROFILE</a>
+            <a class="btn btn-info" style="color: white; padding:20px; float: right;" href="<?= base_url('/evaluasi'); ?>">EVALUASI</a>
             <table style="text-align: left;">
                 <tr>
                     <td style="width: 30%;">

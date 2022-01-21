@@ -23,6 +23,7 @@ class M_siswa extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => 'active',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_siswa'
         );
         $data['data_murid'] = $this->db->get('murid');
@@ -98,6 +99,7 @@ class M_siswa extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => 'active',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/detail_siswa'
         );
         $data['data'] = $this->admin_model->UpdateSiswa($id)->row();
@@ -117,6 +119,7 @@ class M_siswa extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => 'active',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_siswa'
         );
         $data['data'] = $this->admin_model->UpdateSiswa($id)->row();

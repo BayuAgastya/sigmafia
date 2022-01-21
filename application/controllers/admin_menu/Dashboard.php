@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/dashboard'
         );
 

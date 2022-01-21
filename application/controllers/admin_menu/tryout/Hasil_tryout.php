@@ -24,6 +24,8 @@ class Hasil_tryout extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/hasil_tryout/detail'
         );
         $data['data'] = $this->tryout_model->getTryout($id)->row();

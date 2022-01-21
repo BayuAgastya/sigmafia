@@ -21,6 +21,10 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>dist/css/myCSS.css">
+
+    <!-- Calender JS -->
+    <link rel='stylesheet' href='<?= base_url('assets/admin/'); ?>dist/css/calendarorganizer.min.css'>
+
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
@@ -57,6 +61,45 @@
             tinycomments_author: 'Author name',
         });
     </script> -->
+    <style>
+        .container-calendar {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -moz-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -moz-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-align-content: center;
+            -ms-flex-line-pack: center;
+            align-content: center;
+        }
+
+        #calendarContainer,
+        #organizerContainer {
+            float: left;
+            margin: 5px;
+        }
+        .cjslib-date,
+        .cjslib-year,
+        .cjslib-month{
+            width: 100%;
+        }
+        .cjslib-day{
+            margin: 0px 0px 0px 0px;
+        }
+        .cjslib-list li div{
+            display: none;
+        }
+</style>
 
 </head>
 

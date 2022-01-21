@@ -24,6 +24,7 @@ class M_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_soal',
             'error' => ''
         );
@@ -266,6 +267,7 @@ class M_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_soal',
             'soalUp' => 'updateSoalMatik'
         );
@@ -285,6 +287,7 @@ class M_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_soal',
             'soalUp' => 'updateSoalFisika'
         );
@@ -304,6 +307,7 @@ class M_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_soal',
             'soalUp' => 'updateSoalKimia'
         );

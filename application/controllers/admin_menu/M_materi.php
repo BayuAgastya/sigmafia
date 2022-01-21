@@ -24,6 +24,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_materi',
             'error' => ''
         );
@@ -56,6 +57,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/materi/materi_sd',
             'error' => ''
         );
@@ -80,6 +82,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/materi/materi_smp',
             'error' => ''
         );
@@ -110,6 +113,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/materi/materi_sma',
             'error' => ''
         );
@@ -496,6 +500,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_materi',
             'materiUp' => 'updateMateriMatik'
         );
@@ -514,6 +519,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_materi',
             'materiUp' => 'updateMateriFisika'
         );
@@ -533,6 +539,7 @@ class M_materi extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_materi',
             'materiUp' => 'updateMateriKimia'
         );

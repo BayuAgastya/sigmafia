@@ -24,6 +24,7 @@ class Tryout extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/tryout'
         );
         $data['data_tryout'] = $this->db->get('tryout');
@@ -43,6 +44,7 @@ class Tryout extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/tryout/tambah'
         );
 
@@ -110,6 +112,7 @@ class Tryout extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/tryout/detail'
         );
         $data['data_bank'] = $this->db->get('bank_soal');

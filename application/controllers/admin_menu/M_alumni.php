@@ -23,6 +23,7 @@ class M_alumni extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => 'active',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_alumni'
         );
         $data['data_alumnus'] = $this->db->get('alumnus');
@@ -79,6 +80,7 @@ class M_alumni extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => 'active',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_alumnus'
         );
         $data['data'] = $this->admin_model->UpdateAlumnus($id)->row();

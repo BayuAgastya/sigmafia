@@ -27,6 +27,8 @@ class Bank_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/bank_soal'
         );
         $data['data_bank'] = $this->db->get('bank_soal');
@@ -50,6 +52,7 @@ class Bank_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/bank_soal/tambah'
         );
 
@@ -72,6 +75,7 @@ class Bank_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/bank_soal/detail'
         );
 
@@ -195,6 +199,7 @@ class Bank_soal extends CI_Controller
             'nav_user' => '',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/tryout/bank_soal/edit'
         );
         $data['data'] = $this->admin_model->UpdateAlumnus($id)->row();

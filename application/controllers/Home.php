@@ -162,4 +162,126 @@ class Home extends CI_Controller
             }
         }
     }
+
+    function evaluasi(){
+        $this->load->library('linegraph');
+
+        $pdf = new PDF_LineGraph();
+        $pdf->SetFont('Arial','B',10);
+        $data = array(
+            'Kehadiran' => array(
+                'Minggu 1' => 1,
+                'Minggu 2' => 2,
+                'Minggu 3' => 3,
+                'Minggu 4' => 2
+            )
+        );
+        $colors = array(
+            'Kehadiran' => array(255,165,0)
+        );
+
+        $bulan = array (
+            1 =>   'JANUARI',
+            'FEBRUARI',
+            'MARET',
+            'APRIL',
+            'MEI',
+            'JUNI',
+            'JULI',
+            'AGUSTUS',
+            'SEPTEMBER',
+            'OKTOBER',
+            'NOVEMBER',
+            'DESEMBER'
+        );
+
+        $socialmedia = base_url('assets/main/img/socialmedia.png');
+        $image = base_url('assets/main/img/Logo Sigmafia 2020-01.png');
+        $image = str_replace(" ", "%20", $image);
+
+        $pdf->AddPage();
+        $pdf->Cell(68,10,"",0,0,'L',false);
+        $pdf->Cell(40,20,$pdf->Image($image, $pdf->GetX(), $pdf->GetY(), 53.108),0,1,'L',false);
+        $pdf->SetFont('Arial','B',14);
+        $pdf->Cell(0,10,"EVALUASI ".$bulan[(int)date('m')]." ".date('Y'),0,1,'C',false);
+        
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(0,10,"Tryout",0,1,'L',false);
+
+        $pdf->Cell(10,10,'No',1,0);
+        $pdf->Cell(80,10,'Nama Tryout',1,0);
+        $pdf->Cell(25,10,'Nilai',1,0);
+        $pdf->Cell(35,10,'Score',1,0);
+        $pdf->Cell(40,10,'Status',1,1);
+
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell(10,10,'No',1,0);
+        $pdf->Cell(80,10,'Nama Tryout',1,0);
+        $pdf->Cell(25,10,'Nilai',1,0);
+        $pdf->Cell(35,10,'Score',1,0);
+        $pdf->Cell(40,10,'Status',1,1);
+
+        $pdf->Cell(10,10,'No',1,0);
+        $pdf->Cell(80,10,'Nama Tryout',1,0);
+        $pdf->Cell(25,10,'Nilai',1,0);
+        $pdf->Cell(35,10,'Score',1,0);
+        $pdf->Cell(40,10,'Status',1,1);
+
+        $pdf->Cell(10,10,'No',1,0);
+        $pdf->Cell(80,10,'Nama Tryout',1,0);
+        $pdf->Cell(25,10,'Nilai',1,0);
+        $pdf->Cell(35,10,'Score',1,0);
+        $pdf->Cell(40,10,'Status',1,1);
+
+        $pdf->Cell(10,10,'No',1,0);
+        $pdf->Cell(80,10,'Nama Tryout',1,0);
+        $pdf->Cell(25,10,'Nilai',1,0);
+        $pdf->Cell(35,10,'Score',1,0);
+        $pdf->Cell(40,10,'Status',1,1);
+        
+        $pdf->Cell(0,10,'',0,1);
+        
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(0,10,"Kehadiran",0,1,'L',false);
+        $pdf->LineGraph(190,50,$data,'HvB',$colors,4);
+        $pdf->Cell(0,70,'',0,1);
+        
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(190,45,"",1,0,'L',false);
+        $pdf->Cell(0,0,"",0,1);
+
+        $pdf->Cell(80,10,'',0,0,'L');
+        $pdf->Cell(80,10,'Kartu Evaluasi',0,1,'L');
+
+        $pdf->Cell(10,5,"",0,0,"L");
+        $pdf->Cell(60,5,"Jumlah Nilai Tryout",0,0,"L");
+        $pdf->Cell(5,5,":",0,0,"L");
+        $pdf->Cell(40,5,"",0,1,"L");
+        
+        $pdf->Cell(10,5,"",0,0,"L");
+        $pdf->Cell(60,5,"Jumlah Score Kehadiran",0,0,"L");
+        $pdf->Cell(5,5,":",0,0,"L");
+        $pdf->Cell(40,5,"",0,1,"L");
+        
+        $pdf->Cell(10,5,"",0,0,"L");
+        $pdf->Cell(60,5,"Total",0,0,"L");
+        $pdf->Cell(5,5,":",0,0,"L");
+        $pdf->Cell(40,5,"",0,1,"L");
+        
+        $pdf->Cell(10,5,"",0,0,"L");
+        $pdf->Cell(60,5,"Keterangan",0,0,"L");
+        $pdf->Cell(5,5,":",0,0,"L");
+        $pdf->Cell(40,5,"",0,1,"L");
+
+        $pdf->Cell(10,5,"",0,1,"L");
+        $pdf->Cell(10,5,"",0,0,"L");
+        $pdf->Cell(10,5,$bulan[(int)date('m')]." ".date('Y'),0,1,"L");
+        
+        $pdf->Cell(0,0,"",0,1);
+        
+        $pdf->Cell(10,20,"",0,1,"L");
+        $pdf->Cell(20,20,$pdf->Image($socialmedia, $pdf->GetX(), $pdf->GetY(), 40.40),0,0,'L',false);
+        
+        $pdf->Output();
+    }
 }

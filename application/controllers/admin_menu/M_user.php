@@ -23,6 +23,7 @@ class M_user extends CI_Controller
             'nav_user' => 'active',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/m_user'
         );
         $data['data_user'] = $this->admin_model->get_user_role('user');
@@ -136,6 +137,7 @@ class M_user extends CI_Controller
             'nav_user' => 'active',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/detail_User',
         );
         $data['data'] = $this->admin_model->UpdateSiswa($id)->row();
@@ -155,6 +157,7 @@ class M_user extends CI_Controller
             'nav_user' => 'active',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/edit_User'
         );
         $data['data'] = $this->admin_model->UpdateUser($id)->row();
@@ -183,6 +186,7 @@ class M_user extends CI_Controller
             'nav_user' => 'active',
             'nav_siswa' => '',
             'nav_alumni' => '',
+            'nav_kehadiran' => '',
             'isi' => 'admin/req_akses',
             'data' => $this->admin_model->data_request()
         );
@@ -220,6 +224,56 @@ class M_user extends CI_Controller
         } else {
             echo "Gagal Hapus";
         }
+    }
+
+    function kehadiran(){
+        $data = array(
+            'title' => 'Request',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'nav_kehadiran' => 'active',
+            'isi' => 'admin/kehadiran',
+            'data' => $this->admin_model->add_kehadiran()->result_array(),
+            'kalender' => $this->admin_model->get_kehadiran()
+        );
+
+        $kalender = $data['kalender']->row_array();
+        $date1 = new DateTime("2021-01-01");
+        $date2 = new DateTime($kalender['tanggal_hadir']);
+        $interval = $date1->diff($date2);   
+        
+        $data['year'] = $interval->y;
+
+        // var_dump(date('m',$kalender['tanggal_hadir']));
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+
+    function update_kehadiran(){
+        $murid = $this->input->post('murid');
+        foreach($murid as $data){
+            $input = array(
+                'id_murid' => $data,
+                'tanggal_hadir' => date('Y-m-d')
+            );
+
+            $this->admin_model->add_data($input,'kehadiran');
+        }
+
+        redirect(base_url('admin_menu/m_user/kehadiran'));
+    }
+
+    function get_kehadiran(){
+        
+        $result = $this->admin_model->get_kehadiran()->result_array();
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
     }
 }
 

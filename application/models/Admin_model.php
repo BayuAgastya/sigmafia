@@ -303,13 +303,36 @@ class Admin_model extends CI_Model
 
     public function get_murid($where)
     {
-        $this->db->select('murid.*,user.*');
+        $this->db->select('user.*,murid.*');
         $this->db->from('murid,user');
         $this->db->where('user.user_id', $where);
         $this->db->where('user.id_murid=murid.id_murid');
 
         return $this->db->get();
     }
+
+    public function get_kehadiran()
+    {
+        $this->db->select('*');
+        $this->db->from('kehadiran');
+        $this->db->join('murid', 'murid.id_murid=kehadiran.id_murid');
+        $this->db->order_by('tanggal_hadir','DESC');
+
+        return $this->db->get();
+    }
+
+    public function add_kehadiran()
+    {
+        // $this->db->query("SELECT 'murid.*' FROM 'murid'  WHERE murid.id_murid NOT IN ( SELECT 'kehadiran.*' FROM 'kehadiran' WHERE 'murid.id_murid' = 'kehadiran.id_murid' );");
+        $this->db->select('murid.*');
+        $this->db->from('murid');
+        $this->db->join('kehadiran', 'murid.id_murid=kehadiran.id_murid','left');
+        $this->db->where('kehadiran.id_murid', null);
+        $this->db->or_where_not_in('tanggal_hadir', array(date('Y-m-d')));
+
+        return $this->db->get();
+    }
+
 
     function UpdateUser($user_id)
     {
