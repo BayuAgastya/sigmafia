@@ -11,9 +11,14 @@
 
     				</div>
     				<div class="col-sm-6">
-    					<ol class="breadcrumb float-sm-right">
-    						<a href="<?= base_url('admin_menu/tryout/tryout/page_tambah') ?>" type="button" class="ion-plus btn btn-block btn-primary"> Tambah Tryout</a>
-    					</ol>
+						<div class="d-flex float-right">
+							<ol class="breadcrumb float-sm-right p-2">
+								<a href="<?= base_url('admin_menu/tryout/tryout/tambah_murid') ?>" type="button" class="ion-plus btn btn-block btn-primary"> Tambah Murid</a>
+							</ol>
+							<ol class="breadcrumb float-sm-right p-2">
+								<a href="<?= base_url('admin_menu/tryout/tryout/page_tambah') ?>" type="button" class="ion-plus btn btn-block btn-primary"> Tambah Tryout</a>
+							</ol>
+						</div>
     				</div>
     			</div>
     		</div>

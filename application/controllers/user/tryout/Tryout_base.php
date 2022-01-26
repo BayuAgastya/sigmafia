@@ -27,11 +27,17 @@ class tryout_base extends CI_Controller
     }
 
     function check_code(){
-        $data = $this->db->get_where('tryout',array('id_tryout'=>$this->input->post('id_tryout')))->row_array();
-        if($data['kode'] == $this->input->post('code')){
-            $result = array(
-                'parameter' => 202
-            );
+        $data = $this->tryout_model->validation_tryout($this->input->post('id_tryout'))->row_array();
+        if(!empty($data)){
+            if($data['kode'] == $this->input->post('code')){
+                $result = array(
+                    'parameter' => 202
+                );
+            }else{
+                $result = array(
+                    'parameter' => 400
+                );
+            }
         }else{
             $result = array(
                 'parameter' => 404

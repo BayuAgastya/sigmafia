@@ -84,66 +84,51 @@
 <script src='<?= base_url('assets/admin/'); ?>dist/js/calendarorganizer.min.js'></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-    function getData() {
+    generateData();
+    function generateData() {
         $.ajax({
                 url: "<?php echo base_url("admin_menu/m_user/get_kehadiran");?>",
                 type: "POST",
-                cache: false,
-                success: function(data) {
-                    var data = $.parseJSON(data);  
+                success: function(result) {
+                    var date = new Date();
+                    var data = {};
+                    for (var i = 0; i < <?= $year; ?>; i++) {
+                        data[date.getFullYear() - i] = {};
 
-					// console.log(data);
-
-                    return data;
-                }
-        });
-
-    }
-</script>
-<script>
-    function randomData() {
-        var murid = getData();
-        var date = new Date();
-        var data = {};
-
-        console.log(murid);
-        const count = Object.keys(murid).length;
-        console.log(count);
-
-        for (var i = 0; i < 2; i++) {
-            data[date.getFullYear() + i] = {};
-
-            for (var j = 0; j < 12; j++) {
-                data[date.getFullYear() + i][j + 1] = {};
-
-                for (var k = 0; k < count; k++) {
-                    var l = 15;
-
-                    try {
-                        data[date.getFullYear() + i][j + 1][l].push({
-                            startTime: "10:00",
-                            endTime: "12:00",
-                            text: "Some Event Here",
-                            link: "https://github.com/nizarmah/calendar-javascript-lib"
-                        });
-                    } catch (e) {
-                        data[date.getFullYear() + i][j + 1][l] = [];
-                        data[date.getFullYear() + i][j + 1][l].push({
-                            startTime: "10:00",
-                            endTime: "12:00",
-                            text: "Some Event Here",
-                            link: "https://github.com/nizarmah/calendar-javascript-lib"
-                        });
+                        for (var j = 0; j < 12; j++) {
+                            data[date.getFullYear() + i][j + 1] = {};
+                        }
                     }
-                }
-            }
-        }
 
-        return data;
-    }
-</script>
-<script>
-    var calendar = new Calendar("calendarContainer", "small",
+                    var murid = $.parseJSON(result);
+                    const count = Object.keys(murid).length;
+
+                    console.log(murid);
+
+                    $.each(murid,function(index, value){
+                        var hadir = new Date(value.tanggal_hadir);
+                        var year = hadir.getFullYear();
+                        var month = hadir.getMonth()+1;
+                        var date = hadir.getDate()+1;
+                        try {
+                            data[year][month][date].push({
+                                startTime: "10:00",
+                                endTime: "12:00",
+                                text: value.nama
+                            });
+                            console.log('try');
+                        } catch (e) {
+                            data[year][month][date] = [];
+                            data[year][month][date].push({
+                                startTime: "10:00",
+                                endTime: "12:00",
+                                text: value.nama
+                            });
+                            console.log('catch');
+                        }
+                    })
+
+                    var calendar = new Calendar("calendarContainer", "small",
                             [ "Senin", 3 ],
                             [ "#343a40", "#212529", "#ffffff", "#ffffff" ],
                             {
@@ -153,6 +138,9 @@
                                 indicator_type: 0,
                                 placeholder: "<span>Daftar Kehadiran</span>"
                             });
+                    var organizer = new Organizer("organizerContainer", calendar, data);
+                }
+        });
 
-    var organizer = new Organizer("organizerContainer", calendar, randomData());
+    }
 </script>

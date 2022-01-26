@@ -102,6 +102,44 @@ class Tryout_model extends CI_Model
         return $this->db->get();
     }
 
+    public function data_murid()
+    {
+        $this->db->select('murid.*');
+        $this->db->from('murid');
+        $this->db->join('relation_tryout_murid', 'murid.id_murid=relation_tryout_murid.id_murid','left');
+
+        return $this->db->get();
+    }
+
+    public function validation_tryout($where){
+        $this->db->select('tryout.*');
+        $this->db->from('tryout');
+        $this->db->join('relation_tryout_murid','relation_tryout_murid.id_tryout=tryout.id_tryout');
+        $this->db->where('tryout.id_tryout',$where);
+
+        return $this->db->get();
+    }
+
+    public function data_murid_where($where)
+    {
+        $this->db->select('murid.id_murid');
+        $this->db->from('murid');
+        $this->db->join('relation_tryout_murid', 'murid.id_murid=relation_tryout_murid.id_murid');
+        $this->db->where('relation_tryout_murid.id_tryout',$where);
+        $where_clause = $this->db->get_compiled_select();
+        // $this->db->select('murid.*');
+        // $this->db->from('murid');
+        // $this->db->join('relation_tryout_murid', 'murid.id_murid=relation_tryout_murid.id_murid','left');
+        // $this->db->where('relation_tryout_murid.id_murid', null);
+        // $this->db->or_where_not_in('relation_tryout_murid.id_tryout', array($where));
+        // $this->db->query(`SELECT murid.* FROM murid WHERE NOT IN murid.id_murid (SELECT murid.id_murid FROM murid INNER JOIN relation_tryout_murid ON murid.id_murid=relation_tryout_murid.id_murid WHERE relation_tryout_murid.id_tryout=`.$where.`)`);
+        $this->db->select('*');
+        $this->db->from('murid');
+        $this->db->where("`id_murid` NOT IN ($where_clause)",NULL,FALSE);
+
+        return $this->db->get();
+    }
+
     public function get_riwayat_tryout($id){
         return $this->db->get_where('hasil_tryout',array('id_tryout'=>$id));
     }

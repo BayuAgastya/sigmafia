@@ -96,6 +96,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= base_url('admin_menu/tryout/tryout'); ?>" class="nav-link <?= $nav_tryout ?>">
+                        <i class="far fa fa-tv nav-icon"></i>
+                        <p>Tryout</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= base_url('admin_menu/m_user/kehadiran'); ?>" class="nav-link <?= $nav_kehadiran ?>">
                         <i class="far fa fa-bank nav-icon"></i>
                         <p>Kehadiran</p>

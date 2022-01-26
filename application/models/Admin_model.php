@@ -333,6 +333,38 @@ class Admin_model extends CI_Model
         return $this->db->get();
     }
 
+    public function hasil_evaluasi($id_murid,$id_tryout,$bulan,$tahun){
+        $this->db->select('hasil_tryout.*');
+        $this->db->from('hasil_tryout');
+        $this->db->join('tryout','tryout.id_tryout=hasil_tryout.id_tryout');
+        $this->db->where('hasil.tryout.id_tryout',$id_tryout);
+        $this->db->where('hasil_tryout.id_user',$this->session->userdata('user_id'));
+        $this->db->where('MONTH(hasil_tryout.tgl_selesai)',$bulan);
+        $this->db->where('YEAR(hasil_tryout.tgl_selesai)',$tahun);
+
+        return $this->db->get()->row_array();
+    }
+
+    public function count_relation_evaluation($id_murid,$bulan,$tahun){
+        $this->db->select('relation_tryout_murid.*');
+        $this->db->from('relation_tryout_murid');
+        $this->db->join('tryout','tryout.id_tryout=relation_tryout_murid.id_tryout');
+        $this->db->where('relation_tryout_murid.id_murid',$id_murid);
+        $this->db->where('MONTH(relation_tryout_murid.tanggal_tryout)',$bulan);
+        $this->db->where('YEAR(relation_tryout_murid.tanggal_tryout)',$tahun);
+
+        return $this->db->get();
+    }
+
+    public function get_weekly($id_murid,$first,$last){
+        $this->db->select("*");
+        $this->db->from('kehadiran');
+        $this->db->where('id_murid',$id_murid);
+        $this->db->where('tanggal_hadir >=', $first);
+        $this->db->where('tanggal_hadir <=', $last);
+
+        return $this->db->get()->num_rows();
+    }
 
     function UpdateUser($user_id)
     {

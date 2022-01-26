@@ -63,6 +63,55 @@ class Tryout extends CI_Controller
         $this->load->view('admin_layout/wrapper', $data);
     }
 
+    function tambah_murid()
+    {
+        $data = array(
+            'title' => 'Buat Tryout',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_bank' => '',
+            'nav_tryout' => 'active',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'nav_kehadiran' => '',
+            'isi' => 'admin/tryout/tryout/murid'
+        );
+
+        $data['data_murid'] = $this->tryout_model->data_murid();
+        $data['data_tryout'] = $this->db->get('tryout');
+        $this->load->view('admin_layout/wrapper', $data);
+    }
+
+    function save_murid()
+    {
+        $murid = $this->input->post('murid');
+        // var_dump($soal);
+        $hitung = count($murid);
+        for ($i = 0; $i < $hitung; $i++) {
+            $relation = array(
+                'id_murid' => $murid[$i],
+                'id_tryout' => $this->input->post('id_tryout'),
+                'tanggal_tryout' => date('Y-m-d')
+            );
+            $this->tryout_model->add_data($relation, 'relation_tryout_murid');
+        }
+
+        redirect(base_url('admin_menu/tryout/tryout/tambah_murid'));
+    }
+
+    function get_tryout(){
+        $id_tryout = $this->input->post('tryout');
+
+        // var_dump($id_tryout);
+        
+        $result = $this->tryout_model->data_murid_where($id_tryout)->result_array();
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
     public function save()
     {
         $matpel = $this->input->post('matpel');
@@ -84,6 +133,7 @@ class Tryout extends CI_Controller
         $this->tryout_model->add_data($data, 'tryout');
 
         $insert_id = $this->db->insert_id();
+   
         $soal = $this->input->post('soal');
         // var_dump($soal);
         $hitung = count($soal);
