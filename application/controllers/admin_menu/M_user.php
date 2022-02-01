@@ -95,10 +95,8 @@ class M_user extends CI_Controller
         /* $password = md5($this->input->post('password')); */
         $id_murid = $this->input->post('id_murid');
         if(!empty($this->input->post('membership'))){
-            $date = date_create(date('Y-m-d'));
-            date_add($date,date_interval_create_from_date_string($this->input->post('membership')));
             $akses_konten = 'yes';
-            $endDate = $date;
+            $endDate = date('Y-m-d',strtotime($this->input->post('membership')));
         }else{
             $temp = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
             $akses_konten = $temp['akses_konten'];
