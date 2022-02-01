@@ -245,6 +245,9 @@ class M_user extends CI_Controller
         );
 
         $kalender = $data['kalender']->row_array();
+        if($kalender['tanggal_hadir']==null){
+            $kalender['tanggal_hadir'] = date('Y-m-d');
+        }
         $date1 = new DateTime("2021-01-01");
         $date2 = new DateTime($kalender['tanggal_hadir']);
         $interval = $date1->diff($date2);   
