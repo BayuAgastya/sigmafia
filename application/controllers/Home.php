@@ -143,13 +143,13 @@ class Home extends CI_Controller
 
     function upload()
     {
-        $config['upload_path']          = './uploads/bukti_trf/';
-        $config['allowed_types']        = 'jpg||png||jpeg';
+        $config['upload_path']   = './uploads/bukti_trf/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+        $config['encrypt_name']         = true;
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('file')) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('home', $error);
+            echo "Gagal";
         } else {
             $upload_data = $this->upload->data();
             $name = $upload_data['file_name'];
@@ -287,9 +287,9 @@ class Home extends CI_Controller
 
         if($kehadiran <50){
             $kk = 'Sangat Buruk';
-        }else if($kehadian < 60){
+        }else if($kehadiran < 60){
             $kk = 'Buruk';
-        }else if($kehadian < 80){
+        }else if($kehadiran < 80){
             $kk = 'Baik';
         }else{
             $kk = 'Sangat Baik';
