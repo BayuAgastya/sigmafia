@@ -55,6 +55,7 @@
         </div>
         <div class="modal-body">
         <?php echo form_open_multipart(base_url('admin_menu/m_user/update_kehadiran')) ?>
+        <input type="date" name="tanggal_hadir" class="form-control" id="tanggal_hadir">
         <table class="table table-head-fixed">
             <thead>
                 <tr>
@@ -62,10 +63,10 @@
                     <th>Nama</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="data-kehadiran">
                 <?php foreach($data as $murid){ ?>
                     <tr>
-                        <td><input type="checkbox" name="murid[]" value="<?= $murid['id_murid']; ?>"></td>
+                        <td><input type="checkbox" class="nilai-murid" name="murid[]" value="<?= $murid['id_murid']; ?>"></td>
                         <td><?= $murid['nama']; ?></td>
                     </tr>
                 <?php } ?>
@@ -83,6 +84,34 @@
 <!-- /.modal -->
 <script src='<?= base_url('assets/admin/'); ?>dist/js/calendarorganizer.min.js'></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $('#tanggal_hadir').on('change',function(){
+        var date    = $(this).val();
+        $.ajax({
+            url: "<?= base_url("admin_menu/m_user/get_data_kehadiran"); ?>",
+            type: "POST",
+            cache: false,
+            data :{
+                tanggal_hadir : date
+            },
+            success: function(result){
+                var murid = $.parseJSON(result);
+
+                $('#data-kehadiran').html("");
+                $(".nilai-murid").val("");
+                $.each(murid,function(index, value){
+                    console.log(value.id_tryout);
+                    $('#data-kehadiran').append(`
+                        <tr>
+                            <td><input type="checkbox" class="nilai-murid" name="murid[]" value="`+value.id_murid+`"></td>
+                            <td>`+value.nama+`</td>
+                        </tr>
+                    `);
+                });
+            }
+        })
+    });
+</script>
 <script>
     generateData();
     function generateData() {
@@ -109,7 +138,7 @@
                         var hadir = new Date(value.tanggal_hadir);
                         var year = hadir.getFullYear();
                         var month = hadir.getMonth()+1;
-                        var date = hadir.getDate()+1;
+                        var date = hadir.getDate();
                         try {
                             data[year][month][date].push({
                                 startTime: "10:00",

@@ -321,14 +321,18 @@ class Admin_model extends CI_Model
         return $this->db->get();
     }
 
-    public function add_kehadiran()
+    public function add_kehadiran($tanggal_hadir)
     {
         // $this->db->query("SELECT 'murid.*' FROM 'murid'  WHERE murid.id_murid NOT IN ( SELECT 'kehadiran.*' FROM 'kehadiran' WHERE 'murid.id_murid' = 'kehadiran.id_murid' );");
         $this->db->select('murid.*');
         $this->db->from('murid');
         $this->db->join('kehadiran', 'murid.id_murid=kehadiran.id_murid','left');
         $this->db->where('kehadiran.id_murid', null);
-        $this->db->or_where_not_in('tanggal_hadir', array(date('Y-m-d')));
+        if($tanggal_hadir==null){
+            $this->db->or_where_not_in('tanggal_hadir', array(date('Y-m-d')));
+        }else{
+            $this->db->or_where_not_in('tanggal_hadir', array($tanggal_hadir));
+        }
 
         return $this->db->get();
     }

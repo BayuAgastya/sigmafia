@@ -240,7 +240,7 @@ class M_user extends CI_Controller
             'nav_alumni' => '',
             'nav_kehadiran' => 'active',
             'isi' => 'admin/kehadiran',
-            'data' => $this->admin_model->add_kehadiran()->result_array(),
+            'data' => $this->admin_model->add_kehadiran(null)->result_array(),
             'kalender' => $this->admin_model->get_kehadiran()
         );
 
@@ -275,6 +275,14 @@ class M_user extends CI_Controller
     function get_kehadiran(){
         
         $result = $this->admin_model->get_kehadiran()->result_array();
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
+    function get_data_kehadiran(){
+        $tanggal_hadir = $this->input->post('tanggal_hadir');
+
+        $result = $this->admin_model->add_kehadiran($tanggal_hadir)->result_array();
 
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
