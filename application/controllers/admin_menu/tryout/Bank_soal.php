@@ -102,14 +102,15 @@ class Bank_soal extends CI_Controller
             'created_on' => date('y-m-d')
         );
 
-        if(!empty($_FILES['file_soal']['name'])){
-            $config['upload_path']   = './uploads/bank_soal/';
-            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
-            $config['encrypt_name']         = true;
-            $this->load->library('upload', $config);
+        $config['upload_path']   = './uploads/bank_soal/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+        $config['encrypt_name']         = true;
+        $this->load->library('upload', $config);
 
+
+        if(!empty($_FILES['file_soal']['name'])){
             if (!$this->upload->do_upload('file_soal')) {
-                $error = array('error' => $this->upload->display_errors());
+                $data['file_soal'] = null;
             }else{
                 $file_soal = $this->upload->data();
                 $file_soal_nama = $file_soal['file_name'];
