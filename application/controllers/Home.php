@@ -166,15 +166,19 @@ class Home extends CI_Controller
 
     function evaluasi(){
         //get data;
-        $bulan = date('m');
-        $tahun = date('Y');
+        $month = date('m');
+        $year = date('Y');
         $user = $this->db->get_where('user',$this->session->userdata('user_id'))->row_array();
         $id_murid = $user['id_murid'];
+        if($id_murid == null){
+            $this->session->set_flashdata('main', 'Tidak ditemukan Data Evaluasi');
+            redirect(base_url('profile'));
+            return;
+        }
         $minggu1 = $this->admin_model->get_weekly($id_murid,date('Y-m-01'),date('Y-m-07'));
         $minggu2 = $this->admin_model->get_weekly($id_murid,date('Y-m-08'),date('Y-m-14'));
         $minggu3 = $this->admin_model->get_weekly($id_murid,date('Y-m-15'),date('Y-m-21'));
         $minggu4 = $this->admin_model->get_weekly($id_murid,date('Y-m-22'),date('Y-m-t'));
-        $hasil = $this->admin_model->hasil_evaluasi($id_murid,$id_tryout,$tahun)->result_array();
         $nilai = 0;
         $total_nilai = 0;
         $this->load->library('linegraph');
@@ -228,8 +232,8 @@ class Home extends CI_Controller
         $pdf->Cell(40,10,'Status',1,1);
 
         $no = 1;
-        foreach($this->admin_model->count_relation_evaluation($id_murid,$bulan,$tahun)->result_array() as $data){
-            $result = $this->admin_model->hasil_evaluasi($id_murid,$data['id_tryout'],$bulan,$tahun);
+        foreach($this->admin_model->count_relation_evaluation($id_murid,$month,$year)->result_array() as $data){
+            $result = $this->admin_model->hasil_evaluasi($id_murid,$data['id_tryout'],$month,$year);
             $pdf->Cell(10,10,$no,1,0);
             if(!empty($result)){
                 $pdf->Cell(80,10,$data['nama_tryout'],1,0);
