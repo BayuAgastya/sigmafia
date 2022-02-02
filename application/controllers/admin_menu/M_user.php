@@ -257,11 +257,15 @@ class M_user extends CI_Controller
     }
 
     function update_kehadiran(){
+        $tanggal_hadir = $this->input->post('tanggal_hadir');
+        if(isset($tanggal_hadir)){
+            $tanggal_hadir = date('Y-m-d');
+        }
         $murid = $this->input->post('murid');
         foreach($murid as $data){
             $input = array(
                 'id_murid' => $data,
-                'tanggal_hadir' => date('Y-m-d')
+                'tanggal_hadir' => $tanggal_hadir
             );
 
             $this->admin_model->add_data($input,'kehadiran');

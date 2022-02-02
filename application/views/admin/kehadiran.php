@@ -132,9 +132,8 @@
                     var murid = $.parseJSON(result);
                     const count = Object.keys(murid).length;
 
-                    console.log(murid);
-
                     $.each(murid,function(index, value){
+                        console.log(value.tanggal_hadir);
                         var hadir = new Date(value.tanggal_hadir);
                         var year = hadir.getFullYear();
                         var month = hadir.getMonth()+1;
@@ -145,7 +144,6 @@
                                 endTime: "12:00",
                                 text: value.nama
                             });
-                            console.log('try');
                         } catch (e) {
                             data[year][month][date] = [];
                             data[year][month][date].push({
@@ -153,9 +151,10 @@
                                 endTime: "12:00",
                                 text: value.nama
                             });
-                            console.log('catch');
                         }
                     })
+
+                    console.log(data);
 
                     var calendar = new Calendar("calendarContainer", "small",
                             [ "Senin", 3 ],

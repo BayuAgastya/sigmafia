@@ -323,25 +323,34 @@ class Admin_model extends CI_Model
 
     public function add_kehadiran($tanggal_hadir)
     {
-        // $this->db->query("SELECT 'murid.*' FROM 'murid'  WHERE murid.id_murid NOT IN ( SELECT 'kehadiran.*' FROM 'kehadiran' WHERE 'murid.id_murid' = 'kehadiran.id_murid' );");
-        $this->db->select('murid.*');
+        $this->db->select('murid.id_murid');
         $this->db->from('murid');
-        $this->db->join('kehadiran', 'murid.id_murid=kehadiran.id_murid','left');
-        $this->db->where('kehadiran.id_murid', null);
+        $this->db->join('kehadiran', 'murid.id_murid=kehadiran.id_murid');
         if($tanggal_hadir==null){
-            $this->db->or_where_not_in('tanggal_hadir', array(date('Y-m-d')));
+            $this->db->where_in('kehadiran.tanggal_hadir',array(date('Y-m-d')));
         }else{
-            $this->db->or_where_not_in('tanggal_hadir', array($tanggal_hadir));
+            $this->db->where_in('kehadiran.tanggal_hadir',array($tanggal_hadir));
         }
+        $where_clause = $this->db->get_compiled_select();
+        // $this->db->select('murid.*');
+        // $this->db->from('murid');
+        // $this->db->join('relation_tryout_murid', 'murid.id_murid=relation_tryout_murid.id_murid','left');
+        // $this->db->where('relation_tryout_murid.id_murid', null);
+        // $this->db->or_where_not_in('relation_tryout_murid.id_tryout', array($where));
+        // $this->db->query(`SELECT murid.* FROM murid WHERE NOT IN murid.id_murid (SELECT murid.id_murid FROM murid INNER JOIN relation_tryout_murid ON murid.id_murid=relation_tryout_murid.id_murid WHERE relation_tryout_murid.id_tryout=`.$where.`)`);
+        $this->db->select('*');
+        $this->db->from('murid');
+        $this->db->where("`id_murid` NOT IN ($where_clause)",NULL,FALSE);
 
         return $this->db->get();
     }
 
     public function hasil_evaluasi($id_murid,$id_tryout,$bulan,$tahun){
-        $this->db->select('hasil_tryout.*');
-        $this->db->from('hasil_tryout');
-        $this->db->join('tryout','tryout.id_tryout=hasil_tryout.id_tryout');
-        $this->db->where('hasil.tryout.id_tryout',$id_tryout);
+        $this->db->select('hasil_tryout.*,tryout.*');
+        $this->db->from('hasil_tryout,tryout');
+        $this->db->where('hasil_tryout.id_tryout=tryout.id_tryout');
+        // $this->db->join('tryout','tryout.id_tryout=hasil_tryout.id_tryout');
+        $this->db->where('hasil_tryout.id_tryout',$id_tryout);
         $this->db->where('hasil_tryout.id_user',$this->session->userdata('user_id'));
         $this->db->where('MONTH(hasil_tryout.tgl_selesai)',$bulan);
         $this->db->where('YEAR(hasil_tryout.tgl_selesai)',$tahun);

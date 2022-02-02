@@ -166,15 +166,19 @@ class Home extends CI_Controller
 
     function evaluasi(){
         //get data;
+        $minggu1 = 0;
+        $minggu2 = 0;
+        $minggu3 = 0;
+        $minggu4 = 0;
         $month = date('m');
         $year = date('Y');
-        $user = $this->db->get_where('user',$this->session->userdata('user_id'))->row_array();
+        $user = $this->db->get_where('user',array('user_id'=>$this->session->userdata('user_id')))->row_array();
         $id_murid = $user['id_murid'];
-        if($id_murid == null){
-            $this->session->set_flashdata('main', 'Tidak ditemukan Data Evaluasi');
-            redirect(base_url('profile'));
-            return;
-        }
+        // if($id_murid == null){
+        //     $this->session->set_flashdata('main', 'Tidak ditemukan Data Evaluasi');
+        //     redirect(base_url('profile'));
+        //     return;
+        // }
         $minggu1 = $this->admin_model->get_weekly($id_murid,date('Y-m-01'),date('Y-m-07'));
         $minggu2 = $this->admin_model->get_weekly($id_murid,date('Y-m-08'),date('Y-m-14'));
         $minggu3 = $this->admin_model->get_weekly($id_murid,date('Y-m-15'),date('Y-m-21'));
@@ -185,7 +189,7 @@ class Home extends CI_Controller
 
         $pdf = new PDF_LineGraph();
         $pdf->SetFont('Arial','B',10);
-        $data = array(
+        $minggu_kehadiran = array(
             'Kehadiran' => array(
                 'Minggu 1' => $minggu1,
                 'Minggu 2' => $minggu2,
@@ -235,15 +239,16 @@ class Home extends CI_Controller
         foreach($this->admin_model->count_relation_evaluation($id_murid,$month,$year)->result_array() as $data){
             $result = $this->admin_model->hasil_evaluasi($id_murid,$data['id_tryout'],$month,$year);
             $pdf->Cell(10,10,$no,1,0);
+            // var_dump($data);
             if(!empty($result)){
-                $pdf->Cell(80,10,$data['nama_tryout'],1,0);
+                $pdf->Cell(80,10,$result['nama_tryout'],1,0);
                 $pdf->Cell(25,10,$result['nilai'],1,0);
                 $pdf->Cell(35,10,$result['nilai_bobot'],1,0);
                 $pdf->Cell(40,10,$result['status'],1,1);
                 $nilai += $result['nilai_bobot'];
                 $total_nilai += $result['total_bobot'];
             }else{
-                $pdf->Cell(80,10,$data['nama_tryout'],1,0);
+                $pdf->Cell(80,10,$result['nama_tryout'],1,0);
                 $pdf->Cell(25,10,'0.00',1,0);
                 $pdf->Cell(35,10,'0',1,0);
                 $pdf->Cell(40,10,'Belum Tryout',1,1);
@@ -258,7 +263,7 @@ class Home extends CI_Controller
         
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(0,10,"Kehadiran",0,1,'L',false);
-        $pdf->LineGraph(190,50,$data,'HvB',$colors,4);
+        $pdf->LineGraph(190,50,$minggu_kehadiran,'HvB',$colors,4);
         $pdf->Cell(0,70,'',0,1);
         
         $pdf->SetFont('Arial','B',10);
@@ -268,7 +273,11 @@ class Home extends CI_Controller
         $pdf->Cell(80,10,'',0,0,'L');
         $pdf->Cell(80,10,'Kartu Evaluasi',0,1,'L');
 
-        $jumlah = ($nilai / $total_nilai) * 100;
+        if($nilai == 0 and $total_nilai == 0){
+            $jumlah = 0;
+        }else{
+            $jumlah = ($nilai / $total_nilai) * 100;
+        }
         $pdf->Cell(10,5,"",0,0,"L");
         $pdf->Cell(60,5,"Jumlah Nilai Tryout",0,0,"L");
         $pdf->Cell(5,5,":",0,0,"L");
@@ -312,7 +321,11 @@ class Home extends CI_Controller
         $pdf->Cell(10,5,"",0,0,"L");
         $pdf->Cell(60,5,"Keterangan",0,0,"L");
         $pdf->Cell(5,5,":",0,0,"L");
-        $pdf->Cell(40,5,"Nilai tryout anda ".$kn.", Kehadiran anda ".$kk."",0,1,"L");
+        if($kehadiran==0 and $jumlah==0){
+            $pdf->Cell(40,5,"Tidak ada Data di temukan",0,1,"L");
+        }else{
+            $pdf->Cell(40,5,"Nilai tryout anda ".$kn.", Kehadiran anda ".$kk."",0,1,"L");
+        }
 
         $pdf->Cell(10,5,"",0,1,"L");
         $pdf->Cell(10,5,"",0,0,"L");
@@ -323,6 +336,6 @@ class Home extends CI_Controller
         $pdf->Cell(10,20,"",0,1,"L");
         $pdf->Cell(20,20,$pdf->Image($socialmedia, $pdf->GetX(), $pdf->GetY(), 40.40),0,0,'L',false);
         
-        $pdf->Output();
+        $pdf->Output('evaluasi-'.$user['id_murid'].'-'.date('Y-m-d').'','I');
     }
 }
