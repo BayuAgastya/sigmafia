@@ -66,7 +66,7 @@
                                                 <!-- <a href="<?= base_url('acceptRequest/' . $i->id_request) ?>" class="btn btn-success btn-circle">
                                                     <i class="ion-checkmark-round"></i>
                                                 </a> -->
-                                                <a class="btn btn-success btn-circle button-accept-request" data-id="<?= $i->id_request; ?>" data-toggle="modal" data-target="#acceptRequest">
+                                                <a class="btn btn-success btn-circle button-accept-request" data-id="<?= $i->id_request; ?>" data-user="<?= $i->user_id; ?>" data-toggle="modal" data-target="#acceptRequest">
                                                     <i class="ion-checkmark-round"></i>
                                                 </a>
                                                 <a href="<?= base_url('declineRequest/' . $i->id_request) ?>" class="btn btn-danger btn-circle" onclick="return confirm('Yakin ?')">
@@ -92,7 +92,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('acceptRequest'); ?>">
+                <form action="<?= base_url('acceptRequest'); ?>" method="POST">
                     <div class="modal-body">
                     <div id="membership" class="d-flex">
                         <div class="px-2">
@@ -104,6 +104,7 @@
                         <div class="px-2">
                             <button type="button" class="btn btn-outline-info btn-sm btn-membership" data-value='1 months'>1M</button>
                         </div>
+                        <input type="hidden" name="id_request" id="request-id">
                         <input type="hidden" name="id" id="value-id">
                         <input type="hidden" name="membership" id="value-membership" required>
                     </div>
@@ -123,6 +124,7 @@
             $(this).removeClass('btn-outline-info').addClass('btn-info');
             $('#value-membership').removeAttr('value');
             $('#value-membership').attr('value',$(this).data('value'));
+            console.log($('#value-id').val());
         });
     </script>
     <script>
@@ -130,6 +132,8 @@
             $('.btn-membership').removeClass('btn-info').addClass('btn-outline-info');
             $('#value-membership').removeAttr('value');
             $('#value-id').removeAttr('value');
-            $('#value-id').attr('value',$(this).data('id'));
+            $('#value-id').attr('value',$(this).data('user'));
+            $('#request-id').removeAttr('value');
+            $('#request-id').attr('value',$(this).data('id'));
         });
     </script>

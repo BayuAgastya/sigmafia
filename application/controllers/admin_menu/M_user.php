@@ -199,10 +199,7 @@ class M_user extends CI_Controller
 
     function requestAccept()
     {
-        $user_id = $this->input->post('user_id');
-        $username = $this->input->post('username');
-        /* $password = md5($this->input->post('password')); */
-        $id_murid = $this->input->post('id_murid');
+        $user_id = $this->input->post('id');
         if(!empty($this->input->post('membership'))){
             $akses_konten = 'yes';
             $endDate = date('Y-m-d',strtotime('+ '.$this->input->post('membership')));
@@ -218,10 +215,6 @@ class M_user extends CI_Controller
         }
 
         $data = array(
-            'user_id' => $user_id,
-            'username' => $username,
-            /* 'password' => $password, */
-            'id_murid' => $id_murid,
             'akses_konten' => $akses_konten,
             'endDate' => $endDate
         );
@@ -231,6 +224,7 @@ class M_user extends CI_Controller
         );
 
         $this->admin_model->update_data($where, $data, 'user');
+        $this->admin_model->delete_data('request_akses',array('id_request'=>$this->input->post('id_request')));
         redirect(base_url('admin_menu/m_user/requestPage'));
     }
 
@@ -283,7 +277,7 @@ class M_user extends CI_Controller
 
     function update_kehadiran(){
         $tanggal_hadir = $this->input->post('tanggal_hadir');
-        if(!isset($tanggal_hadir)){
+        if($tanggal_hadir == "" or $tanggal_hadir == null){
             $tanggal_hadir = date('Y-m-d');
         }
         $murid = $this->input->post('murid');
@@ -295,6 +289,8 @@ class M_user extends CI_Controller
 
             $this->admin_model->add_data($input,'kehadiran');
         }
+
+        // var_dump($tanggal_hadir);
 
         redirect(base_url('admin_menu/m_user/kehadiran'));
     }
