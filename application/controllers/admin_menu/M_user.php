@@ -96,11 +96,16 @@ class M_user extends CI_Controller
         $id_murid = $this->input->post('id_murid');
         if(!empty($this->input->post('membership'))){
             $akses_konten = 'yes';
-            $endDate = date('Y-m-d',strtotime($this->input->post('membership')));
+            $endDate = date('Y-m-d',strtotime('+ '.$this->input->post('membership')));
         }else{
             $temp = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
-            $akses_konten = $temp['akses_konten'];
-            $endDate = $temp['endDate'];
+            if($temp['akses_konten'] == 'yes'){
+                $akses_konten = 'yes';
+                $endDate = date('Y-m-d',strtotime($temp['endDate'].' + '.$this->input->post('membership')));
+            }else{
+                $akses_konten = $temp['akses_konten'];
+                $endDate = $temp['endDate'];
+            }
         }
 
         $data = array(
@@ -194,19 +199,39 @@ class M_user extends CI_Controller
 
     function requestAccept()
     {
-        $id = $this->input->post('id');
-        $helper = $this->db->get_where('request_akses', array('id_request' => $id))->row_array();
-
-        $this->admin_model->changeAkses($helper['user_id'],$this->input->post('membership'));
-        $nama = './uploads/bukti_trf/' . $helper['bukti_trf'];
-
-        if (is_readable($nama) && unlink($nama)) {
-            $delete = $this->admin_model->hapusFileRequest($id);
-            $this->session->set_flashdata('request', 'User sudah dapat mengakses konten');
-            redirect(base_url('admin_menu/m_user/requestPage'));
-        } else {
-            echo "File tidak ditemukan";
+        $user_id = $this->input->post('user_id');
+        $username = $this->input->post('username');
+        /* $password = md5($this->input->post('password')); */
+        $id_murid = $this->input->post('id_murid');
+        if(!empty($this->input->post('membership'))){
+            $akses_konten = 'yes';
+            $endDate = date('Y-m-d',strtotime('+ '.$this->input->post('membership')));
+        }else{
+            $temp = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
+            if($temp['akses_konten'] == 'yes'){
+                $akses_konten = 'yes';
+                $endDate = date('Y-m-d',strtotime($temp['endDate'].' + '.$this->input->post('membership')));
+            }else{
+                $akses_konten = $temp['akses_konten'];
+                $endDate = $temp['endDate'];
+            }
         }
+
+        $data = array(
+            'user_id' => $user_id,
+            'username' => $username,
+            /* 'password' => $password, */
+            'id_murid' => $id_murid,
+            'akses_konten' => $akses_konten,
+            'endDate' => $endDate
+        );
+
+        $where = array(
+            'user_id' => $user_id
+        );
+
+        $this->admin_model->update_data($where, $data, 'user');
+        redirect(base_url('admin_menu/m_user/requestPage'));
     }
 
 
@@ -258,7 +283,7 @@ class M_user extends CI_Controller
 
     function update_kehadiran(){
         $tanggal_hadir = $this->input->post('tanggal_hadir');
-        if(isset($tanggal_hadir)){
+        if(!isset($tanggal_hadir)){
             $tanggal_hadir = date('Y-m-d');
         }
         $murid = $this->input->post('murid');

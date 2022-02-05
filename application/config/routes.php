@@ -79,7 +79,7 @@ $route['hapusUser/(:num)'] = 'admin_menu/m_user/prosesHapus/$1';
 $route['editUser'] = 'admin_menu/m_user/editUser';
 $route['editUserPage/(:num)'] = 'admin_menu/m_user/editPage/$1';
 
-$route['acceptRequest/(:num)'] = 'admin_menu/m_user/requestAccept';
+$route['acceptRequest'] = 'admin_menu/m_user/requestAccept';
 $route['declineRequest/(:num)'] = 'admin_menu/m_user/requestDecline/$1';
 
 $route['tambahMurid'] = 'home/tambah_murid';
