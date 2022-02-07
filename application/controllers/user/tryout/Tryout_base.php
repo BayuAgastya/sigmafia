@@ -176,7 +176,7 @@ class tryout_base extends CI_Controller
             $nilai = ($value / $total_bobot) * 100;
         }
 
-        $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $total, $correct, $value, $total_bobot, $now, $nilai);
+        $this->tryout_model->simpan_hasil($this->input->post('id'), $user_id, $correct, $value, $total_bobot, $now, $nilai);
         $id_hasil = array(
             'id_hasil' => $this->db->insert_id()
         );  
@@ -186,6 +186,10 @@ class tryout_base extends CI_Controller
             $conclusion = array_merge($detail_jawaban[$i], $id_hasil);
             $this->db->insert('bank_jawaban',$conclusion);
         }
+
+
+        $murid = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
+        $this->tryout_model->update_data(array('id_tryout'=>$this->input->post('id'),'id_murid'=>$murid['id_murid']),array('status'=>1),'relation_tryout_murid');
         
         $data = array(
             'title' => 'Tryout Sigmafia',

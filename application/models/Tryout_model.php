@@ -84,8 +84,13 @@ class Tryout_model extends CI_Model
 
     public function getHasilByTo($id)
     {
-        $query = $this->db->get_where('hasil_tryout', array('id_tryout' => $id));
-        return $query->result();
+        $this->db->select('*');
+        $this->db->from('hasil_tryout');
+        $this->db->join('user','user.user_id=hasil_tryout.id_user');
+        $this->db->join('murid','murid.id_murid=user.id_murid');
+        $this->db->where('hasil_tryout.id_tryout',$id);
+
+        return $this->db->get()->result();
     }
 
     public function getSoalByTo($soal)
@@ -116,6 +121,7 @@ class Tryout_model extends CI_Model
         $this->db->from('tryout');
         $this->db->join('relation_tryout_murid','relation_tryout_murid.id_tryout=tryout.id_tryout');
         $this->db->where('tryout.id_tryout',$where);
+        $this->db->where('relation_tryout_murid.status',0);
 
         return $this->db->get();
     }
@@ -153,8 +159,7 @@ class Tryout_model extends CI_Model
         return $this->db->get();
     }
 
-    public function simpan_hasil($id,$user_id,$total,$correct,$value,$bobot,$now,$nilai){
-        $tryout = $this->db->get_where('tryout',array('id_tryout'=>$id))->row();
+    public function simpan_hasil($id,$user_id,$correct,$value,$bobot,$now,$nilai){
         if($nilai >= 70){
             $status = 'Lolos';
         }else{
@@ -163,8 +168,6 @@ class Tryout_model extends CI_Model
         $data = array(
             'id_tryout' => $id,
             'id_user' => $user_id,
-            'urut_soal' => $tryout->jumlah_soal,
-            'urut_jawaban' => $total,
             'jml_benar' => $correct,
             'nilai' => $nilai,
             'nilai_bobot' => $value,

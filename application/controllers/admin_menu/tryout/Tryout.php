@@ -94,7 +94,8 @@ class Tryout extends CI_Controller
             $relation = array(
                 'id_murid' => $murid[$i],
                 'id_tryout' => $this->input->post('id_tryout'),
-                'tanggal_tryout' => date('Y-m-d')
+                'tanggal_tryout' => date('Y-m-d'),
+                'status' => 0
             );
             $this->tryout_model->add_data($relation, 'relation_tryout_murid');
         }

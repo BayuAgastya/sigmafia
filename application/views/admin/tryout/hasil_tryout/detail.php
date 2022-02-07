@@ -89,7 +89,7 @@
                                     <tr style="text-align: center;">
                                         <th>ID Hasil</th>
                                         <th>ID TO</th>
-                                        <th>ID User</th>
+                                        <th>Nama User</th>
                                         <th>Urut Soal</th>
                                         <th>Urut Jawaban</th>
                                         <th>Jumlah Benar</th>
@@ -105,7 +105,7 @@
                                         <tr style="text-align: center;">
                                             <td style="width:01%"><?= $i->id_hasil; ?></td>
                                             <td style="width:01%"><?= $i->id_tryout; ?></td>
-                                            <td style="width:01%"><?= $i->id_user; ?></td>
+                                            <td style="width:01%"><?= $i->nama; ?></td>
                                             <td style="width:01%"><?= $i->urut_soal; ?></td>
                                             <td style="width:01%"><?= $i->urut_jawaban; ?></td>
                                             <td style="width:10%"><?= $i->jml_benar; ?></td>
