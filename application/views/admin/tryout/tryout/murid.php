@@ -18,7 +18,7 @@
                             <div class="p-3 bg-gray">
 
                                 <div class="form-group col-sm-12">
-                                    <label>Tingkat</label>
+                                    <label>Tryout</label>
                                     <select name="id_tryout" id="id_tryout" class="custom-select" required>
                                         <option value="" selected>>> Pilih Tryout</option>
                                         <?php foreach ($data_tryout->result() as $g) : ?>
@@ -57,7 +57,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <div class="col-sm-12">
                             <div class="form-group pull-right">
                                 <a href="<?= base_url('admin_menu/tryout/tryout') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>
@@ -73,32 +73,32 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-    $('#id_tryout').on('change',function(){
+    $('#id_tryout').on('change', function() {
         var id_tryout = this.value;
         console.log(id_tryout);
         $.ajax({
             url: "<?= base_url('admin_menu/tryout/tryout/get_tryout'); ?>",
             type: "POST",
             cache: false,
-            data :{
-                tryout : id_tryout
+            data: {
+                tryout: id_tryout
             },
             success: function(result) {
                 var murid = $.parseJSON(result);
 
                 $('#table-body-modify').html('');
-                $.each(murid,function(index, value){
+                $.each(murid, function(index, value) {
                     console.log(value.id_tryout);
                     $('#table-body-modify').append(`
                         <tr>
                             <td style="width:1%">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="murid[]" value="`+value.id_murid+`">
+                                    <input type="checkbox" class="form-check-input" name="murid[]" value="` + value.id_murid + `">
                                 </div>
                             </td>
-                            <td style="width:1%">`+value.id_murid+`</td>
-                            <td style="width:60%; text-align:center">`+value.nama+`</td>
-                            <td style="width:38%">`+value.asal_sekolah+`</td>
+                            <td style="width:1%">` + value.id_murid + `</td>
+                            <td style="width:60%; text-align:center">` + value.nama + `</td>
+                            <td style="width:38%">` + value.asal_sekolah + `</td>
                         </tr>
                     `);
                 });
