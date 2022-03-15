@@ -48,4 +48,19 @@ class Hasil_tryout extends CI_Controller
         $data['hasil'] = $this->tryout_model->getHasilByTo($id);
         $this->load->view('admin_layout/wrapper', $data);
     }
+
+    function delete_detail_user_tryout(){
+        $id = $this->input->post('id');
+        if($this->tryout_model->delete_data('hasil_tryout',array('id_hasil'=>$id))){
+            $result = array(
+                'parameter' => 202
+            );
+        }else{
+            $result = array(
+                'parameter' => 404
+            );
+        }
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
 }

@@ -97,11 +97,12 @@
                                         <th>Tgl Mulai</th>
                                         <th>Tgl Selesai</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($hasil as $i) : ?>
-                                        <tr style="text-align: center;">
+                                        <tr style="text-align: center;" id="data-<?= $i->id_hasil; ?>">
                                             <td style="width:01%"><?= $i->id_hasil; ?></td>
                                             <td style="width:01%"><?= $i->id_tryout; ?></td>
                                             <td style="width:10%"><?= $i->nama; ?></td>
@@ -112,6 +113,7 @@
                                             <td style="width:10%"><?= $i->tgl_mulai; ?></td>
                                             <td style="width:10%"><?= $i->tgl_selesai; ?></td>
                                             <td style="width:10%"><?= $i->status; ?></td>
+                                            <td style="width:10%"><button data-id="<?= $i->id_hasil; ?>" class="btn btn-sm btn-danger delete-detail-tryout"><i class="fa fa-trash"></i></button></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -123,3 +125,30 @@
         </div>
     </section>
 </div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $('.delete-detail-tryout').on('click',function(){
+        var id = $(this).data('id');
+
+        if (confirm('Yakin ingin menghapus data?')) {
+            $.ajax({
+                url: "<?php echo base_url("admin_menu/tryout/hasil_tryout/delete_detail_user_tryout");?>",
+                type: "POST",
+                cache: false,
+                data :{
+                    id: id
+                },
+                success: function(results) {
+                    var result = $.parseJSON(results);  
+                    console.log(result);
+
+                    if(result == 200){
+                        $('#data-'+id).remove();
+                    }else{
+                        alert('Gagal menghapus!');
+                    }
+                }
+            });
+        }
+    })
+</script>

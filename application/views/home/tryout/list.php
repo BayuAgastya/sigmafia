@@ -81,6 +81,9 @@
                 <div class="alert alert-danger" id="code-salah" role="alert">
                     Kode salah!
                 </div>
+                <div class="alert alert-warning" id="code-warning" role="alert">
+                    Anda sudah mengikuti tryout!
+                </div>
                 <form action="" id="insertCodeValue">
                     <input type="text" id="codeValue" maxlength="5" style="text-align: center; width: 100%;">
                 </form>
@@ -109,10 +112,14 @@
 
                 console.log(data.parameter);
 
-                if (data.parameter == 404) {
-                    $("#code-salah").show();
-                } else {
+                if (data.parameter == 202) {
                     $(location).attr('href', "<?= base_url('prep/'); ?>" + id);
+                } else if(data.parameter == 200){
+                    $("#code-warning").show();
+                    $("#code-salah").hide();
+                } else{
+                    $("#code-warning").hide();
+                    $("#code-salah").show();
                 }
             }
         });

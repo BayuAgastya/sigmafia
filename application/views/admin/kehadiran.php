@@ -133,7 +133,6 @@
                     const count = Object.keys(murid).length;
 
                     $.each(murid,function(index, value){
-                        console.log(value.tanggal_hadir);
                         var hadir = new Date(value.tanggal_hadir);
                         var year = hadir.getFullYear();
                         var month = hadir.getMonth()+1;

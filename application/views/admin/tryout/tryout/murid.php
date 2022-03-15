@@ -29,33 +29,41 @@
 
                             </div>
                         </div>
-
-                        <div class="col-sm-12 form-group">
-                            <label>Pilih Murid</label>
-                            <table class="table table-bordered table-head-fixed">
-                                <thead>
-                                    <tr>
-                                        <th>Pilih</th>
-                                        <th>ID</th>
-                                        <th>Nama</th>
-                                        <th>Asal</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body-modify">
-                                    <?php foreach ($data_murid->result() as $i) : ?>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between w-75">
+                                <h5 class="pt-2">Pilih Murid</h5>
+                                <div class="form-group">
+                                    <input type="text" id="search-student" class="form-check-input w-25" placeholder="Cari Murid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="card-body table-responsive p-0" style="height: 400px;">
+                                <table class="table table-bordered table-head-fixed">
+                                    <thead>
                                         <tr>
-                                            <td style="width:1%">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" name="murid[]" value="<?= $i->id_murid; ?>">
-                                                </div>
-                                            </td>
-                                            <td style="width:1%"><?= $i->id_murid; ?></td>
-                                            <td style="width:60%; text-align:center"><?= $i->nama; ?></td>
-                                            <td style="width:38%"><?= $i->asal_sekolah; ?></td>
+                                            <th>Pilih</th>
+                                            <th>ID</th>
+                                            <th>Nama</th>
+                                            <th>Asal</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody id="table-body-modify" class="form-group">
+                                        <?php foreach ($data_murid->result() as $i) : ?>
+                                            <tr>
+                                                <td style="width:1%">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" name="murid[]" value="<?= $i->id_murid; ?>">
+                                                    </div>
+                                                </td>
+                                                <td style="width:1%"><?= $i->id_murid; ?></td>
+                                                <td style="width:60%; text-align:center"><?= $i->nama; ?></td>
+                                                <td style="width:38%"><?= $i->asal_sekolah; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div class="col-sm-12">
@@ -102,6 +110,40 @@
                         </tr>
                     `);
                 });
+            }
+        });
+    });
+</script>
+
+<script>
+    $('#search-student').on('keyup',function(){
+        var arr = [];
+        <?php foreach($data_murid->result() as $result){ ?>
+            var array = {
+                'id_murid' : "<?= $result->id_murid; ?>",
+                'nama' : "<?= $result->nama; ?>",
+                'asal_sekolah' : "<?= $result->asal_sekolah; ?>"
+            }
+            arr.push(array);
+        <?php } ?>
+        var val = $(this).val().toLowerCase();
+        $('#table-body-modify').html('');
+        var regex;
+        $.each(arr, function(index, value) {
+            regex = value.nama.toLowerCase();
+            if(regex.match(val) || value.id_murid.match(val)){
+                $('#table-body-modify').append(`
+                    <tr>
+                        <td style="width:1%">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="murid[]" value="` + value.id_murid + `">
+                            </div>
+                        </td>
+                        <td style="width:1%">` + value.id_murid + `</td>
+                        <td style="width:60%; text-align:center">` + value.nama + `</td>
+                        <td style="width:38%">` + value.asal_sekolah + `</td>
+                    </tr>
+                `);
             }
         });
     });

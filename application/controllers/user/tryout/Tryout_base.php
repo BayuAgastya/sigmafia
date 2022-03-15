@@ -30,9 +30,15 @@ class tryout_base extends CI_Controller
         $data = $this->tryout_model->validation_tryout($this->input->post('id_tryout'))->row_array();
         if(!empty($data)){
             if($data['kode'] == $this->input->post('code')){
-                $result = array(
-                    'parameter' => 202
-                );
+                if($data['kode'] == 1){
+                    $result = array(
+                        'parameter' => 200
+                    );
+                }else{
+                    $result = array(
+                        'parameter' => 202
+                    );
+                }
             }else{
                 $result = array(
                     'parameter' => 400
