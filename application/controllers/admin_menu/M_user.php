@@ -275,6 +275,50 @@ class M_user extends CI_Controller
         $this->load->view('admin_layout/wrapper', $data);
     }
 
+    function detail_kehadiran($id,$month){
+        $months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+
+        $m = $month - 1;
+
+
+        $data = array(
+            'title' => 'Request',
+            'nav_dashboard' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_bank' => '',
+            'nav_tryout' => '',
+            'nav_user' => '',
+            'nav_siswa' => '',
+            'nav_alumni' => '',
+            'nav_kehadiran' => 'active',
+            'isi' => 'admin/detail_kehadiran',
+            'bulan' => $months[$m],
+            'data' => $this->admin_model->where_kehadiran($id,$month)->result(),
+            'murid' => $this->db->get_where('murid',array('id_murid'=>$id))->row_array()
+        );
+
+        // var_dump(date('m',$kalender['tanggal_hadir']));
+        $this->load->view('admin_layout/wrapper', $data);
+
+    }
+
+    function hapus_kehadiran(){
+        $id = $this->input->post('id');
+        if($this->tryout_model->delete_data('kehadiran',array('id_kehadiran'=>$id))){
+            $result = array(
+                'parameter' => 404
+            );
+        }else{
+            $result = array(
+                'parameter' => 202
+            );
+        }
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
     function update_kehadiran(){
         $tanggal_hadir = $this->input->post('tanggal_hadir');
         if($tanggal_hadir == "" or $tanggal_hadir == null){

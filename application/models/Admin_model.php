@@ -321,6 +321,17 @@ class Admin_model extends CI_Model
         return $this->db->get();
     }
 
+    public function where_kehadiran($id,$month){
+        $this->db->select('*');
+        $this->db->from('kehadiran');
+        $this->db->join('murid', 'murid.id_murid=kehadiran.id_murid');
+        $this->db->where('murid.id_murid',$id);
+        $this->db->where('MONTH(kehadiran.tanggal_hadir)',$month);
+        $this->db->order_by('kehadiran.tanggal_hadir','DESC');
+
+        return $this->db->get();
+    }
+
     public function add_kehadiran($tanggal_hadir)
     {
         $this->db->select('murid.id_murid');

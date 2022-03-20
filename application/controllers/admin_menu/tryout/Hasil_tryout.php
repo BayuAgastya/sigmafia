@@ -53,11 +53,11 @@ class Hasil_tryout extends CI_Controller
         $id = $this->input->post('id');
         if($this->tryout_model->delete_data('hasil_tryout',array('id_hasil'=>$id))){
             $result = array(
-                'parameter' => 202
+                'parameter' => 404
             );
         }else{
             $result = array(
-                'parameter' => 404
+                'parameter' => 202
             );
         }
 

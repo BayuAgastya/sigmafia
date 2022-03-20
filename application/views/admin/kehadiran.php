@@ -141,14 +141,16 @@
                             data[year][month][date].push({
                                 startTime: "10:00",
                                 endTime: "12:00",
-                                text: value.nama
+                                text: value.nama,
+                                link: "<?= base_url('detail_kehadiran/'); ?>"+value.id_murid+"/"+month+""
                             });
                         } catch (e) {
                             data[year][month][date] = [];
                             data[year][month][date].push({
                                 startTime: "10:00",
                                 endTime: "12:00",
-                                text: value.nama
+                                text: value.nama,
+                                link: "<?= base_url('detail_kehadiran/'); ?>"+value.id_murid+"/"+month+""
                             });
                         }
                     })

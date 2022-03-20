@@ -93,6 +93,10 @@ $route['tambahSiswa'] = 'admin_menu/m_siswa/tambah_siswa';
 
 /* ALUMNUS ================================================================================================= */
 
+$route['detail_kehadiran/(:any)/(:num)'] = "admin_menu/m_user/detail_kehadiran/$1/$2";
+
+/* ALUMNUS ================================================================================================= */
+
 $route['hapusAlumnus/(:num)'] = 'admin_menu/m_alumni/prosesHapus/$1';
 $route['editAlumni'] = 'admin_menu/m_alumni/editAlumni';
 $route['editAlumnus/(:num)'] = 'admin_menu/m_alumni/editPage/$1';
