@@ -38,12 +38,18 @@ class Hasil_tryout extends CI_Controller
             $data['bobot_total'] += $lk['bobot'];
         }
         foreach($riwayat as $r){
-            $nilai += $r['nilai_bobot'];
+            $nilai += $r['nilai'];
             $bobot[] = $r['nilai_bobot'];
         }
-        $data['min'] = min($bobot);
-        $data['max'] = max($bobot);
-        $data['average'] = $nilai/count($riwayat);
+        if(empty($bobot)){
+            $data['min'] = 0;
+            $data['max'] = 0;
+            $data['average'] = 0;
+        }else{
+            $data['min'] = min($bobot);
+            $data['max'] = max($bobot);
+            $data['average'] = $nilai/count($riwayat);
+        }
         $data['data_hasil'] = $this->db->get('hasil_tryout');
         $data['hasil'] = $this->tryout_model->getHasilByTo($id);
         $this->load->view('admin_layout/wrapper', $data);

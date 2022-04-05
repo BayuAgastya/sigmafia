@@ -73,7 +73,7 @@
                     var result = $.parseJSON(results);  
                     console.log(result);
 
-                    if(result == 200){
+                    if(result.parameter == 202){
                         $('#data-'+id).remove();
                     }else{
                         alert('Gagal menghapus!');

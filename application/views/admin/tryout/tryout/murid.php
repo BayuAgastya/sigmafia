@@ -50,10 +50,10 @@
                                     </thead>
                                     <tbody id="table-body-modify" class="form-group">
                                         <?php foreach ($data_murid->result() as $i) : ?>
-                                            <tr>
+                                            <tr id="tr-<?= $i->id_murid; ?>">
                                                 <td style="width:1%">
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" name="murid[]" value="<?= $i->id_murid; ?>">
+                                                        <input type="checkbox" class="form-check-input murid-checkbox" name="murid[]" value="<?= $i->id_murid; ?>">
                                                     </div>
                                                 </td>
                                                 <td style="width:1%"><?= $i->id_murid; ?></td>
@@ -94,11 +94,13 @@
             success: function(result) {
                 var murid = $.parseJSON(result);
 
+                let data = $(".form-check-input").val();
+
                 $('#table-body-modify').html('');
                 $.each(murid, function(index, value) {
                     console.log(value.id_tryout);
                     $('#table-body-modify').append(`
-                        <tr>
+                        <tr id="tr-`+value.id_murid+`">
                             <td style="width:1%">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="murid[]" value="` + value.id_murid + `">
@@ -118,6 +120,7 @@
 <script>
     $('#search-student').on('keyup',function(){
         var arr = [];
+        var boolen = "";
         <?php foreach($data_murid->result() as $result){ ?>
             var array = {
                 'id_murid' : "<?= $result->id_murid; ?>",
@@ -127,23 +130,18 @@
             arr.push(array);
         <?php } ?>
         var val = $(this).val().toLowerCase();
-        $('#table-body-modify').html('');
         var regex;
+
+        let data = $(".murid-checkbox").val();
+
         $.each(arr, function(index, value) {
             regex = value.nama.toLowerCase();
             if(regex.match(val) || value.id_murid.match(val)){
-                $('#table-body-modify').append(`
-                    <tr>
-                        <td style="width:1%">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="murid[]" value="` + value.id_murid + `">
-                            </div>
-                        </td>
-                        <td style="width:1%">` + value.id_murid + `</td>
-                        <td style="width:60%; text-align:center">` + value.nama + `</td>
-                        <td style="width:38%">` + value.asal_sekolah + `</td>
-                    </tr>
-                `);
+                $('#tr-'+value.id_murid).addClass('table-row');
+                $('#tr-'+value.id_murid).removeClass('d-none');
+            }else{
+                $('#tr-'+value.id_murid).addClass('d-none');
+                $('#tr-'+value.id_murid).removeClass('table-row');
             }
         });
     });

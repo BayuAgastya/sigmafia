@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Tambah Soal</h1>
+                    <h1 class="m-0 text-dark">Edit Soal</h1>
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@
                             <hr>
                             <div class="form-group pull-right">
                                 <a href="<?= base_url('admin_menu/tryout/bank_soal') ?>" class="btn btn-flat btn-default"><i class="fa fa-arrow-left"></i> Batal</a>
-                                <button type="submit" id="submit" class="btn btn-primary bg-purple"><i class="fa fa-save"></i> Simpan</button>
+                                <button type="submit" id="submit" class="btn btn-primary bg-purple"><i class="fa fa-save"></i> Perbahrui</button>
                             </div>
                         </div>
                     </div>
