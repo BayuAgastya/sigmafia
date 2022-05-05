@@ -164,14 +164,133 @@ class Home extends CI_Controller
         }
     }
 
+    function data_evaluasi(){
+        $data = array(
+            'title' => 'Evaluasi',
+            'nav_home' => '',
+            'nav_about' => '',
+            'nav_video' => '',
+            'nav_soal' => '',
+            'nav_materi' => '',
+            'nav_contact' => '',
+            'isi' => 'home/evaluasi',
+            'data_murid' => $this->admin_model->get_murid($this->session->userdata('user_id'))->row_array()
+        );
+        
+        if(empty($this->input->get('tanggal-evaluasi')) and $this->input->get('tanggal-evaluasi') == 0){
+            $month = date('m');
+            $year = date('Y');
+        }else{
+            $month = $this->input->get('tanggal-evaluasi');
+            $year = date('Y');
+        }
+
+        // $data['evaluations'] = $this->admin_model->count_relation_evaluation($this->session->userdata('user_id'),$month,$year)->result_array();
+
+        $data['minggu1'] = 0;
+        $data['minggu2'] = 0;
+        $data['minggu3'] = 0;
+        $data['minggu4'] = 0;
+        $user = $this->db->get_where('user',array('user_id'=>$this->session->userdata('user_id')))->row_array();
+        $id_murid = $user['id_murid'];
+        
+        if(empty($this->input->get('tanggal-evaluasi')) and $this->input->get('tanggal-evaluasi') == 0){
+            $data['minggu1'] = $this->admin_model->get_weekly($id_murid,date('Y-m-01'),date('Y-m-07'));
+            $data['minggu2'] = $this->admin_model->get_weekly($id_murid,date('Y-m-08'),date('Y-m-14'));
+            $data['minggu3'] = $this->admin_model->get_weekly($id_murid,date('Y-m-15'),date('Y-m-21'));
+            $data['minggu4'] = $this->admin_model->get_weekly($id_murid,date('Y-m-22'),date('Y-m-t'));
+        }else{
+            $data['minggu1'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-01'),date('Y-'.$month.'-07'));
+            $data['minggu2'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-08'),date('Y-'.$month.'-14'));
+            $data['minggu3'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-15'),date('Y-'.$month.'-21'));
+            $data['minggu4'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-22'),date('Y-'.$month.'-t'));
+        }
+
+        $nilai = 0;
+        $total_nilai = 0;
+
+        $array = array();
+        foreach($this->admin_model->count_relation_evaluation($id_murid,$month,$year)->result_array() as $ini){
+            $result = $this->admin_model->hasil_evaluasi($this->session->userdata('user_id'),$ini['id_tryout'],$month,$year);
+            if(!empty($result)){
+                $array[] = array(
+                    'nama_tryout' => $result['nama_tryout'],
+                    'nilai' => $result['nilai'],
+                    'nilai_bobot' => $result['nilai_bobot'],
+                    'status' => $result['status']
+                );
+                $nilai += $result['nilai_bobot'];
+                $total_nilai += $result['total_bobot'];
+            }else{
+                $array[] = array(
+                    'nama_tryout' => $result['nama_tryout'],
+                    'nilai' => '0.00',
+                    'nilai_bobot' => '0',
+                    'status' => 'Belum Tryout'
+                );
+                foreach($this->tryout_model->data_lembarKerja($data['id_tryout'])->result_array() as $lk){
+                    $total_nilai += $lk['bobot'];
+                }
+            }
+        }
+        $data['evaluations'] = $array;
+        if($nilai == 0 and $total_nilai == 0){
+            $data['jumlah'] = 0;
+        }else{
+            $data['jumlah'] = ($nilai / $total_nilai) * 100;
+        }
+
+        $data['kehadiran'] = (($data['minggu1']+$data['minggu2']+$data['minggu3']+$data['minggu4'])*10/80)*100;
+        if($data['kehadiran'] > 100){
+            $data['kehadiran'] = 100;
+        }
+
+        $data['total'] = (((($data['minggu1']+$data['minggu2']+$data['minggu3']+$data['minggu4'])*10)+$nilai)/(80+$total_nilai))*100;
+        
+        if($data['kehadiran'] < 50){
+            $kk = 'Sangat Buruk';
+        }else if($data['kehadiran'] < 60){
+            $kk = 'Buruk';
+        }else if($data['kehadiran'] < 80){
+            $kk = 'Baik';
+        }else{
+            $kk = 'Sangat Baik';
+        }
+
+        if($data['jumlah'] < 50){
+            $kn = 'Sangat Buruk';
+        }else if($data['jumlah'] < 60){
+            $kn = 'Buruk';
+        }else if($data['jumlah'] < 80){
+            $kn = 'Baik';
+        }else{
+            $kn = 'Sangat Baik';
+        }
+
+        if($data['kehadiran'] == 0 and $data['jumlah'] == 0){
+            $data['comment'] = "Tidak ada data yang ditemukan";
+        }else{
+            $data['comment'] = "Nilai tryout anda ".$kn.", Kehadiran anda ".$kk."";
+        }
+
+        $this->load->view('konten_layout/wrapper', $data);
+    }
+
     function evaluasi(){
         //get data;
         $minggu1 = 0;
         $minggu2 = 0;
         $minggu3 = 0;
         $minggu4 = 0;
-        $month = date('m');
-        $year = date('Y');
+        
+        if(empty($this->input->get('tanggal-evaluasi')) and $this->input->get('tanggal-evaluasi') == 0){
+            $month = date('m');
+            $year = date('Y');
+        }else{
+            $month = $this->input->get('tanggal-evaluasi');
+            $year = date('Y');
+        }
+
         $user = $this->db->get_where('user',array('user_id'=>$this->session->userdata('user_id')))->row_array();
         $id_murid = $user['id_murid'];
         // if($id_murid == null){
@@ -179,10 +298,18 @@ class Home extends CI_Controller
         //     redirect(base_url('profile'));
         //     return;
         // }
-        $minggu1 = $this->admin_model->get_weekly($id_murid,date('Y-m-01'),date('Y-m-07'));
-        $minggu2 = $this->admin_model->get_weekly($id_murid,date('Y-m-08'),date('Y-m-14'));
-        $minggu3 = $this->admin_model->get_weekly($id_murid,date('Y-m-15'),date('Y-m-21'));
-        $minggu4 = $this->admin_model->get_weekly($id_murid,date('Y-m-22'),date('Y-m-t'));
+
+        if(empty($this->input->get('tanggal-evaluasi')) and $this->input->get('tanggal-evaluasi') == 0){
+            $minggu1 = $this->admin_model->get_weekly($id_murid,date('Y-m-01'),date('Y-m-07'));
+            $minggu2 = $this->admin_model->get_weekly($id_murid,date('Y-m-08'),date('Y-m-14'));
+            $minggu3 = $this->admin_model->get_weekly($id_murid,date('Y-m-15'),date('Y-m-21'));
+            $minggu4 = $this->admin_model->get_weekly($id_murid,date('Y-m-22'),date('Y-m-t'));
+        }else{
+            $minggu1 = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-01'),date('Y-'.$month.'-07'));
+            $minggu2 = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-08'),date('Y-'.$month.'-14'));
+            $minggu3 = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-15'),date('Y-'.$month.'-21'));
+            $minggu4 = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-22'),date('Y-'.$month.'-t'));
+        }
         $nilai = 0;
         $total_nilai = 0;
         $this->load->library('linegraph');
@@ -290,13 +417,13 @@ class Home extends CI_Controller
         $pdf->Cell(10,5,"",0,0,"L");
         $pdf->Cell(60,5,"Jumlah Score Kehadiran",0,0,"L");
         $pdf->Cell(5,5,":",0,0,"L");
-        $pdf->Cell(40,5,$kehadiran,0,1,"L");
+        $pdf->Cell(40,5,$kehadiran."%",0,1,"L");
         
         $total = (((($minggu1+$minggu2+$minggu3+$minggu4)*10)+$nilai)/(80+$total_nilai))*100;
         $pdf->Cell(10,5,"",0,0,"L");
         $pdf->Cell(60,5,"Total",0,0,"L");
         $pdf->Cell(5,5,":",0,0,"L");
-        $pdf->Cell(40,5,$total,0,1,"L");
+        $pdf->Cell(40,5,$total."%",0,1,"L");
 
         if($kehadiran <50){
             $kk = 'Sangat Buruk';

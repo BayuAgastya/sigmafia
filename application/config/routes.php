@@ -71,7 +71,8 @@ $route['tambahVideo'] = 'admin_menu/m_video/tambah_video';
 /* SISWA/USER ================================================================================================= */
 
 $route['profile'] = 'home/profile';
-$route['evaluasi'] = 'home/evaluasi';
+$route['evaluasi'] = 'home/data_evaluasi';
+$route['print_evaluasi'] = 'home/evaluasi';
 $route['tambahUser'] = 'admin_menu/m_user/tambah_user';
 $route['tambahAdmin'] = 'admin_menu/m_user/tambah_admin';
 $route['detailUser/(:num)'] = 'admin_menu/m_user/detailUser/$1';
