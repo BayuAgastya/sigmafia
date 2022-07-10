@@ -130,6 +130,7 @@
     $('.ikuti-tryout').on('click', function() {
         // alert("test");
         $("#code-salah").hide();
+        $("#code-warning").hide();
         var id = $(this).data('id');
         console.log(id);
         $('#submit-insert-code').attr('onclick', 'scriptInsertCode(' + id + ')');

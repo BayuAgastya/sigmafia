@@ -203,7 +203,7 @@ class Home extends CI_Controller
             $data['minggu1'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-01'),date('Y-'.$month.'-07'));
             $data['minggu2'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-08'),date('Y-'.$month.'-14'));
             $data['minggu3'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-15'),date('Y-'.$month.'-21'));
-            $data['minggu4'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-22'),date('Y-'.$month.'-t'));
+            $data['minggu4'] = $this->admin_model->get_weekly($id_murid,date('Y-'.$month.'-22'),date('Y-m-t',date('Y-'.$month.'-01')));
         }
 
         $nilai = 0;

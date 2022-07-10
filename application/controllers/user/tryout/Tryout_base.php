@@ -30,7 +30,7 @@ class tryout_base extends CI_Controller
         $data = $this->tryout_model->validation_tryout($this->input->post('id_tryout'))->row_array();
         if(!empty($data)){
             if($data['kode'] == $this->input->post('code')){
-                if($data['kode'] == 1){
+                if($data['status'] == 1){
                     $result = array(
                         'parameter' => 200
                     );
@@ -140,7 +140,7 @@ class tryout_base extends CI_Controller
         $relation = $this->tryout_model->data_lembarKerja($this->input->post('id'))->result_array();
         $jawaban = $this->input->post('jawaban');
         $now = $this->input->post('now');
-        $detail_tryout = $this->db->get_where('tryout', array('id_tryout' => $this->input->post('id')))->row();
+        $detail_tryout = $data = $this->tryout_model->validation_tryout($this->input->post('id'))->row();;
         $user_id = $this->session->userdata('user_id');
 
         $value = 0;
@@ -195,7 +195,7 @@ class tryout_base extends CI_Controller
 
 
         $murid = $this->db->get_where('user',array('user_id'=>$user_id))->row_array();
-        $this->tryout_model->update_data(array('id_tryout'=>$this->input->post('id'),'id_murid'=>$murid['id_murid']),array('status'=>1),'relation_tryout_murid');
+        $this->tryout_model->update_data(array('id_relation_tryout_murid'=>$detail_tryout->id_relation_tryout_murid),array('id_tryout'=>$this->input->post('id'),'id_murid'=>$murid['id_murid'],'status'=>1),'relation_tryout_murid');
         
         $data = array(
             'title' => 'Tryout Sigmafia',
