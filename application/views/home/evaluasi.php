@@ -27,25 +27,49 @@
                     <div class="form-group">
                         <select name="tanggal-evaluasi" onchange="this.form.submit();">
                             <option value="0">-- PILIH BULAN --</option>
-                            <option value="1" <?php if($this->input->get('tanggal-evaluasi')==1){ echo "selected"; } ?>>Januari</option>
-                            <option value="2" <?php if($this->input->get('tanggal-evaluasi')==2){ echo "selected"; } ?>>Februari</option>
-                            <option value="3" <?php if($this->input->get('tanggal-evaluasi')==3){ echo "selected"; } ?>>Maret</option>
-                            <option value="4" <?php if($this->input->get('tanggal-evaluasi')==4){ echo "selected"; } ?>>April</option>
-                            <option value="5" <?php if($this->input->get('tanggal-evaluasi')==5){ echo "selected"; } ?>>Mei</option>
-                            <option value="6" <?php if($this->input->get('tanggal-evaluasi')==6){ echo "selected"; } ?>>Juni</option>
-                            <option value="7" <?php if($this->input->get('tanggal-evaluasi')==7){ echo "selected"; } ?>>Juli</option>
-                            <option value="8" <?php if($this->input->get('tanggal-evaluasi')==8){ echo "selected"; } ?>>Agustus</option>
-                            <option value="9" <?php if($this->input->get('tanggal-evaluasi')==9){ echo "selected"; } ?>>September</option>
-                            <option value="10" <?php if($this->input->get('tanggal-evaluasi')==10){ echo "selected"; } ?>>Oktober</option>
-                            <option value="11" <?php if($this->input->get('tanggal-evaluasi')==11){ echo "selected"; } ?>>November</option>
-                            <option value="12" <?php if($this->input->get('tanggal-evaluasi')==12){ echo "selected"; } ?>>Desember</option>
+                            <option value="1" <?php if ($this->input->get('tanggal-evaluasi') == 1) {
+                                                    echo "selected";
+                                                } ?>>Januari</option>
+                            <option value="2" <?php if ($this->input->get('tanggal-evaluasi') == 2) {
+                                                    echo "selected";
+                                                } ?>>Februari</option>
+                            <option value="3" <?php if ($this->input->get('tanggal-evaluasi') == 3) {
+                                                    echo "selected";
+                                                } ?>>Maret</option>
+                            <option value="4" <?php if ($this->input->get('tanggal-evaluasi') == 4) {
+                                                    echo "selected";
+                                                } ?>>April</option>
+                            <option value="5" <?php if ($this->input->get('tanggal-evaluasi') == 5) {
+                                                    echo "selected";
+                                                } ?>>Mei</option>
+                            <option value="6" <?php if ($this->input->get('tanggal-evaluasi') == 6) {
+                                                    echo "selected";
+                                                } ?>>Juni</option>
+                            <option value="7" <?php if ($this->input->get('tanggal-evaluasi') == 7) {
+                                                    echo "selected";
+                                                } ?>>Juli</option>
+                            <option value="8" <?php if ($this->input->get('tanggal-evaluasi') == 8) {
+                                                    echo "selected";
+                                                } ?>>Agustus</option>
+                            <option value="9" <?php if ($this->input->get('tanggal-evaluasi') == 9) {
+                                                    echo "selected";
+                                                } ?>>September</option>
+                            <option value="10" <?php if ($this->input->get('tanggal-evaluasi') == 10) {
+                                                    echo "selected";
+                                                } ?>>Oktober</option>
+                            <option value="11" <?php if ($this->input->get('tanggal-evaluasi') == 11) {
+                                                    echo "selected";
+                                                } ?>>November</option>
+                            <option value="12" <?php if ($this->input->get('tanggal-evaluasi') == 12) {
+                                                    echo "selected";
+                                                } ?>>Desember</option>
                         </select>
                     </div>
                 </form>
-                <?php if(empty($this->input->get('tanggal-evaluasi'))){ ?>
+                <?php if (empty($this->input->get('tanggal-evaluasi'))) { ?>
                     <a class="btn btn-info" style="color: white; padding:20px; float: right;" href="<?= base_url('/print_evaluasi'); ?>">PRINT EVALUASI</a>
-                <?php }else{ ?>
-                    <a class="btn btn-info" style="color: white; padding:20px; float: right;" href="<?= base_url('/print_evaluasi?tanggal-evaluasi='.$this->input->get('tanggal-evaluasi')); ?>">PRINT EVALUASI</a>
+                <?php } else { ?>
+                    <a class="btn btn-info" style="color: white; padding:20px; float: right;" href="<?= base_url('/print_evaluasi?tanggal-evaluasi=' . $this->input->get('tanggal-evaluasi')); ?>">PRINT EVALUASI</a>
                 <?php } ?>
             </div>
         </div>
@@ -60,7 +84,8 @@
                     <td><b>Score</b></td>
                     <td><b>Status</b></td>
                 </tr>
-                <?php $no=1; foreach($evaluations as $data){ ?>
+                <?php $no = 1;
+                foreach ($evaluations as $data) { ?>
                     <tr>
                         <td><?= $no; ?></td>
                         <td><?= $data['nama_tryout']; ?></td>
@@ -68,7 +93,8 @@
                         <td><?= $data['nilai_bobot']; ?></td>
                         <td><?= $data['status']; ?></td>
                     </tr>
-                <?php $no++; } ?>
+                <?php $no++;
+                } ?>
             </table>
         </div>
 
@@ -81,19 +107,19 @@
             <h5 class="text-center">Kartu Evaluasi</h5>
             <table>
                 <tr>
-                    <td style="width: 20%;">Jumlah Nilai Tryout</td>
+                    <td style="width: 20%;">Rata-rata Nilai Tryout</td>
                     <td style="width: 1%">:</td>
-                    <td> <?= $jumlah; ?></td>
+                    <td> <?= round($jumlah, 2); ?></td>
                 </tr>
                 <tr>
-                    <td>Jumlah Score Kehadiran</td>
+                    <td>Kehadiran</td>
                     <td>:</td>
                     <td> <?= $kehadiran; ?>%</td>
                 </tr>
                 <tr>
                     <td>Total</td>
                     <td>:</td>
-                    <td> <?= $total ?>%</td>
+                    <td> <?= round($total, 2) ?></td>
                 </tr>
                 <tr>
                     <td>Keterangan</td>
@@ -107,28 +133,39 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
-window.onload = function () {
+    window.onload = function() {
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	theme: "light2",
-	data: [{        
-		type: "line",
-      	indexLabelFontSize: 16,
-		dataPoints: [
-            {label: "Minggu 1", y: <?= $minggu1; ?> },
-            {label: "Minggu 2", y: <?= $minggu2; ?> },
-            {label: "Minggu 3", y: <?= $minggu3; ?> },
-            {label: "Minggu 4", y: <?= $minggu4; ?> },
-		]
-	}]
-});
-chart.render();
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            data: [{
+                type: "line",
+                indexLabelFontSize: 16,
+                dataPoints: [{
+                        label: "Minggu 1",
+                        y: <?= $minggu1; ?>
+                    },
+                    {
+                        label: "Minggu 2",
+                        y: <?= $minggu2; ?>
+                    },
+                    {
+                        label: "Minggu 3",
+                        y: <?= $minggu3; ?>
+                    },
+                    {
+                        label: "Minggu 4",
+                        y: <?= $minggu4; ?>
+                    },
+                ]
+            }]
+        });
+        chart.render();
 
-}
+    }
 </script>
 <script>
-    $('#evaluasi').on('change',function(){
+    $('#evaluasi').on('change', function() {
         // this.form.submit();
         alert('test');
     });
